@@ -14,6 +14,8 @@ module NcsNavigator::Mdes
 
     def_delegator :@source_documents, :version
 
+    attr_accessor :transmission_tables
+
     ##
     # @param [String,SourceDocuments] version either the string
     #   version of the MDES metadata you would like to read, or a
@@ -33,5 +35,19 @@ module NcsNavigator::Mdes
     def xsd
       @xsd ||= Nokogiri::XML(File.read source_documents.schema)
     end
+
+    def transmission_tables
+      @transmission_tables ||= read_transmission_tables
+    end
+
+    def read_transmission_tables
+      xsd.xpath(
+        '//xs:element[@name="transmission_tables"]/xs:complexType/xs:sequence/xs:element',
+        source_documents.xmlns
+        ).collect do |table_elt|
+        table_elt['name']
+      end
+    end
+    private :read_transmission_tables
   end
 end

@@ -71,5 +71,25 @@ module NcsNavigator::Mdes
           should raise_error('MDES 1.0 is not supported by this version of ncs-mdes')
       end
     end
+
+    describe '.xmlns' do
+      subject { SourceDocuments.xmlns }
+
+      it 'includes the XSD namespace' do
+        subject['xs'].should == 'http://www.w3.org/2001/XMLSchema'
+      end
+
+      it 'includes the NCS namespace' do
+        subject['ncs'].should == 'http://www.nationalchildrensstudy.gov'
+      end
+
+      it 'includes the NCS doc namespace' do
+        subject['ncsdoc'].should == 'http://www.nationalchildrensstudy.gov/doc'
+      end
+
+      it 'is available from an instance also' do
+        SourceDocuments.new.xmlns.keys.sort.should == %w(ncs ncsdoc xs)
+      end
+    end
   end
 end

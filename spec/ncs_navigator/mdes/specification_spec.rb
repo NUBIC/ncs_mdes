@@ -24,5 +24,15 @@ module NcsNavigator::Mdes
         Specification.new('1.2').xsd.root.name.should == 'schema'
       end
     end
+
+    describe '#transmission_tables' do
+      it 'has 124 tables in version 1.2' do
+        Specification.new('1.2').should have(124).transmission_tables
+      end
+
+      it 'has 264 tables in version 2.0' do
+        Specification.new('2.0').should have(264).transmission_tables
+      end
+    end
   end
 end

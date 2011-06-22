@@ -1,11 +1,15 @@
 require 'ncs_navigator/mdes'
 
+require 'forwardable'
+
 module NcsNavigator::Mdes
   ##
   # Implements the mechanism for determining where the MDES documents
   # are stored on a particular system.
   class SourceDocuments
     BASE_ENV_VAR = 'NCS_MDES_DOCS_DIR'
+
+    extend Forwardable
 
     ##
     # The base path for all paths that are not explicitly
@@ -21,6 +25,8 @@ module NcsNavigator::Mdes
     #
     # @return [String]
     attr_accessor :version
+
+    def_delegator self, :xmlns
 
     class << self
       ##
@@ -45,6 +51,19 @@ module NcsNavigator::Mdes
         end
       end
       private :create
+
+      ##
+      # A mapping of prefixes to XML namespaces for use with
+      # Nokogiri xpath.
+      #
+      # @return [Hash<String, String>]
+      def xmlns
+        {
+          'xs'     => 'http://www.w3.org/2001/XMLSchema',
+          'ncs'    => 'http://www.nationalchildrensstudy.gov',
+          'ncsdoc' => 'http://www.nationalchildrensstudy.gov/doc'
+        }
+      end
     end
 
     def base
