@@ -1,6 +1,9 @@
 require 'ncs_navigator/mdes'
 
 module NcsNavigator::Mdes
+  ##
+  # A single field in the MDES. A relational model might also call
+  # this a column, but "variable" is what it's called in the MDES.
   class Variable
     ##
     # @return [String] the name of the variable
@@ -27,7 +30,12 @@ module NcsNavigator::Mdes
     # @return [VariableType] the type of this variable.
     attr_accessor :type
 
-    attr_writer :required
+    ##
+    # Is the variable mandatory for a valid submission?
+    #
+    # @return [Boolean]
+    attr_accessor :required
+    alias :required? :required
 
     class << self
       ##
@@ -74,14 +82,6 @@ module NcsNavigator::Mdes
 
     def initialize(name)
       @name = name
-    end
-
-    ##
-    # Is the variable mandatory for a valid submission?
-    #
-    # @return [Boolean]
-    def required?
-      @required
     end
 
     def constraints

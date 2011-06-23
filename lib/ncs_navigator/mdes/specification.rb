@@ -13,16 +13,17 @@ module NcsNavigator::Mdes
     #   working from.
     attr_accessor :source_documents
 
+    ##
+    # @method version
+    # @return [String] the version of the MDES to which this instance refers.
     def_delegator :@source_documents, :version
-
-    attr_accessor :transmission_tables
 
     ##
     # @param [String,SourceDocuments] version either the string
     #   version of the MDES metadata you would like to read, or a
     #   {SourceDocuments} instance pointing to the appropriate files.
     # @param [Hash] options
-    # @option :log a logger to use while reading the specification. If
+    # @option options :log a logger to use while reading the specification. If
     #   not specified, a logger pointing to standard error will be used.
     def initialize(version, options={})
       @source_documents = case version
@@ -35,12 +36,15 @@ module NcsNavigator::Mdes
     end
 
     ##
-    # @return [Nokogiri::XML::Document] the parsed version of the
-    #   schema for this reader
+    # @return [Nokogiri::XML::Document] the parsed version of the VDR
+    #   XML schema for this version of the MDES.
     def xsd
       @xsd ||= Nokogiri::XML(File.read source_documents.schema)
     end
 
+    ##
+    # @return [Array<TransmissionTable>] all the transmission tables
+    #   in this version of the MDES.
     def transmission_tables
       @transmission_tables ||= read_transmission_tables
     end
@@ -55,6 +59,9 @@ module NcsNavigator::Mdes
     end
     private :read_transmission_tables
 
+    ##
+    # @return [Array<VariableType>] all the named types in the
+    #   MDES. This includes all the code lists.
     def types
       @types ||= read_types
     end

@@ -26,6 +26,10 @@ module NcsNavigator::Mdes
     # @return [String]
     attr_accessor :version
 
+    ##
+    # Instance-level alias for {.xmlns}.
+    # @method xmlns
+    # @return [Hash]
     def_delegator self, :xmlns
 
     class << self
@@ -54,7 +58,7 @@ module NcsNavigator::Mdes
 
       ##
       # A mapping of prefixes to XML namespaces for use with
-      # Nokogiri xpath.
+      # Nokogiri XPath.
       #
       # @return [Hash<String, String>]
       def xmlns
@@ -85,6 +89,7 @@ module NcsNavigator::Mdes
     # will be interpreted relative to {#base}.
     #
     # @param [String] path
+    # @return [String] the provided path
     def schema=(path)
       @schema = path
     end

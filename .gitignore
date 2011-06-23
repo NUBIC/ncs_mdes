@@ -4,3 +4,7 @@ Gemfile.lock
 pkg/*
 
 spec/doc-base
+
+.yardoc
+docs
+*.dot

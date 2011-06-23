@@ -1,19 +1,52 @@
 require 'ncs_navigator/mdes'
 
 module NcsNavigator::Mdes
+  ##
+  # Encapsulates restrictions on the content of a {Variable}.
   class VariableType
     attr_reader :name
 
+    ##
+    # @return [Symbol, nil] the XML Schema base type that this
+    #   variable type is based on.
     attr_accessor :base_type
+
+    ##
+    # @return [Regexp, nil] a regular expression that valid values of this
+    #   type must match.
     attr_accessor :pattern
+
+    ##
+    # @return [Fixnum, nil] the maximum length of a valid value of
+    #   this type.
     attr_accessor :max_length
+
+    ##
+    # @return [Fixnum, nil] the minimum length of a valid value of
+    #   this type.
     attr_accessor :min_length
+
+    ##
+    # @return [CodeList<CodeListEntry>, nil] the fixed list of values
+    #   that are valid for this type.
     attr_accessor :code_list
 
+    ##
+    # @return [Boolean] whether this is a fully fleshed-out type or
+    #   just a reference. If it is a reference, all fields except for
+    #   {#name} should be ignored.
     attr_accessor :reference
     alias :reference? :reference
 
     class << self
+      ##
+      # @param [Nokogiri::XML::Element] st the `xs:simpleType` element
+      #   from which to build the instance
+      # @param [Hash] options
+      # @option options [#warn] :log the logger to which to direct warnings
+      #
+      # @return [VariableType] a new instance based on the provided
+      #   simple type.
       def from_xsd_simple_type(st, options={})
         log = options[:log] || NcsNavigator::Mdes.default_logger
 
@@ -57,7 +90,10 @@ module NcsNavigator::Mdes
       end
 
       ##
-      # Creates an instance that represents a reference with the given name.
+      # Creates an instance that represents a reference with the given
+      # name.
+      #
+      # @return [VariableType] a new instance
       def reference(name)
         new(name).tap do |vt|
           vt.reference = true
@@ -70,12 +106,13 @@ module NcsNavigator::Mdes
     end
 
     ##
-    # A collection of {CodeListEntry}s.
+    # A specialization of `Array` for code lists.
     #
     # @see VariableType#code_list
+    # @see CodeListEntry
     class CodeList < Array
       ##
-      # The description of the code list, derived from ncsdoc:desc.
+      # @return [String,nil] the description of the code list if any.
       attr_accessor :description
     end
 
@@ -83,6 +120,7 @@ module NcsNavigator::Mdes
     # A single entry in a code list.
     #
     # @see VariableType#code_list
+    # @see CodeList
     class CodeListEntry
       ##
       # @return [String] the local code value for the entry.
@@ -110,7 +148,9 @@ module NcsNavigator::Mdes
         # @param [Nokogiri::XML::Element] enum the `xs:enumeration`
         #   element.
         # @param [Hash] options
-        # @option :log [#warn] the logger to which to direct warnings
+        # @option options [#warn] :log the logger to which to direct warnings
+        #
+        # @return [CodeListEntry]
         def from_xsd_enumeration(enum, options={})
           log = options[:log] || NcsNavigator::Mdes.default_logger
 
