@@ -1,6 +1,7 @@
 require 'ncs_navigator/mdes'
 
 require 'forwardable'
+require 'logger'
 require 'nokogiri'
 
 module NcsNavigator::Mdes
@@ -20,13 +21,17 @@ module NcsNavigator::Mdes
     # @param [String,SourceDocuments] version either the string
     #   version of the MDES metadata you would like to read, or a
     #   {SourceDocuments} instance pointing to the appropriate files.
-    def initialize(version)
+    # @param [Hash] options
+    # @option :log a logger to use while reading the specification. If
+    #   not specified, a logger pointing to standard error will be used.
+    def initialize(version, options={})
       @source_documents = case version
                           when SourceDocuments
                             version
                           else
                             SourceDocuments.get(version)
                           end
+      @log = options[:log] || NcsNavigator::Mdes.default_logger
     end
 
     ##
@@ -45,7 +50,7 @@ module NcsNavigator::Mdes
         '//xs:element[@name="transmission_tables"]/xs:complexType/xs:sequence/xs:element',
         source_documents.xmlns
         ).collect do |table_elt|
-        table_elt['name']
+        TransmissionTable.from_element(table_elt, :log => @log)
       end
     end
     private :read_transmission_tables

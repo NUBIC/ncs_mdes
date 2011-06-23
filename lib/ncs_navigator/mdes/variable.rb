@@ -23,6 +23,10 @@ module NcsNavigator::Mdes
     #   in the MDES.
     attr_accessor :status
 
+    ##
+    # @return [VariableType] the type of this variable.
+    attr_accessor :type
+
     attr_writer :required
 
     class << self
@@ -34,7 +38,9 @@ module NcsNavigator::Mdes
       #
       # @param [Nokogiri::Element] element the source xs:element
       # @return [Variable] a new variable instance
-      def from_element(element)
+      def from_element(element, options={})
+        log = options[:log] || NcsNavigator::Mdes.default_logger
+
         new(element['name']).tap do |var|
           var.required = (element['nillable'] == 'false')
           var.pii =
@@ -52,6 +58,15 @@ module NcsNavigator::Mdes
             when '3'; :modified;
             when '4'; :retired;
             else element['status'];
+            end
+          var.type =
+            if element['type']
+              VariableType.reference(element['type'])
+            elsif element.elements.collect { |e| e.name } == %w(simpleType)
+              VariableType.from_xsd_simple_type(element.elements.first, options)
+            else
+              log.warn("Could not determine a type for variable #{var.name.inspect} on line #{element.line}")
+              nil
             end
         end
       end

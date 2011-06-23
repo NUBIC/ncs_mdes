@@ -21,17 +21,38 @@ module NcsNavigator::Mdes
 
     describe '#xsd' do
       it 'is parsed' do
-        Specification.new('1.2').xsd.root.name.should == 'schema'
+        Specification.new('1.2', :log => logger).xsd.root.name.should == 'schema'
       end
     end
 
     describe '#transmission_tables' do
-      it 'has 124 tables in version 1.2' do
-        Specification.new('1.2').should have(124).transmission_tables
+      it 'is composed of TransmissionTable instances' do
+        Specification.new('2.0', :log => logger).transmission_tables.first.
+          should be_a TransmissionTable
       end
 
-      it 'has 264 tables in version 2.0' do
-        Specification.new('2.0').should have(264).transmission_tables
+      context 'in version 1.2' do
+        let!(:tables) { Specification.new('1.2', :log => logger).transmission_tables }
+
+        it 'has 124 tables' do
+          tables.size.should == 124
+        end
+
+        it 'emits no warnings' do
+          logger[:warn].size.should == 0
+        end
+      end
+
+      context 'in version 2.0' do
+        let!(:tables) { Specification.new('2.0', :log => logger).transmission_tables }
+
+        it 'has 264 tables' do
+          tables.size.should == 264
+        end
+
+        it 'emits no warnings' do
+          logger[:warn].size.should == 0
+        end
       end
     end
   end

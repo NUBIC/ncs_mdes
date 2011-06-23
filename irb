@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+######
+# Run irb for interactive fiddling with this library from the source
+
+require 'irb'
+
+$LOAD_PATH << File.expand_path('../lib', __FILE__)
+require 'ncs_navigator/mdes'
+
+ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ||=
+  File.expand_path('../spec/doc-base', __FILE__)
+
+$mdes12 = NcsNavigator::Mdes::Specification.new('1.2')
+$mdes20 = NcsNavigator::Mdes::Specification.new('2.0')
+
+puts "Documents are expected to be in #{ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR].inspect}"
+puts "$mdes12 is a Specification for 1.2"
+puts "$mdes20 is a Specification for 2.0"
+
+IRB.start(__FILE__)

@@ -5,16 +5,8 @@ require 'nokogiri'
 module NcsNavigator::Mdes
   describe Variable do
     describe '.from_element' do
-      def variable_element(s)
-        Nokogiri::XML(<<-XSD).root.elements.first
-<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:ncs="http://www.nationalchildrensstudy.gov" xmlns:ncsdoc="http://www.nationalchildrensstudy.gov/doc" xmlns:xlink="http://www.w3.org/TR/WD-xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nationalchildrensstudy.gov" elementFormDefault="unqualified" attributeFormDefault="unqualified">
-  #{s}
-</xs:schema>
-XSD
-      end
-
       def variable(s)
-        Variable.from_element(variable_element(s))
+        Variable.from_element(schema_element(s), :log => logger)
       end
 
       let(:comments) {
@@ -29,8 +21,54 @@ XSD
 XSD
       }
 
+      let(:sc_id) {
+        variable('<xs:element name="sc_id" ncsdoc:pii="" ncsdoc:status="1" ncsdoc:key_asso="" nillable="false" type="ncs:study_center_cl1"/>')
+      }
+
       it 'has the correct name' do
         comments.name.should == 'comments'
+      end
+
+      describe '#type' do
+        context 'when embedded' do
+          it 'is a VariableType' do
+            comments.type.should be_a VariableType
+          end
+
+          it 'is parsed from the contents' do
+            comments.type.max_length.should == 8000
+          end
+
+          it 'is not a reference' do
+            comments.type.should_not be_reference
+          end
+        end
+
+        context 'when referenced by name' do
+          it 'is a VariableType' do
+            sc_id.type.should be_a VariableType
+          end
+
+          it 'has the name' do
+            sc_id.type.name.should == 'ncs:study_center_cl1'
+          end
+
+          it 'is a reference' do
+            sc_id.type.should be_reference
+          end
+        end
+
+        context 'when none present' do
+          let!(:subject) { variable('<xs:element name="bar"/>') }
+
+          it 'is nil' do
+            subject.type.should be_nil
+          end
+
+          it 'warns' do
+            logger[:warn].first.should == 'Could not determine a type for variable "bar" on line 2'
+          end
+        end
       end
 
       describe '#required?' do
