@@ -54,5 +54,16 @@ module NcsNavigator::Mdes
       end
     end
     private :read_transmission_tables
+
+    def types
+      @types ||= read_types
+    end
+
+    def read_types
+      xsd.xpath('//xs:simpleType[@name]', source_documents.xmlns).collect do |type_elt|
+        VariableType.from_xsd_simple_type(type_elt, :log => @log)
+      end
+    end
+    private :read_types
   end
 end

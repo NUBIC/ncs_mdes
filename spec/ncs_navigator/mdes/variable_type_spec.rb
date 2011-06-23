@@ -92,6 +92,34 @@ module NcsNavigator::Mdes
       it 'is not a reference' do
         vtype_from_string('<xs:maxLength value="255"/>').should_not be_reference
       end
+
+      describe '#code_list' do
+        context 'when there are no enumerated values' do
+          it 'is nil' do
+            vtype_from_string('<xs:maxLength value="255"/>').code_list.should be_nil
+          end
+        end
+
+        context 'when there are enumerated values' do
+          subject {
+            vtype_from_string(<<-XSD)
+              <xs:enumeration value="1" ncsdoc:label="Retired" ncsdoc:desc="Eq" ncsdoc:global_value="192-1" ncsdoc:master_cl="equipment_action"/>
+              <xs:enumeration value="2" ncsdoc:label="Sent to manufacturer" ncsdoc:desc="Eq" ncsdoc:global_value="192-2" ncsdoc:master_cl="equipment_action"/>
+              <xs:enumeration value="3" ncsdoc:label="Conducting Maintenance on Site" ncsdoc:desc="Eq" ncsdoc:global_value="192-3" ncsdoc:master_cl="equipment_action"/>
+              <xs:enumeration value="-7" ncsdoc:label="Not applicable" ncsdoc:desc="Eq" ncsdoc:global_value="99-7" ncsdoc:master_cl="missing_data"/>
+              <xs:enumeration value="-4" ncsdoc:label="Missing in Error" ncsdoc:desc="Eq" ncsdoc:global_value="99-4" ncsdoc:master_cl="missing_data"/>
+            XSD
+          }
+
+          it 'has an entry for each value' do
+            subject.code_list.collect(&:to_s).should == %w(1 2 3 -7 -4)
+          end
+
+          it 'has the description' do
+            subject.code_list.description.should == "Eq"
+          end
+        end
+      end
     end
 
     describe '.reference' do
@@ -103,6 +131,55 @@ module NcsNavigator::Mdes
 
       it 'should be a reference' do
         subject.should be_reference
+      end
+    end
+  end
+
+  describe VariableType::CodeListEntry do
+    describe '.from_xsd_enumeration' do
+      def code_list_entry(xml_s)
+        VariableType::CodeListEntry.from_xsd_enumeration(schema_element(xml_s), :log => logger)
+      end
+
+      let(:missing) {
+        code_list_entry(<<-XSD)
+          <xs:enumeration value="-4" ncsdoc:label="Missing in Error" ncsdoc:desc="" ncsdoc:global_value="99-4" ncsdoc:master_cl="missing_data"/>
+        XSD
+      }
+
+      describe '#value' do
+        it 'is set' do
+          missing.value.should == "-4"
+        end
+
+        it 'warns when missing' do
+          code_list_entry('<xs:enumeration ncsdoc:label="Foo"/>')
+          logger[:warn].first.should == 'Missing value for code list entry on line 2'
+        end
+      end
+
+      describe "#label" do
+        it 'is set' do
+          missing.label.should == "Missing in Error"
+        end
+      end
+
+      describe '#global_value' do
+        it 'is set' do
+          missing.global_value.should == '99-4'
+        end
+      end
+
+      describe '#master_cl' do
+        it 'is set' do
+          missing.master_cl.should == 'missing_data'
+        end
+      end
+    end
+
+    describe '#to_s' do
+      it 'is the value' do
+        VariableType::CodeListEntry.new('14').to_s.should == '14'
       end
     end
   end

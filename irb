@@ -4,6 +4,7 @@
 # Run irb for interactive fiddling with this library from the source
 
 require 'irb'
+require 'rubygems'
 
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 require 'ncs_navigator/mdes'

@@ -55,5 +55,36 @@ module NcsNavigator::Mdes
         end
       end
     end
+
+    describe '#types' do
+      it 'is composed of VariableType instances' do
+        Specification.new('2.0', :log => logger).types.first.
+          should be_a VariableType
+      end
+
+      context 'in version 1.2' do
+        let!(:types) { Specification.new('1.2', :log => logger).types }
+
+        it 'has 281 types' do
+          types.size.should == 281
+        end
+
+        it 'emits no warnings' do
+          logger[:warn].size.should == 0
+        end
+      end
+
+      context 'in version 2.0' do
+        let!(:types) { Specification.new('2.0', :log => logger).types }
+
+        it 'has 423 types' do
+          types.size.should == 423
+        end
+
+        it 'emits no warnings' do
+          logger[:warn].size.should == 0
+        end
+      end
+    end
   end
 end
