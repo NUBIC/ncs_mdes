@@ -14,7 +14,7 @@ Provides a consistent ruby interface to the project metainformation in the
 National Children's Study's Master Data Element Specification.
 }
 
-  s.files         = `git ls-files`.split("\n")
+  s.files         = `git ls-files`.split("\n") - ['irb']
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
