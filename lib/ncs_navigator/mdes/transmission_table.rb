@@ -41,5 +41,13 @@ module NcsNavigator::Mdes
     def [](variable_name)
       variables.find { |c| c.name == variable_name }
     end
+
+    ##
+    # Provides a briefer inspection for cleaner IRB use.
+    #
+    # @return [String]
+    def inspect
+      "\#<#{self.class} name=#{name.inspect}>"
+    end
   end
 end

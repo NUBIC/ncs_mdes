@@ -74,5 +74,13 @@ module NcsNavigator::Mdes
       end
     end
     private :read_types
+
+    ##
+    # A briefer inspection for nicer IRB sessions.
+    #
+    # @return [String]
+    def inspect
+      "#<#{self.class} version=#{version.inspect}>"
+    end
   end
 end

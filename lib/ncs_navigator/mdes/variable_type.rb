@@ -116,6 +116,17 @@ module NcsNavigator::Mdes
       @name = name
     end
 
+    def inspect
+      attrs = [
+        [:name, name.inspect],
+        [:base_type, base_type.inspect],
+        [:reference, reference.inspect],
+        [:code_list, code_list ? "<#{code_list.size} entries>" : nil]
+      ].reject { |k, v| v.nil? }.
+        collect { |k, v| "#{k}=#{v}" }
+      "#<#{self.class} #{attrs.join(' ')}>"
+    end
+
     ##
     # A specialization of `Array` for code lists.
     #
