@@ -1,6 +1,8 @@
 0.1.0
 =====
 
+- Add mdes-console executable.
+
 0.0.1
 =====
 

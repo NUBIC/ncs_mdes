@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+##
+# Provides a IRB session with a NcsNavigator::Mdes::Specification instance
+# for free-form prodding.
+
+require 'irb'
+require 'ncs_navigator/mdes'
+
+$mdes12 = NcsNavigator::Mdes::Specification.new('1.2')
+$mdes20 = NcsNavigator::Mdes::Specification.new('2.0')
+
+expected_loc = ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ?
+  ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR].inspect :
+  'the default location'
+
+puts "Documents are expected to be in #{expected_loc}."
+puts "$mdes12 is a Specification for 1.2"
+puts "$mdes20 is a Specification for 2.0"
+
+IRB.start(__FILE__)
