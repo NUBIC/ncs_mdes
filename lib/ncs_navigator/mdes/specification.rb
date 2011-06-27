@@ -53,9 +53,11 @@ module NcsNavigator::Mdes
       xsd.xpath(
         '//xs:element[@name="transmission_tables"]/xs:complexType/xs:sequence/xs:element',
         source_documents.xmlns
-        ).collect do |table_elt|
+      ).collect { |table_elt|
         TransmissionTable.from_element(table_elt, :log => @log)
-      end
+      }.tap { |tables|
+        tables.each { |t| t.variables.each { |v| v.resolve_type!(types, :log => @log) } }
+      }
     end
     private :read_transmission_tables
 

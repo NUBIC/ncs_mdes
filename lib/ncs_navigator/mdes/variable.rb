@@ -87,5 +87,27 @@ module NcsNavigator::Mdes
     def constraints
       @constraints ||= []
     end
+
+    ##
+    # If the {#type} of this instance is a reference to an NCS type,
+    # attempts to replace it with the full version from the given list
+    # of types.
+    #
+    # @param [Array<VariableType>] types
+    # @return [void]
+    def resolve_type!(types, options={})
+      log = options[:log] || NcsNavigator::Mdes.default_logger
+
+      return unless type && type.reference?
+      return unless type.name =~ /^ncs:/
+
+      ncs_type_name = type.name.sub(/^ncs:/, '')
+      match = types.find { |t| t.name == ncs_type_name }
+      if match
+        self.type = match
+      else
+        log.warn("Undefined type #{type.name} for #{name}.") if log
+      end
+    end
   end
 end

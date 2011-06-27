@@ -39,7 +39,13 @@ module NcsNavigator::Mdes
         end
 
         it 'emits no warnings' do
-          logger[:warn].size.should == 0
+          logger[:warn].should == []
+        end
+
+        it 'resolves all NCS type references' do
+          tables.collect { |table|
+            table.variables.collect { |v| v.type }.select { |t| t.reference? }
+          }.flatten.collect { |t| t.name }.select { |n| n =~ /^ncs:/ }.should == []
         end
       end
 
@@ -51,7 +57,13 @@ module NcsNavigator::Mdes
         end
 
         it 'emits no warnings' do
-          logger[:warn].size.should == 0
+          logger[:warn].should == []
+        end
+
+        it 'resolves all NCS type references' do
+          tables.collect { |table|
+            table.variables.collect { |v| v.type }.select { |t| t.reference? }
+          }.flatten.collect { |t| t.name }.select { |n| n =~ /^ncs:/ }.should == []
         end
       end
     end

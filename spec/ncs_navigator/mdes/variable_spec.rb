@@ -129,5 +129,51 @@ XSD
         end
       end
     end
+
+    describe '#resolve_type!' do
+      let(:reference_type) { VariableType.reference('ncs:color_cl3') }
+      let(:actual_type)    { VariableType.new('color_cl3') }
+
+      let(:types) { [ actual_type ] }
+      let(:variable) {
+        Variable.new('hair_color').tap { |v| v.type = reference_type }
+      }
+
+      context 'when the type is available' do
+        it 'resolves' do
+          variable.resolve_type!(types)
+          variable.type.should be actual_type
+        end
+      end
+
+      context 'when the type is not resolvable' do
+        before { variable.resolve_type!([], :log => logger) }
+
+        it 'leaves the reference alone' do
+          variable.type.should be reference_type
+        end
+
+        it 'warns' do
+          logger[:warn].first.should == 'Undefined type ncs:color_cl3 for hair_color.'
+        end
+      end
+
+      context 'when the type is a reference to an XSD type' do
+        it 'ignores it' do
+          variable.type = VariableType.reference('xs:decimal')
+          variable.resolve_type!(types, :log => logger)
+          logger[:warn].should == []
+        end
+      end
+
+      context 'when the type is not a reference' do
+        it 'does nothing' do
+          original = VariableType.new('ncs:color_cl3')
+          variable.type = original
+          variable.resolve_type!(types)
+          variable.type.should be original
+        end
+      end
+    end
   end
 end
