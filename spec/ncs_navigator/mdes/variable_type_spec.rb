@@ -125,12 +125,28 @@ module NcsNavigator::Mdes
     describe '.reference' do
       subject { VariableType.reference('ncs:bar') }
 
-      it 'should have the right name' do
+      it 'has the right name' do
         subject.name.should == 'ncs:bar'
       end
 
-      it 'should be a reference' do
+      it 'is a reference' do
         subject.should be_reference
+      end
+    end
+
+    describe '.xml_schema_type' do
+      subject { VariableType.xml_schema_type('int') }
+
+      it 'has no name' do
+        subject.name.should be_nil
+      end
+
+      it 'has the correct base type' do
+        subject.base_type.should == :int
+      end
+
+      it 'is not a reference' do
+        subject.should_not be_reference
       end
     end
   end

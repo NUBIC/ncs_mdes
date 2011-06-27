@@ -99,6 +99,17 @@ module NcsNavigator::Mdes
           vt.reference = true
         end
       end
+
+      ##
+      # Creates an instance corresponding to the given XML Schema
+      # simple base type.
+      #
+      # @return [VariableType] a new instance
+      def xml_schema_type(type_name)
+        new.tap do |vt|
+          vt.base_type = type_name.to_sym
+        end
+      end
     end
 
     def initialize(name=nil)

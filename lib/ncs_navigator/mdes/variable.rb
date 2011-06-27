@@ -69,7 +69,11 @@ module NcsNavigator::Mdes
             end
           var.type =
             if element['type']
-              VariableType.reference(element['type'])
+              if element['type'] =~ /^xs:/
+                VariableType.xml_schema_type(element['type'].sub(/^xs:/, ''))
+              else
+                VariableType.reference(element['type'])
+              end
             elsif element.elements.collect { |e| e.name } == %w(simpleType)
               VariableType.from_xsd_simple_type(element.elements.first, options)
             else
@@ -99,7 +103,9 @@ module NcsNavigator::Mdes
       log = options[:log] || NcsNavigator::Mdes.default_logger
 
       return unless type && type.reference?
-      return unless type.name =~ /^ncs:/
+      unless type.name =~ /^ncs:/
+        log.warn("Unknown reference namespace in type #{type.name.inspect} for #{name}")
+      end
 
       ncs_type_name = type.name.sub(/^ncs:/, '')
       match = types.find { |t| t.name == ncs_type_name }

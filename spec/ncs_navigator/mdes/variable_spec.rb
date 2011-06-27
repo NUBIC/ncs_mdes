@@ -44,17 +44,35 @@ XSD
           end
         end
 
-        context 'when referenced by name' do
-          it 'is a VariableType' do
-            sc_id.type.should be_a VariableType
+        context 'when a named type' do
+          context 'with the XML schema prefix' do
+            let!(:subject) { variable('<xs:element type="xs:decimal"/>') }
+
+            it 'is a VariableType' do
+              subject.type.should be_a VariableType
+            end
+
+            it 'has a matching base type' do
+              subject.type.base_type.should == :decimal
+            end
+
+            it 'is not a reference' do
+              subject.type.should_not be_reference
+            end
           end
 
-          it 'has the name' do
-            sc_id.type.name.should == 'ncs:study_center_cl1'
-          end
+          context 'with another prefix' do
+            it 'is a VariableType' do
+              sc_id.type.should be_a VariableType
+            end
 
-          it 'is a reference' do
-            sc_id.type.should be_reference
+            it 'has the name' do
+              sc_id.type.name.should == 'ncs:study_center_cl1'
+            end
+
+            it 'is a reference' do
+              sc_id.type.should be_reference
+            end
           end
         end
 
@@ -158,20 +176,39 @@ XSD
         end
       end
 
-      context 'when the type is a reference to an XSD type' do
+      context 'when the reference is of an unknown namespace' do
+        let(:unknown_kind_of_ref) { VariableType.reference('foo:bar') }
+
+        before {
+          variable.type = unknown_kind_of_ref
+          variable.resolve_type!(types, :log => logger)
+        }
+
+        it 'leaves it in place' do
+          variable.type.should be unknown_kind_of_ref
+        end
+
+        it 'warns' do
+          logger[:warn].first.
+            should == 'Unknown reference namespace in type "foo:bar" for hair_color'
+        end
+      end
+
+      context 'when the type is an XML Schema type' do
         it 'ignores it' do
-          variable.type = VariableType.reference('xs:decimal')
+          variable.type = VariableType.xml_schema_type('decimal')
           variable.resolve_type!(types, :log => logger)
           logger[:warn].should == []
         end
       end
 
       context 'when the type is not a reference' do
+        let(:not_a_ref) { VariableType.new('ncs:color_cl3') }
+
         it 'does nothing' do
-          original = VariableType.new('ncs:color_cl3')
-          variable.type = original
+          variable.type = not_a_ref
           variable.resolve_type!(types)
-          variable.type.should be original
+          variable.type.should be not_a_ref
         end
       end
     end
