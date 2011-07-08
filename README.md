@@ -16,7 +16,11 @@ Use
     mdes = NcsNavigator::Mdes('1.2')
     pp mdes.transmission_tables.collect(&:name)
 
-For more details see the API documentation, starting with {NcsNavigator::Mdes::Specification}.
+For more details see the API documentation, starting with
+{NcsNavigator::Mdes::Specification}. (If you're not looking at this
+document in the API documentation, try looking at [rubydoc.info][].)
+
+[rubydoc.info]: http://rubydoc.info/github/NUBIC/ncs_mdes/master/frames
 
 ### Examine
 
