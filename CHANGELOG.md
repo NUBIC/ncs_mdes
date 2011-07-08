@@ -3,6 +3,7 @@
 
 - Embed the VDR transmission XSD since we now have permission to
   distribute the MDES structure.
+- Update version 2.0 to be based on 2.0.01.02.
 
 0.1.0
 =====

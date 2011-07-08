@@ -45,7 +45,7 @@ module NcsNavigator::Mdes
         when '1.2'
           create('1.2', '1.2/Data_Transmission_Schema_V1.2.xsd')
         when '2.0'
-          create('2.0', '2.0/NCS_Transmission_Schema_V2.0.00.00.xsd')
+          create('2.0', '2.0/NCS_Transmission_Schema_2.0.01.02.xml')
         else
           raise "MDES #{version} is not supported by this version of ncs-mdes"
         end

@@ -58,7 +58,7 @@ module NcsNavigator::Mdes
         subject { SourceDocuments.get('2.0') }
 
         it 'has the correct path for the schema' do
-          subject.schema.should =~ %r{2.0/NCS_Transmission_Schema_V2.0.00.00.xsd$}
+          subject.schema.should =~ %r{2.0/NCS_Transmission_Schema_2.0.01.02.xml$}
         end
 
         it 'is of the specified version' do
