@@ -1,6 +1,7 @@
 0.2.0
 =====
 
+- Rename gem to ncs_mdes (from ncs-mdes).
 - Embed the VDR transmission XSD since we now have permission to
   distribute the MDES structure.
 - Update version 2.0 to be based on 2.0.01.02.

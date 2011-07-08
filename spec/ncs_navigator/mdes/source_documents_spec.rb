@@ -68,7 +68,7 @@ module NcsNavigator::Mdes
 
       it 'fails for an unsupported version' do
         lambda { SourceDocuments.get('1.0') }.
-          should raise_error('MDES 1.0 is not supported by this version of ncs-mdes')
+          should raise_error('MDES 1.0 is not supported by this version of ncs_mdes')
       end
     end
 

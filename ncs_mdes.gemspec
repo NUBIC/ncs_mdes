@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "ncs_navigator/mdes/version"
 
 Gem::Specification.new do |s|
-  s.name        = "ncs-mdes"
+  s.name        = "ncs_mdes"
   s.version     = NcsNavigator::Mdes::VERSION
   s.authors     = ["Rhett Sutphin"]
   s.email       = ["r-sutphin@northwestern.edu"]
