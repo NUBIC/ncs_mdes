@@ -13,9 +13,12 @@ module NcsNavigator::Mdes
 
     ##
     # The base path for all paths that are not explicitly
-    # configured. It defaults to `'/etc/nubic/ncs/mdes'` and may be
-    # globally overridden by setting `NCS_MDES_DOCS_DIR` in the
+    # configured. It defaults to `'documents'` within this gem and may
+    # be globally overridden by setting `NCS_MDES_DOCS_DIR` in the
     # runtime environment.
+    #
+    # There's probably no reason to change this in the current version
+    # of the gem.
     #
     # @return [String]
     attr_accessor :base
@@ -71,7 +74,10 @@ module NcsNavigator::Mdes
     end
 
     def base
-      @base ||= (ENV[BASE_ENV_VAR] || '/etc/nubic/ncs/mdes')
+      @base ||= (
+        ENV[BASE_ENV_VAR] ||
+        File.expand_path(File.join('..', '..', '..', '..', 'documents'), __FILE__)
+        )
     end
 
     ##

@@ -1,3 +1,9 @@
+0.2.0
+=====
+
+- Embed the VDR transmission XSD since we now have permission to
+  distribute the MDES structure.
+
 0.1.0
 =====
 

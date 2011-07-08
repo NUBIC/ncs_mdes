@@ -13,8 +13,8 @@ module NcsNavigator::Mdes
     describe '#base' do
       let(:base) { SourceDocuments.new.base }
 
-      it 'defaults to /etc/ncs/mdes' do
-        base.should == '/etc/nubic/ncs/mdes'
+      it 'defaults to the documents directory in the gem' do
+        base.should == File.expand_path('../../../../documents', __FILE__)
       end
 
       it 'can be overridden using the NCS_MDES_DOCS_DIR environment variable' do
