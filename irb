@@ -7,7 +7,5 @@ require 'rubygems'
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
 require 'ncs_navigator/mdes'
-ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ||=
-  File.expand_path('../spec/doc-base', __FILE__)
 
 load(File.expand_path('../bin/mdes-console', __FILE__))
