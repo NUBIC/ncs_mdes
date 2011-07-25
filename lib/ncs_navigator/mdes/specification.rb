@@ -62,6 +62,30 @@ module NcsNavigator::Mdes
     private :read_transmission_tables
 
     ##
+    # A shortcut for accessing particular {#transmission_tables}.
+    #
+    # @overload [](table_name)
+    #   Retrieves a single table by name.
+    #   @param [String] table_name the transmission table to return.
+    #   @return [TransmissionTable,nil] the matching table or nothing.
+    #
+    # @overload [](pattern)
+    #   Searches the transmission tables by name.
+    #   @param [Regexp] pattern the pattern to match the name against.
+    #   @return [Array<TransmissionTable>] the matching tables (or an
+    #     empty array).
+    def [](criterion)
+      case criterion
+      when Regexp
+        transmission_tables.select { |t| t.name =~ criterion }
+      when String
+        transmission_tables.detect { |t| t.name == criterion }
+      else
+        fail "Unexpected criterion #{criterion.inspect}"
+      end
+    end
+
+    ##
     # @return [Array<VariableType>] all the named types in the
     #   MDES. This includes all the code lists.
     def types

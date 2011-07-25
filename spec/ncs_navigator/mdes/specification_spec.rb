@@ -68,6 +68,26 @@ module NcsNavigator::Mdes
       end
     end
 
+    describe '#[]' do
+      let(:spec) { Specification.new('2.0') }
+
+      describe 'with a string' do
+        it 'returns a single table if there is a match by name' do
+          spec['listing_unit'].should be_a TransmissionTable
+        end
+
+        it 'returns nothing if there is no match' do
+          spec['fred'].should be_nil
+        end
+      end
+
+      describe 'with a regular expression' do
+        it 'returns a list of tables whose names match' do
+          spec[/^preg_visit_1.*2$/].should have(15).tables
+        end
+      end
+    end
+
     describe '#types' do
       it 'is composed of VariableType instances' do
         Specification.new('2.0', :log => logger).types.first.

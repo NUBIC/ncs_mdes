@@ -1,5 +1,8 @@
-0.2.1
+0.3.0
 =====
+
+- Add Specification#[] for quicker access to a particular table or
+  tables.
 
 0.2.0
 =====
