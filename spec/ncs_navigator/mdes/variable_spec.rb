@@ -212,5 +212,191 @@ XSD
         end
       end
     end
+
+    describe '#resolve_foreign_key!' do
+      let(:variable) {
+        Variable.new('helicopter_id').tap { |v| v.type = variable_type }
+      }
+
+      let(:table) {
+        TransmissionTable.new('flights').tap do |t|
+          t.variables = [ variable ]
+        end
+      }
+
+      let(:table_with_matching_pk) {
+        TransmissionTable.new('helicopters').tap do |t|
+          t.variables = [
+            Variable.new('helicopter_id').tap do |v|
+              v.type = VariableType.new('primaryKeyType')
+            end
+          ]
+        end
+      }
+
+      let(:table_with_nonmatching_pk) {
+        TransmissionTable.new('frogs').tap do |t|
+          t.variables = [
+            Variable.new('frog_id').tap do |v|
+              v.type = VariableType.new('primaryKeyType')
+            end
+          ]
+        end
+      }
+
+      let(:table_with_same_fk) {
+        TransmissionTable.new('autorotation_events').tap do |t|
+          t.variables = [
+            Variable.new('helicopter_id').tap do |v|
+              v.type = VariableType.new('foreignKeyTypeRequired')
+            end
+          ]
+        end
+      }
+
+      let(:all_tables) {
+        [table, table_with_matching_pk, table_with_nonmatching_pk, table_with_same_fk]
+      }
+
+      # These are overridden in nested contexts as necessary
+      let(:override) { nil }
+      let(:tables) { all_tables }
+
+      before do
+        variable.resolve_foreign_key!(tables, override, :log => logger)
+      end
+
+      shared_examples 'a foreign key' do
+        context 'when there is no table matching' do
+          context 'and there is no override' do
+            let(:tables) {
+              [table, table_with_same_fk, table_with_nonmatching_pk]
+            }
+
+            it 'does not set a table reference' do
+              variable.table_reference.should be_nil
+            end
+
+            it 'warns' do
+              logger[:warn].first.
+                should == 'Foreign key not resolvable: no tables have a primary key named "helicopter_id".'
+            end
+          end
+
+          include_examples 'for overrides'
+        end
+
+        context 'when there is exactly one matching table' do
+          let(:tables) { all_tables }
+
+          context 'and there is no override' do
+            it 'sets the table_reference to that matching table' do
+              variable.table_reference.should be table_with_matching_pk
+            end
+
+            it 'does not warn' do
+              logger[:warn].should be_empty
+            end
+          end
+
+          include_examples 'for overrides'
+        end
+
+        context 'when there is more than one matching table' do
+          let(:other_matches) {
+            [
+              TransmissionTable.new('helicopters_2').tap { |t|
+                t.variables = table_with_matching_pk.variables.dup
+              },
+              TransmissionTable.new('choppers').tap { |t|
+                t.variables = table_with_matching_pk.variables.dup
+              }
+            ]
+          }
+
+          let(:tables) { all_tables + other_matches }
+
+          context 'and there is no override' do
+            it 'does not set a table reference' do
+              variable.table_reference.should be_nil
+            end
+
+            it 'warns' do
+              logger[:warn].first.
+                should == '3 possible parent tables found for foreign key "helicopter_id": "helicopters", "helicopters_2", "choppers". None used due to ambiguity.'
+            end
+          end
+
+          include_examples 'for overrides'
+        end
+      end
+
+      shared_examples 'for overrides' do
+        context 'and there is an override' do
+          context 'and the override is to a known table' do
+            let(:override) { table_with_same_fk.name }
+
+            it 'sets the table reference to the override' do
+              variable.table_reference.should be table_with_same_fk
+            end
+
+            it 'does not warn' do
+              logger[:warn].should == []
+            end
+          end
+
+          context 'and the override is to an unknown table' do
+            let(:override) { 'aircraft' }
+
+            it 'does not set a table reference' do
+              variable.table_reference.should be_nil
+            end
+
+            it 'warns' do
+              logger[:warn].first.
+                should == 'Foreign key "helicopter_id" explicitly mapped to unknown table "aircraft".'
+            end
+          end
+
+          context 'and the override is false' do
+            let(:override) { false }
+
+            it 'does not set a table reference' do
+              variable.table_reference.should be_nil
+            end
+
+            it 'does not warn' do
+              logger[:warn].should == []
+            end
+          end
+        end
+      end
+
+      context 'when a nullable FK' do
+        let(:variable_type) { VariableType.new('foreignKeyTypeNullable') }
+
+        it_behaves_like 'a foreign key'
+      end
+
+      context 'when a required FK' do
+        let(:variable_type) { VariableType.new('foreignKeyTypeRequired') }
+
+        it_behaves_like 'a foreign key'
+      end
+
+      context 'when not an FK' do
+        let(:variable_type) { VariableType.new('confirm_cl7') }
+
+        it 'does nothing' do
+          variable.table_reference.should be_nil
+        end
+
+        it 'does not warn' do
+          logger[:warn].should be_empty
+        end
+
+        include_examples 'for overrides'
+      end
+    end
   end
 end

@@ -37,6 +37,13 @@ module NcsNavigator::Mdes
     attr_accessor :required
     alias :required? :required
 
+    ##
+    # If this variable is a foreign key, this is the {table
+    # TransmissionTable} to which it refers.
+    #
+    # @return [TransmissionTable,nil] the parent table.
+    attr_accessor :table_reference
+
     class << self
       ##
       # Examines the given parsed element and creates a new
@@ -113,6 +120,58 @@ module NcsNavigator::Mdes
         self.type = match
       else
         log.warn("Undefined type #{type.name} for #{name}.") if log
+      end
+    end
+
+    ##
+    # Attempts to resolve this variable as a {reference to another
+    # table #table_reference}. There are two mechanisms for performing
+    # the resolution:
+    #
+    # 1. If an `override_name` is provided, that table will be looked
+    #    up in the provided table list. If it exists, it will be used,
+    #    otherwise nothing will be set.
+    # 2. If the type of this variable is one of the NCS FK types and
+    #    there exists exactly one table in `tables` whose primary key
+    #    has the same name as this variable, that table will be used.
+    #
+    # Alternatively, to suppress the heuristics without providing a
+    # replacement, pass `false` as the `override_name`
+    #
+    # @param [Array<TransmissionTable>] tables the tables to search
+    #   for a parent.
+    # @param [String,nil] override_name the name of a table to use as
+    #   the parent. Supplying a value in this parameter bypasses the
+    #   search heuristic.
+    # @return [void]
+    def resolve_foreign_key!(tables, override_name=nil, options={})
+      log = options[:log] || NcsNavigator::Mdes.default_logger
+
+      case override_name
+      when String
+        self.table_reference = tables.detect { |t| t.name == override_name }
+        unless table_reference
+          log.warn("Foreign key #{name.inspect} explicitly mapped " <<
+            "to unknown table #{override_name.inspect}.")
+        end
+      when nil
+        return unless (self.type && self.type.name =~ /^foreignKey/)
+
+        candidates = tables.select do |t|
+          t.variables.detect { |v| (v.name == name) && (v.type && (v.type.name =~ /^primaryKey/)) }
+        end
+
+        case candidates.size
+        when 0
+          log.warn("Foreign key not resolvable: " <<
+            "no tables have a primary key named #{name.inspect}.")
+        when 1
+          self.table_reference = candidates.first
+        else
+          log.warn(
+            "#{candidates.size} possible parent tables found for foreign key #{name.inspect}: " <<
+            "#{candidates.collect { |c| c.name.inspect }.join(', ')}. None used due to ambiguity.")
+        end
       end
     end
   end
