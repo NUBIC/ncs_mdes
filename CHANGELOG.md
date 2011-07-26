@@ -5,7 +5,7 @@
 =====
 
 - Add foreign key / table reference support, including explicit
-  mappings for all ambiguous or unguessable FKs.
+  mappings for all ambiguous or unguessable FKs (#1).
 - Add Specification#[] for quicker access to a particular table or
   tables.
 
