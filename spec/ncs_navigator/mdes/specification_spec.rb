@@ -31,13 +31,7 @@ module NcsNavigator::Mdes
           should be_a TransmissionTable
       end
 
-      context 'in version 1.2' do
-        let!(:tables) { Specification.new('1.2', :log => logger).transmission_tables }
-
-        it 'has 124 tables' do
-          tables.size.should == 124
-        end
-
+      shared_examples 'tables fully resolved' do
         it 'emits no warnings' do
           logger[:warn].should == []
         end
@@ -49,6 +43,16 @@ module NcsNavigator::Mdes
         end
       end
 
+      context 'in version 1.2' do
+        let!(:tables) { Specification.new('1.2', :log => logger).transmission_tables }
+
+        it 'has 124 tables' do
+          tables.size.should == 124
+        end
+
+        include_examples 'tables fully resolved'
+      end
+
       context 'in version 2.0' do
         let!(:tables) { Specification.new('2.0', :log => logger).transmission_tables }
 
@@ -56,15 +60,7 @@ module NcsNavigator::Mdes
           tables.size.should == 264
         end
 
-        it 'emits no warnings' do
-          logger[:warn].should == []
-        end
-
-        it 'resolves all NCS type references' do
-          tables.collect { |table|
-            table.variables.collect { |v| v.type }.select { |t| t.reference? }
-          }.flatten.collect { |t| t.name }.select { |n| n =~ /^ncs:/ }.should == []
-        end
+        include_examples 'tables fully resolved'
       end
     end
 

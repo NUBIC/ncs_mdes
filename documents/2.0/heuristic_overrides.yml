@@ -1,0 +1,405 @@
+foreign_keys:
+  birth_visit:
+    new_address_id: address
+    mail_address_id: address
+    new_address_b_id: address
+
+  birth_visit_2:
+    new_address_id: address
+    mail_address_id: address
+    new_address_b_id: address
+
+  birth_visit_baby_name:
+    bv_id: birth_visit
+
+  birth_visit_baby_name_2:
+    bv_id: birth_visit_2
+
+  birth_visit_decorate_room:
+    bv_id: birth_visit
+
+  birth_visit_decorate_room_2:
+    bv_id: birth_visit_2
+
+  birth_visit_li:
+    new_address_id: address
+    mail_address_id: address
+    new_address_b_id: address
+
+  birth_visit_renovate_room:
+    bv_id: birth_visit
+
+  birth_visit_renovate_room_2:
+    bv_id: birth_visit_2
+
+  drf_therm_verification:
+    equip_id: env_equipment
+
+  eighteen_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address
+
+  eighteen_mth_mother_cond:
+    eighteen_mth_habits_id: eighteen_mth_mother_habits
+
+  eighteen_mth_mother_saq:
+    asq18_address_id: address
+
+  env_equipment_prob_log:
+    equip_id: env_equipment
+    staff_id_reviewer: staff
+
+  event:
+    participant_id: participant
+
+  household_enumeration_hidden_du:
+    hdu_address_id: address
+
+  incident:
+    inc_staff_reporter_id: staff
+    inc_staff_supervisor_id: staff
+    inc_recip_is_participant: participant
+    inc_recip_is_du: dwelling_unit
+    inc_recip_is_staff: staff
+    inc_recip_is_family: person
+    inc_recip_is_acquaintance: person
+    inc_contact_person: person
+
+  participant_consent:
+    person_who_consented_id: person
+    person_wthdrw_consent_id: person
+
+  participant_vis_consent:
+    vis_person_who_consented_id: person
+
+  participant_rvis:
+    rvis_person: person
+
+  pb_recruitment:
+    address_pb_id: address
+
+  pb_recruitment_2:
+    address_pb_id: address
+
+  pb_recruitment_info_source:
+    pb_recruitment_id: pb_recruitment
+
+  pb_recruitment_info_source_2:
+    pb_recruitment_id: pb_recruitment_2
+
+  pb_recruitment_prov_source:
+    pb_recruitment_id: pb_recruitment
+
+  pb_recruitment_prov_source_2:
+    pb_recruitment_id: pb_recruitment_2
+
+  pb_recruitment_prov_svc:
+    pb_recruitment_id: pb_recruitment
+
+  pb_recruitment_prov_svc_2:
+    pb_recruitment_id: pb_recruitment_2
+
+  person:
+    new_address_id: address
+
+  prec_therm_cert:
+    equip_id: env_equipment
+
+  pre_preg:
+    c_addr1_id: address
+    c_addr2_id: address
+
+  preg_screen_eh:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_eh_2:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_eh_know_ncs:
+    ps_eh_id: preg_screen_eh
+
+  preg_screen_eh_know_ncs_2:
+    ps_eh_id: preg_screen_eh_2
+
+  preg_screen_eh_race:
+    ps_eh_id: preg_screen_eh
+
+  preg_screen_eh_race_2:
+    ps_eh_id: preg_screen_eh_2
+
+  preg_screen_hi:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_hi_2:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_hi_know_ncs:
+    ps_hi_id: preg_screen_hi
+
+  preg_screen_hi_know_ncs_2:
+    ps_hi_id: preg_screen_hi_2
+
+  preg_screen_hi_race:
+    ps_hi_id: preg_screen_hi
+
+  preg_screen_hi_race_2:
+    ps_hi_id: preg_screen_hi_2
+
+  preg_screen_pb:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_pb_2:
+    mail_address_id: address
+    new_address_id: address
+
+  preg_screen_pb_know_ncs:
+    ps_pb_id: preg_screen_pb
+
+  preg_screen_pb_know_ncs_2:
+    ps_pb_id: preg_screen_pb_2
+
+  preg_screen_pb_race:
+    ps_pb_id: preg_screen_pb
+
+  preg_screen_pb_race_2:
+    ps_pb_id: preg_screen_pb_2
+
+  preg_visit_1:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+
+  preg_visit_1_2:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+
+  preg_visit_1_commute:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_commute_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_cool:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_cool_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_diagnose_2:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_diagnose_2_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_heat2:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_heat2_2:
+    pv1_id: preg_visit_2
+
+  preg_visit_1_local_trav:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_local_trav_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_nonenglish2_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_pdecorate_room:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_pdecorate_room_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_pet_type:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_pet_type_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_prenovate2_room:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_prenovate_room:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_prenovate_room_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_room_mold:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_room_mold_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_1_saq_2:
+    f_addr_id: address
+
+  preg_visit_1_sp_race:
+    pv1_id: preg_visit_1
+
+  preg_visit_1_sp_race_2:
+    pv1_id: preg_visit_1_2
+
+  preg_visit_2:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+
+  preg_visit_2_2:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+
+  preg_visit_2_cool:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_cool_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_2_diagnose_2:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_diagnose_2_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_2_heat2:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_heat2_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_2_pdecorate2_room:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_pdecorate2_room_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_2_prenovate_room:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_prenovate_room_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_2_room_mold:
+    pv2_id: preg_visit_2
+
+  preg_visit_2_room_mold_2:
+    pv2_id: preg_visit_2_2
+
+  preg_visit_li:
+    b_address_id: address
+
+  preg_visit_li_2:
+    b_address_id: address
+
+  preg_visit_li_cool:
+    pv_li_id: preg_visit_li
+
+  preg_visit_li_cool_2:
+    pv_li_id: preg_visit_li_2
+
+  ref_freezer_verification:
+    equip_id: env_equipment
+
+  sample_receipt_store:
+    equip_id: env_equipment
+
+  sample_shipping:
+    staff_id_track: staff
+
+  six_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address
+
+  six_mth_saq_formula_type:
+    six_mth_saq_id: six_mth_saq
+
+  six_mth_saq_formula_type_2:
+    six_mth_saq_id: six_mth_saq_2
+
+  six_mth_saq_supp:
+    six_mth_saq_id: six_mth_saq
+
+  six_mth_saq_supp_2:
+    six_mth_saq_id: six_mth_saq_2
+
+  six_mth_saq_water:
+    six_mth_saq_id: six_mth_saq
+
+  six_mth_saq_water_2:
+    six_mth_saq_id: six_mth_saq_2
+
+  spec_blood:
+    equip_id: spec_equipment
+
+  spec_receipt:
+    # Insufficient info to determine what this is supposed to link to
+    storage_container_id: false
+    equip_id: spec_equipment
+
+  spec_shipping:
+    shipper_id: false
+
+  spec_storage:
+    equip_id: spec_equipment
+
+  staff_exp_mngmnt_tasks:
+    staff_weekly_expense_id: staff_weekly_expense
+
+  staff_exp_data_cllctn_tasks:
+    staff_weekly_expense_id: staff_weekly_expense
+
+  trh_meter_calibration:
+    equip_id: spec_equipment
+
+  twelve_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address
+
+  twelve_mth_saq_formula_brand:
+    twelve_mth_saq_id: twelve_mth_saq
+
+  twelve_mth_saq_formula_brand_2:
+    twelve_mth_saq_id: twelve_mth_saq_2
+
+  twelve_mth_saq_formula_type:
+    twelve_mth_saq_id: twelve_mth_saq
+
+  twelve_mth_saq_formula_type_2:
+    twelve_mth_saq_id: twelve_mth_saq_2
+
+  twelve_mth_saq_supplement:
+    twelve_mth_saq_id: twelve_mth_saq
+
+  twelve_mth_saq_supplement_2:
+    twelve_mth_saq_id: twelve_mth_saq_2
+
+  twelve_mth_saq_water:
+    twelve_mth_saq_id: twelve_mth_saq
+
+  twelve_mth_saq_water_2:
+    twelve_mth_saq_id: twelve_mth_saq_2
+
+  twenty_four_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address
+
+  twenty_four_mth_mother_otc:
+    twenty_four_mth_mother_id: twenty_four_mth_mother
+
+  twenty_four_mth_mother_prescr:
+    twenty_four_mth_mother_id: twenty_four_mth_mother
+
+  twenty_four_mth_mother_suppl:
+    twenty_four_mth_mother_id: twenty_four_mth_mother
+
+  twenty_four_mth_saq:
+    asq24_address_id: address

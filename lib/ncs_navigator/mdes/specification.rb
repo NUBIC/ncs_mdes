@@ -3,6 +3,7 @@ require 'ncs_navigator/mdes'
 require 'forwardable'
 require 'logger'
 require 'nokogiri'
+require 'yaml'
 
 module NcsNavigator::Mdes
   class Specification
@@ -43,6 +44,27 @@ module NcsNavigator::Mdes
     end
 
     ##
+    # @return [Hash] the loaded heuristic overrides, or a default
+    #   (empty) set
+    def heuristic_overrides
+      @heuristic_overrides ||=
+        begin
+          if File.exist?(source_documents.heuristic_overrides)
+            empty_overrides.merge(YAML.load(File.read source_documents.heuristic_overrides))
+          else
+            empty_overrides
+          end
+        end
+    end
+
+    def empty_overrides
+      {
+        'foreign_keys' => { }
+      }
+    end
+    private :empty_overrides
+
+    ##
     # @return [Array<TransmissionTable>] all the transmission tables
     #   in this version of the MDES.
     def transmission_tables
@@ -57,6 +79,14 @@ module NcsNavigator::Mdes
         TransmissionTable.from_element(table_elt, :log => @log)
       }.tap { |tables|
         tables.each { |t| t.variables.each { |v| v.resolve_type!(types, :log => @log) } }
+        # All types must be resolved before doing FK resolution or
+        # forward refs are missed.
+        tables.each { |t|
+          fk_overrides = heuristic_overrides['foreign_keys'][t.name] || { }
+          t.variables.each { |v|
+            v.resolve_foreign_key!(tables, fk_overrides[v.name], :log => @log)
+          }
+        }
       }
     end
     private :read_transmission_tables

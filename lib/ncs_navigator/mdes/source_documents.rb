@@ -55,6 +55,7 @@ module NcsNavigator::Mdes
         self.new.tap do |sd|
           sd.version = version
           sd.schema = schema
+          sd.heuristic_overrides = "#{version}/heuristic_overrides.yml"
         end
       end
       private :create
@@ -86,7 +87,7 @@ module NcsNavigator::Mdes
     #
     # @return [String]
     def schema
-      @schema[0, 1] == '/' ? @schema : File.join(base, @schema)
+      absolutize(@schema)
     end
 
     ##
@@ -98,6 +99,38 @@ module NcsNavigator::Mdes
     # @return [String] the provided path
     def schema=(path)
       @schema = path
+    end
+
+    ##
+    # The absolute path to a YAML-formatted document defining
+    # overrides of heuristics this library uses to do mapping when
+    # there is insufficient computable information in the other source
+    # documents.
+    #
+    # This is path is optional; if one is not provided no overrides
+    # will be attempted.
+    #
+    # @return [String]
+    def heuristic_overrides
+      absolutize(@heuristic_overrides)
+    end
+
+    ##
+    # Set the path to the heuristics override document.
+    # If the path is relative (i.e., it does not begin with `/`), it
+    # will be interpreted relative to {#base}.
+    #
+    # @param [String] path
+    # @return [String] the provided path
+    def heuristic_overrides=(path)
+      @heuristic_overrides = path
+    end
+
+    private
+
+    def absolutize(path)
+      return nil unless path
+      path[0, 1] == '/' ? path : File.join(base, path)
     end
   end
 end

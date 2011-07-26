@@ -1,0 +1,50 @@
+foreign_keys:
+  staff_exp_mngmnt_tasks:
+    staff_weekly_expense_id: staff_weekly_expense
+  staff_exp_data_cllctn_tasks:
+    staff_weekly_expense_id: staff_weekly_expense
+  participant_consent:
+    person_who_consented_id: person
+    person_wthdrw_consent_id: person
+  event:
+    participant_id: participant
+  participant_vis_consent:
+    vis_person_who_consented_id: person
+  link_contact:
+    specimen_id: false
+  birth_visit:
+    new_address_id: address
+    mail_address_id: address
+    new_address_b_id: address
+  household_enumeration_hidden_du:
+    hdu_address_id: address
+  pb_recruitment:
+    address_pb_id: address
+  pre_preg:
+    c_addr1_id: address
+    c_addr2_id: address
+  preg_screen_eh:
+    mail_address_id: address
+    new_address_id: address
+  preg_screen_hi:
+    mail_address_id: address
+    new_address_id: address
+  preg_screen_pb:
+    mail_address_id: address
+    new_address_id: address
+  preg_visit_1:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+  preg_visit_2:
+    b_address_id: address
+    c_addr1_id: address
+    c_addr2_id: address
+  preg_visit_li:
+    b_address_id: address
+  six_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address
+  twelve_mth_mother:
+    c_addr1_id: address
+    c_addr2_id: address

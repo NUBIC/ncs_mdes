@@ -23,21 +23,41 @@ module NcsNavigator::Mdes
       end
     end
 
-    describe '#schema' do
-      let(:docs) { SourceDocuments.new }
+    shared_examples 'an absolutizing path accessor' do
+      let(:docs) { SourceDocuments.new.tap { |d| d.base = '/baz' } }
 
-      before do
-        docs.base = '/baz'
+      def set(value)
+        docs.send("#{property}=", value)
+      end
+
+      def actual
+        docs.send(property)
       end
 
       it 'absolutizes a relative path against the base' do
-        docs.schema = '1.3/bar.xsd'
-        docs.schema.should == '/baz/1.3/bar.xsd'
+        set('1.3/bar.foo')
+        actual.should == '/baz/1.3/bar.foo'
       end
 
       it 'leaves an absolute path alone' do
-        docs.schema = '/somewhere/particular.xsd'
-        docs.schema.should == '/somewhere/particular.xsd'
+        set '/somewhere/particular.ext'
+        actual.should == '/somewhere/particular.ext'
+      end
+    end
+
+    describe '#schema' do
+      let(:property) { :schema }
+
+      it_behaves_like 'an absolutizing path accessor'
+    end
+
+    describe '#heuristic_overrides' do
+      let(:property) { :heuristic_overrides }
+
+      it_behaves_like 'an absolutizing path accessor'
+
+      it 'is optional' do
+        SourceDocuments.new.heuristic_overrides.should be_nil
       end
     end
 
@@ -47,6 +67,10 @@ module NcsNavigator::Mdes
 
         it 'has the correct path for the schema' do
           subject.schema.should =~ %r{1.2/Data_Transmission_Schema_V1.2.xsd$}
+        end
+
+        it 'has the correct path for the overrides' do
+          subject.heuristic_overrides.should =~ %r{1.2/heuristic_overrides.yml$}
         end
 
         it 'is of the specified version' do
@@ -59,6 +83,10 @@ module NcsNavigator::Mdes
 
         it 'has the correct path for the schema' do
           subject.schema.should =~ %r{2.0/NCS_Transmission_Schema_2.0.01.02.xml$}
+        end
+
+        it 'has the correct path for the overrides' do
+          subject.heuristic_overrides.should =~ %r{2.0/heuristic_overrides.yml$}
         end
 
         it 'is of the specified version' do

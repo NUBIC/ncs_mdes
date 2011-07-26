@@ -1,6 +1,8 @@
 0.3.0
 =====
 
+- Add foreign key / table reference support, including explicit
+  mappings for all ambiguous or unguessable FKs.
 - Add Specification#[] for quicker access to a particular table or
   tables.
 
