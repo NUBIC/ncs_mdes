@@ -67,7 +67,7 @@ module NcsNavigator::Mdes
       describe '#pattern' do
         it 'is compiled to a regexp if present' do
           vtype_from_string('<xs:pattern value="([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])?"/>').
-            pattern.should == /([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])?/
+            pattern.should == /^([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])?$/
         end
 
         describe 'when malformed' do

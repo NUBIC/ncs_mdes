@@ -64,7 +64,7 @@ module NcsNavigator::Mdes
               p = elt['value']
               vt.pattern =
                 begin
-                  Regexp.new(p)
+                  Regexp.new("^#{p}$")
                 rescue RegexpError
                   log.warn("Uncompilable pattern #{p.inspect} in simpleType#{(' ' + vt.name.inspect) if vt.name} on line #{elt.line}")
                   nil

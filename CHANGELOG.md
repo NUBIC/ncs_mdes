@@ -1,6 +1,10 @@
 0.3.1
 =====
 
+- Correct pattern compilation. XML Schema patterns implicitly must
+  match the entire value, so it's necessary to surround the value with
+  `^` and `$` when converting to a ruby regular expression.
+
 0.3.0
 =====
 
