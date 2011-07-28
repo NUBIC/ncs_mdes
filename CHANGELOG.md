@@ -1,13 +1,13 @@
 NCS Navigator MDES Module history
 =================================
 
-0.3.2
+0.4.0
 -----
 
 - Consider element `minOccurs` when determining variable
   requiredness (#2).
-- Added disposition codes to the specification. Requires a YAML file 
-  with all the disposition code values for the MDES version.
+- Added disposition codes to the specification. Requires a YAML file
+  with all the disposition code values for the MDES version (#3).
 
 0.3.1
 -----
