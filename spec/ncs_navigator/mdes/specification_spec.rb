@@ -72,7 +72,7 @@ module NcsNavigator::Mdes
       end
 
       context 'in version 1.2' do
-        let!(:disposition_codes) { Specification.new('1.2', :log => logger).disposition_codes }
+        let(:disposition_codes) { Specification.new('1.2', :log => logger).disposition_codes }
 
         it 'has 0 codes' do
           disposition_codes.size.should == 0
@@ -80,7 +80,7 @@ module NcsNavigator::Mdes
       end
 
       context 'in version 2.0' do
-        let!(:disposition_codes) { Specification.new('2.0', :log => logger).disposition_codes }
+        let(:disposition_codes) { Specification.new('2.0', :log => logger).disposition_codes }
 
         it 'has 251 codes' do
           disposition_codes.size.should == 251
