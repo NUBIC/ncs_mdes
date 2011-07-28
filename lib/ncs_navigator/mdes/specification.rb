@@ -130,6 +130,26 @@ module NcsNavigator::Mdes
     private :read_types
 
     ##
+    # @return [Array<DispositionCode>] all the named disposition codes in the MDES.
+    def disposition_codes
+      @disposition_codes ||=
+        begin
+          if File.exist?(source_documents.disposition_codes)
+            YAML.load(File.read source_documents.disposition_codes).collect do |dc|
+              DispositionCode.new(dc)
+            end
+          else
+            empty_disposition_codes
+          end
+        end
+    end
+    
+    def empty_disposition_codes
+      []
+    end
+    private :empty_disposition_codes
+
+    ##
     # A briefer inspection for nicer IRB sessions.
     #
     # @return [String]

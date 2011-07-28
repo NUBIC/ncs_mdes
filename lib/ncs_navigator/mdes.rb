@@ -10,6 +10,8 @@ module NcsNavigator
     autoload :Variable,          'ncs_navigator/mdes/variable'
     autoload :VariableType,      'ncs_navigator/mdes/variable_type'
 
+    autoload :DispositionCode,   'ncs_navigator/mdes/disposition_code'
+
     ##
     # @return the default logger for this module when no other one is
     #   specified. It logs to standard error.

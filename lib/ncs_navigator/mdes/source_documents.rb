@@ -56,6 +56,7 @@ module NcsNavigator::Mdes
           sd.version = version
           sd.schema = schema
           sd.heuristic_overrides = "#{version}/heuristic_overrides.yml"
+          sd.disposition_codes = "#{version}/disposition_codes.yml"
         end
       end
       private :create
@@ -124,6 +125,30 @@ module NcsNavigator::Mdes
     # @return [String] the provided path
     def heuristic_overrides=(path)
       @heuristic_overrides = path
+    end
+    
+    ##
+    # The absolute path to a YAML-formatted document defining
+    # the disposition codes as found in the Master Data Element Specifications 
+    # spreadsheet.
+    #
+    # This is path is optional; if one is not provided no disposition 
+    # codes will be loaded.
+    #
+    # @return [String]
+    def disposition_codes
+      absolutize(@disposition_codes)
+    end
+    
+    ##
+    # Set the path to the disposition codes document.
+    # If the path is relative (i.e., it does not begin with `/`), it
+    # will be interpreted relative to {#base}.
+    #
+    # @param [String] path
+    # @return [String] the provided path
+    def disposition_codes=(path)
+      @disposition_codes = path
     end
 
     private

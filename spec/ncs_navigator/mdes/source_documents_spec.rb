@@ -60,6 +60,16 @@ module NcsNavigator::Mdes
         SourceDocuments.new.heuristic_overrides.should be_nil
       end
     end
+    
+    describe '#disposition_codes' do
+      let(:property) { :disposition_codes }
+
+      it_behaves_like 'an absolutizing path accessor'
+
+      it 'is optional' do
+        SourceDocuments.new.disposition_codes.should be_nil
+      end
+    end
 
     describe '.get' do
       describe '1.2' do
@@ -71,6 +81,10 @@ module NcsNavigator::Mdes
 
         it 'has the correct path for the overrides' do
           subject.heuristic_overrides.should =~ %r{1.2/heuristic_overrides.yml$}
+        end
+        
+        it 'has the correct path for the disposition codes' do
+          subject.disposition_codes.should =~ %r{1.2/disposition_codes.yml$}
         end
 
         it 'is of the specified version' do
@@ -87,6 +101,10 @@ module NcsNavigator::Mdes
 
         it 'has the correct path for the overrides' do
           subject.heuristic_overrides.should =~ %r{2.0/heuristic_overrides.yml$}
+        end
+        
+        it 'has the correct path for the disposition codes' do
+          subject.disposition_codes.should =~ %r{2.0/disposition_codes.yml$}
         end
 
         it 'is of the specified version' do

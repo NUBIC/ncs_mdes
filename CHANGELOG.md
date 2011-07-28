@@ -4,6 +4,9 @@ NCS Navigator MDES Module history
 0.3.2
 -----
 
+- Added disposition codes to the specification. Requires a YAML file 
+  with all the disposition code values for the MDES version.
+
 0.3.1
 -----
 

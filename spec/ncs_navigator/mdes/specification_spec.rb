@@ -63,6 +63,41 @@ module NcsNavigator::Mdes
         include_examples 'tables fully resolved'
       end
     end
+    
+    
+    describe '#disposition codes' do
+      it 'is composed of DispositionCode instances' do
+        Specification.new('2.0', :log => logger).disposition_codes.first.
+          should be_a DispositionCode
+      end
+
+      context 'in version 1.2' do
+        let!(:disposition_codes) { Specification.new('1.2', :log => logger).disposition_codes }
+
+        it 'has 0 codes' do
+          disposition_codes.size.should == 0
+        end
+      end
+
+      context 'in version 2.0' do
+        let!(:disposition_codes) { Specification.new('2.0', :log => logger).disposition_codes }
+
+        it 'has 251 codes' do
+          disposition_codes.size.should == 251
+        end
+        
+        it 'creates valid codes' do
+          code = disposition_codes.first
+          code.event.should          == "Household Enumeration Event"
+          code.final_category.should == "Unknown Eligibility"
+          code.sub_category.should   == "Unknown if Dwelling Unit"
+          code.disposition.should    == "Not attempted"
+          code.interim_code.should   == "010"
+          code.final_code.should     == "510"
+        end
+
+      end
+    end
 
     describe '#[]' do
       let(:spec) { Specification.new('2.0') }
