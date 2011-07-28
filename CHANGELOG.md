@@ -4,6 +4,9 @@ NCS Navigator MDES Module history
 0.3.2
 -----
 
+- Consider element `minOccurs` when determining variable
+  requiredness (#2).
+
 0.3.1
 -----
 
