@@ -57,7 +57,12 @@ module NcsNavigator::Mdes
         log = options[:log] || NcsNavigator::Mdes.default_logger
 
         new(element['name']).tap do |var|
-          var.required = (element['nillable'] == 'false')
+          var.required =
+            if element['minOccurs']
+              element['minOccurs'] != '0'
+            else
+              element['nillable'] == 'false'
+            end
           var.pii =
             case element['pii']
             when 'Y'; true;

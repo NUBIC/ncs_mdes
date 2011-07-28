@@ -97,6 +97,14 @@ XSD
         it 'is false when nillable' do
           comments.should_not be_required
         end
+
+        it 'is false when not nillable but minOccurs is 0' do
+          variable('<xs:element nillable="false" minOccurs="0"/>').should_not be_required
+        end
+
+        it 'is true when nillable omitted but minOccurs is > 0' do
+          variable('<xs:element minOccurs="1"/>').should be_required
+        end
       end
 
       describe '#pii' do
