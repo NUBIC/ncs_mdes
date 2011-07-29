@@ -126,6 +126,7 @@ module NcsNavigator::Mdes
         @required
       end
     end
+    alias :required :required?
 
     ##
     # If the {#type} of this instance is a reference to an NCS type,
