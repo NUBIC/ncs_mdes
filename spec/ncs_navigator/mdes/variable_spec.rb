@@ -107,6 +107,34 @@ XSD
         end
       end
 
+      describe '#omittable?' do
+        it 'is true when minOccurs is 0' do
+          variable('<xs:element minOccurs="0"/>').should be_omittable
+        end
+
+        it 'is false when minOccurs is not present' do
+          comments.should_not be_omittable
+        end
+
+        it 'is false when minOccurs is > 0' do
+          variable('<xs:element minOccurs="1"/>').should_not be_omittable
+        end
+      end
+
+      describe '#nillable?' do
+        it 'is true when nillable is true' do
+          variable('<xs:element nillable="true"/>').should be_nillable
+        end
+
+        it 'is false when nillable is not present' do
+          variable('<xs:element/>').should_not be_nillable
+        end
+
+        it 'is false when nillable is false' do
+          variable('<xs:element nillable="false"/>').should_not be_nillable
+        end
+      end
+
       describe '#pii' do
         it 'is false when blank' do
           variable('<xs:element ncsdoc:pii=""/>').pii.should == false
@@ -152,6 +180,52 @@ XSD
 
         it 'is nil when not set' do
           variable('<xs:element/>').status.should be_nil
+        end
+      end
+    end
+
+    describe '#required?' do
+      subject { Variable.new('foo') }
+
+      it 'is true when not omittable or nillable' do
+        subject.should be_required
+      end
+
+      it 'is false when omittable only' do
+        subject.omittable = true
+        subject.should_not be_required
+      end
+
+      it 'is false when nillable only' do
+        subject.nillable = true
+        subject.should_not be_required
+      end
+
+      it 'is false both nillable and omittable' do
+        subject.nillable = true
+        subject.omittable = true
+        subject.should_not be_required
+      end
+
+      describe 'when explicitly set' do
+        it 'preserves trueness even when would be false' do
+          subject.nillable = true
+          subject.required = true
+          subject.should be_required
+        end
+
+        it 'preserves falseness even when should be true' do
+          subject.required = false
+          subject.should_not be_required
+        end
+
+        it 'can be cleared by setting to nil' do
+          subject.nillable = true
+          subject.required = true
+          subject.should be_required
+
+          subject.required = nil
+          subject.should_not be_required
         end
       end
     end

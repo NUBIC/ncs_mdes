@@ -31,11 +31,26 @@ module NcsNavigator::Mdes
     attr_accessor :type
 
     ##
-    # Is the variable mandatory for a valid submission?
+    # If the variable does not have a value, should it be completely
+    # omitted when submitting to the VDR?
     #
     # @return [Boolean]
-    attr_accessor :required
-    alias :required? :required
+    attr_accessor :omittable
+    alias :omittable? :omittable
+
+    ##
+    # May the variable be submitted as a null value?
+    #
+    # @return [Boolean]
+    attr_accessor :nillable
+    alias :nillable? :nillable
+
+    ##
+    # Allows for an override of the default logic. Mostly intended for
+    # testing. Set to `nil` to restore default logic.
+    #
+    # @return [Boolean,nil]
+    attr_writer :required
 
     ##
     # If this variable is a foreign key, this is the {table
@@ -57,12 +72,8 @@ module NcsNavigator::Mdes
         log = options[:log] || NcsNavigator::Mdes.default_logger
 
         new(element['name']).tap do |var|
-          var.required =
-            if element['minOccurs']
-              element['minOccurs'] != '0'
-            else
-              element['nillable'] == 'false'
-            end
+          var.nillable = element['nillable'] == 'true'
+          var.omittable = element['minOccurs'] == '0'
           var.pii =
             case element['pii']
             when 'Y'; true;
@@ -102,6 +113,18 @@ module NcsNavigator::Mdes
 
     def constraints
       @constraints ||= []
+    end
+
+    ##
+    # Is a value for the variable mandatory for a valid submission?
+    #
+    # @return [Boolean]
+    def required?
+      if @required.nil?
+        !(omittable? || nillable?)
+      else
+        @required
+      end
     end
 
     ##

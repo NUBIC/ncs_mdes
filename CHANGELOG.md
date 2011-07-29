@@ -4,6 +4,9 @@ NCS Navigator MDES Module history
 0.4.1
 -----
 
+- Add separate {#omittable?} and {#nillable?} subconditions of
+  {#required?} (#4).
+
 0.4.0
 -----
 
