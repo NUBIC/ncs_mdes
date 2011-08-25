@@ -7,18 +7,21 @@ if [ -z $RVM_RUBY ]; then
     exit 1
 fi
 
-if [ -z $rvm_path ]; then
-    set +xe
-    echo "Initializing RVM"
-    . ~/.rvm/scripts/rvm
-    set -xe
-fi
+set +xe
+echo "Initializing RVM"
+source ~/.rvm/scripts/rvm
+set -xe
+
+type rvm | head -1
 
 RVM_CONFIG="${RVM_RUBY}@ncs_mdes"
 set +xe
 echo "Switching to ${RVM_CONFIG}"
 rvm use $RVM_CONFIG
 set -xe
+
+which ruby
+ruby -v
 
 set +e
 gem list -i bundler -v $BUNDLER_VERSION
@@ -30,4 +33,4 @@ set -e
 
 bundle update
 
-rake ci:spec
+bundle exec rake ci:spec --trace
