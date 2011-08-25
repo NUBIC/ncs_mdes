@@ -4,6 +4,16 @@
 # Provides a IRB session with a NcsNavigator::Mdes::Specification instance
 # for free-form prodding.
 
+# Allow this executable to be run directly from the source as well as
+# from an installed gem.
+begin
+  lib = File.expand_path('../../lib', __FILE__)
+  unless $LOAD_PATH.include?(lib)
+    $LOAD_PATH << lib
+    require 'rubygems'
+  end
+end
+
 require 'irb'
 require 'ncs_navigator/mdes'
 
