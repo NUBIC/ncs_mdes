@@ -24,4 +24,5 @@ National Children's Study's Master Data Element Specification.
   s.add_development_dependency 'rspec', '~> 2.6'
   s.add_development_dependency 'rake', '~> 0.9.2'
   s.add_development_dependency 'yard', '~> 0.7.2'
+  s.add_development_dependency 'ci_reporter', '~> 1.6'
 end
