@@ -85,7 +85,7 @@ module NcsNavigator::Mdes
         it 'has 251 codes' do
           disposition_codes.size.should == 251
         end
-        
+
         it 'creates valid codes' do
           code = disposition_codes.first
           code.event.should          == "Household Enumeration Event"

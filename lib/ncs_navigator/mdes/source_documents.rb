@@ -126,20 +126,20 @@ module NcsNavigator::Mdes
     def heuristic_overrides=(path)
       @heuristic_overrides = path
     end
-    
+
     ##
     # The absolute path to a YAML-formatted document defining
-    # the disposition codes as found in the Master Data Element Specifications 
+    # the disposition codes as found in the Master Data Element Specifications
     # spreadsheet.
     #
-    # This is path is optional; if one is not provided no disposition 
+    # This is path is optional; if one is not provided no disposition
     # codes will be loaded.
     #
     # @return [String]
     def disposition_codes
       absolutize(@disposition_codes)
     end
-    
+
     ##
     # Set the path to the disposition codes document.
     # If the path is relative (i.e., it does not begin with `/`), it

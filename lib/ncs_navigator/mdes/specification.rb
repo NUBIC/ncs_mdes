@@ -143,7 +143,7 @@ module NcsNavigator::Mdes
           end
         end
     end
-    
+
     def empty_disposition_codes
       []
     end

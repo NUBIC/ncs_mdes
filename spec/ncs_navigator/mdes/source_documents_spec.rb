@@ -60,7 +60,7 @@ module NcsNavigator::Mdes
         SourceDocuments.new.heuristic_overrides.should be_nil
       end
     end
-    
+
     describe '#disposition_codes' do
       let(:property) { :disposition_codes }
 
@@ -82,7 +82,7 @@ module NcsNavigator::Mdes
         it 'has the correct path for the overrides' do
           subject.heuristic_overrides.should =~ %r{1.2/heuristic_overrides.yml$}
         end
-        
+
         it 'has the correct path for the disposition codes' do
           subject.disposition_codes.should =~ %r{1.2/disposition_codes.yml$}
         end
@@ -102,7 +102,7 @@ module NcsNavigator::Mdes
         it 'has the correct path for the overrides' do
           subject.heuristic_overrides.should =~ %r{2.0/heuristic_overrides.yml$}
         end
-        
+
         it 'has the correct path for the disposition codes' do
           subject.disposition_codes.should =~ %r{2.0/disposition_codes.yml$}
         end
