@@ -53,8 +53,8 @@ module NcsNavigator::Mdes
     attr_writer :required
 
     ##
-    # If this variable is a foreign key, this is the {table
-    # TransmissionTable} to which it refers.
+    # If this variable is a foreign key, this is the
+    # {TransmissionTable table} to which it refers.
     #
     # @return [TransmissionTable,nil] the parent table.
     attr_accessor :table_reference
@@ -153,9 +153,9 @@ module NcsNavigator::Mdes
     end
 
     ##
-    # Attempts to resolve this variable as a {reference to another
-    # table #table_reference}. There are two mechanisms for performing
-    # the resolution:
+    # Attempts to resolve this variable as a {#table_reference
+    # reference to another table}. There are two mechanisms for
+    # performing the resolution:
     #
     # 1. If an `override_name` is provided, that table will be looked
     #    up in the provided table list. If it exists, it will be used,

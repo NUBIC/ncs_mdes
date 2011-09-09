@@ -8,5 +8,6 @@ spec/doc-base
 .yardoc
 docs
 *.dot
+doc
 
 reports
