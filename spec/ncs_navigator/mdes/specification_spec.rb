@@ -63,8 +63,17 @@ module NcsNavigator::Mdes
         include_examples 'tables fully resolved'
       end
     end
-    
-    
+
+    describe '#specification_version' do
+      it 'is the named version by default' do
+        Specification.new('1.2').specification_version.should == '1.2'
+      end
+
+      it 'is the read-in version if the source has one' do
+        Specification.new('2.0').specification_version.should == '2.0.01.02'
+      end
+    end
+
     describe '#disposition codes' do
       it 'is composed of DispositionCode instances' do
         Specification.new('2.0', :log => logger).disposition_codes.first.

@@ -20,6 +20,13 @@ module NcsNavigator::Mdes
     def_delegator :@source_documents, :version
 
     ##
+    # @method specification_version
+    # @return [String] the exact version this specification
+    #   matches. It may be more exact than the requested version due
+    #   to applied patches.
+    def_delegator :@source_documents, :specification_version
+
+    ##
     # @param [String,SourceDocuments] version either the string
     #   version of the MDES metadata you would like to read, or a
     #   {SourceDocuments} instance pointing to the appropriate files.

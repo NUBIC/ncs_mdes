@@ -30,6 +30,11 @@ module NcsNavigator::Mdes
     attr_accessor :version
 
     ##
+    # @return [String] The specification version that these documents
+    #   describe, if more specific than the overall version.
+    attr_accessor :specification_version
+
+    ##
     # Instance-level alias for {.xmlns}.
     # @method xmlns
     # @return [Hash]
@@ -45,18 +50,19 @@ module NcsNavigator::Mdes
         when '1.2'
           create('1.2', '1.2/Data_Transmission_Schema_V1.2.xsd')
         when '2.0'
-          create('2.0', '2.0/NCS_Transmission_Schema_2.0.01.02.xml')
+          create('2.0', '2.0/NCS_Transmission_Schema_2.0.01.02.xml', '2.0.01.02')
         else
           raise "MDES #{version} is not supported by this version of ncs_mdes"
         end
       end
 
-      def create(version, schema)
+      def create(version, schema, specification_version=nil)
         self.new.tap do |sd|
           sd.version = version
           sd.schema = schema
           sd.heuristic_overrides = "#{version}/heuristic_overrides.yml"
           sd.disposition_codes = "#{version}/disposition_codes.yml"
+          sd.specification_version = specification_version
         end
       end
       private :create
@@ -80,6 +86,10 @@ module NcsNavigator::Mdes
         ENV[BASE_ENV_VAR] ||
         File.expand_path(File.join('..', '..', '..', '..', 'documents'), __FILE__)
         )
+    end
+
+    def specification_version
+      @specification_version || self.version
     end
 
     ##

@@ -90,6 +90,10 @@ module NcsNavigator::Mdes
         it 'is of the specified version' do
           subject.version.should == '1.2'
         end
+
+        it 'has no more specific specification_version' do
+          subject.specification_version.should == '1.2'
+        end
       end
 
       describe '2.0' do
@@ -109,6 +113,10 @@ module NcsNavigator::Mdes
 
         it 'is of the specified version' do
           subject.version.should == '2.0'
+        end
+
+        it 'has a different specification_version' do
+          subject.specification_version.should == '2.0.01.02'
         end
       end
 

@@ -4,6 +4,9 @@ NCS Navigator MDES Module history
 0.4.2
 -----
 
+- Add `specification_version` to distinguish from the short version
+  names we use for easy reference. (#6)
+
 0.4.1
 -----
 
