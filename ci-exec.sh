@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-BUNDLER_VERSION=1.0.18
+BUNDLER_VERSION=1.1.rc
 GEMSET=ncs_mdes
 
 if [ -z $CI_RUBY ]; then
@@ -38,6 +38,6 @@ if [ $? -ne 0 ]; then
 fi
 set -e
 
-bundle update
+bundle _${BUNDLER_VERSION}_ update
 
-bundle exec rake ci:spec --trace
+bundle _${BUNDLER_VERSION}_ exec rake ci:spec --trace
