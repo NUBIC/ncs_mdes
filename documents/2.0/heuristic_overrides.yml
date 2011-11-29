@@ -338,7 +338,9 @@ foreign_keys:
     six_mth_saq_id: six_mth_saq_2
 
   spec_blood:
-    equip_id: spec_equipment
+    # According to the corresponding instrument, equip_id is manually entered and
+    # not a reference to another table.
+    equip_id: false
 
   spec_receipt:
     # Insufficient info to determine what this is supposed to link to
