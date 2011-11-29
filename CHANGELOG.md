@@ -1,8 +1,11 @@
 NCS Navigator MDES Module history
 =================================
 
-0.4.3
+0.5.0
 -----
+
+- Add `instrument_table?` and `operational_table?` to heuristically
+  flag tables as one or the other.
 
 0.4.2
 -----

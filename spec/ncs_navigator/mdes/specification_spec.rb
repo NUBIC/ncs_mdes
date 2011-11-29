@@ -41,6 +41,12 @@ module NcsNavigator::Mdes
             table.variables.collect { |v| v.type }.select { |t| t.reference? }
           }.flatten.collect { |t| t.name }.select { |n| n =~ /^ncs:/ }.should == []
         end
+
+        it 'can determine if each table is instrument or operational' do
+          tables.each do |table|
+            lambda { table.instrument_table? }.should_not raise_error
+          end
+        end
       end
 
       context 'in version 1.2' do

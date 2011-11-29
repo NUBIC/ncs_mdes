@@ -85,5 +85,99 @@ XSD
         subject['quux'].should be_nil
       end
     end
+
+    describe 'instrument table detection' do
+      def table_with_variables(table_name, *variables)
+        TransmissionTable.new(table_name).tap { |t|
+          t.variables = variables.collect { |vn| Variable.new(vn) }
+        }
+      end
+
+      let(:event) { table_with_variables('event', 'event_id') }
+      let(:instrument) { table_with_variables('instrument', 'instrument_id', 'instrument_version') }
+
+      let(:spec_blood) {
+        table_with_variables('spec_blood', 'spec_blood_id',
+          'instrument_id', 'instrument_type', 'instrument_version')
+      }
+      let(:spec_blood_tube) {
+        table_with_variables('spec_blood_tube', 'spec_blood_tube_id', 'spec_blood_id').tap do |t|
+          t.variables.detect { |v| v.name == 'spec_blood_id' }.table_reference = spec_blood
+        end
+      }
+      let(:spec_blood_tube_comments) {
+        table_with_variables(
+          'spec_blood_tube_comments',
+          'spec_blood_tube_comments_id', 'spec_blood_tube_id'
+        ).tap do |t|
+          t.variables.detect { |v| v.name == 'spec_blood_tube_id' }.
+            table_reference = spec_blood_tube
+        end
+      }
+
+      describe '#instrument_table?' do
+        it 'does not consider tables without instrument_version to be instrument tables' do
+          event.should_not be_instrument_table
+        end
+
+        it 'does not consider the instrument operational table to be an instrument table' do
+          instrument.should_not be_instrument_table
+        end
+
+        it 'considers primary instrument tables to be instrument tables' do
+          spec_blood.should be_instrument_table
+        end
+
+        it 'considers secondary instrument tables to be instrument tables' do
+          spec_blood_tube.should be_instrument_table
+        end
+
+        it 'considers tertiary instrument tables to be instrument tables' do
+          spec_blood_tube_comments.should be_instrument_table
+        end
+
+        it 'does not consider circularly referring tables to be instrument tables' do
+          person = table_with_variables('person', 'new_address_id')
+          address = table_with_variables('address', 'person_id')
+          address.variables.first.table_reference = person
+          person.variables.first.table_reference = address
+
+          address.should_not be_instrument_table
+          person.should_not be_instrument_table
+        end
+      end
+
+      describe '#primary_instrument_table?' do
+        it 'does not consider tables without instrument_version to be a primary instrument table' do
+          event.should_not be_primary_instrument_table
+        end
+
+        it 'does not consider the instrument operational table to be a primary instrument table' do
+          instrument.should_not be_primary_instrument_table
+        end
+
+        it 'considers primary instrument tables to be primary instrument tables' do
+          spec_blood.should be_primary_instrument_table
+        end
+
+        it 'does not consider secondary instrument tables to be primary instrument tables' do
+          spec_blood_tube.should_not be_primary_instrument_table
+        end
+
+        it 'does not consider tertiary instrument tables to be primary instrument tables' do
+          spec_blood_tube_comments.should_not be_primary_instrument_table
+        end
+      end
+
+      describe '#operational_table?' do
+        it 'is the opposite of instrument_table?' do
+          [
+            event, instrument, spec_blood, spec_blood_tube, spec_blood_tube_comments
+          ].each do |table|
+            table.instrument_table?.should == !table.operational_table?
+          end
+        end
+      end
+    end
   end
 end

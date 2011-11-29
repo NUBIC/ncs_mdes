@@ -49,5 +49,66 @@ module NcsNavigator::Mdes
     def inspect
       "\#<#{self.class} name=#{name.inspect}>"
     end
+
+    ##
+    # Is this a primary instrument table (i.e., is this the table for
+    # an instrument that stores all single-valued responses for one
+    # execution of that instrument and to which all other instrument
+    # tables for that instrument refer [directly or indirectly])?
+    #
+    # @return [true,false]
+    def primary_instrument_table?
+      self.name != 'instrument' && variables.any? { |v| v.name == 'instrument_version' }
+    end
+
+    ##
+    # Is this an instrument table (i.e., a table for storing results
+    # from an instrument)? Every table is either an instrument table
+    # or an operational table (never both).
+    #
+    # This is not explicitly derivable from the MDES, so this method
+    # (and the related methods {#operational_table?} and
+    # {#primary_instrument_table?}) use this heuristic:
+    #
+    #   * If this table contains a variable named `instrument_version`
+    #     and is not the `instrument` table itself, it is a primary
+    #     instrument table (and so is an instrument table).
+    #   * If this table is not a primary instrument table, but one of
+    #     its {#variables} {Variable#table_reference references} a table
+    #     that is a primary instrument table, then this is an instrument
+    #     table.
+    #   * Similarly, if one of this table's variables references a table
+    #     which is an instrument table according to the second
+    #     definition, then this table is an instrument table as
+    #     well. This continues for any depth of reference.
+    #
+    # If none of these conditions are met, then this table is an
+    # operational table.
+    #
+    # @return [true,false]
+    def instrument_table?
+      instrument_table_predicate_with_stack([])
+    end
+
+    ##
+    # @private # exposed for recursion in siblings
+    def instrument_table_predicate_with_stack(stack)
+      return false if stack.include?(self)
+      primary_instrument_table? || variables.any? { |v|
+        v.table_reference && v.table_reference.instrument_table_predicate_with_stack(stack + [self])
+      }
+    end
+
+    ##
+    # Is this an operational table (i.e., a table for storing
+    # operational data about a participant, household, staff member,
+    # or other study management concept)? Every table is either an
+    # operational table or an instrument table (never both).
+    #
+    # @see #instrument_table?
+    # @return [true,false]
+    def operational_table?
+      !instrument_table?
+    end
   end
 end
