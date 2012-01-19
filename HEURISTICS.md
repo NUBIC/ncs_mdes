@@ -93,8 +93,14 @@ the following heuristic:
 
 * Otherwise fail.
 
-This heuristic works for 396 of the foreign keys in MDES 2.0. Another
-158 are mapped manually for a total of 554.
+This heuristic works for 399 of the foreign keys in MDES 2.0. Another
+155 are mapped manually for a total of 554.
+
+There are also three variables which are typed as foreign keys in the
+XML schema but which for a couple of different reasons are not treated
+as foreign keys by ncs_mdes. These are described in comments in
+`source_documents/2.0/heuristics_overrides.yml` in the ncs_mdes
+source.
 
 # Heuristics not used
 
