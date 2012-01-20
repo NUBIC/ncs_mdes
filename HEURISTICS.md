@@ -83,24 +83,23 @@ that a variable is of one of a couple of foreign key types, it does
 not indicate the associated table. That information is derived using
 the following heuristic:
 
-* If the variable is not of foriegn key type, it's not a foreign key.
+* If the variable is not of foreign key type, it's not a foreign key.
 
 * Otherwise, find all the tables in the MDES whose primary key is
-  named the same as the foreign key variable.
+  named the same as the candidate foreign key variable.
 
 * If there is exactly one such table, the variable refers to that
   table.
 
 * Otherwise fail.
 
-This heuristic works for 399 of the foreign keys in MDES 2.0. Another
-155 are mapped manually for a total of 554.
+This heuristic does not fail for 399 of the foreign keys in MDES
+2.0. Another 155 are mapped manually for a total of 554.
 
 There are also three variables which are typed as foreign keys in the
 XML schema but which for a couple of different reasons are not treated
 as foreign keys by ncs_mdes. These are described in comments in
-`source_documents/2.0/heuristics_overrides.yml` in the ncs_mdes
-source.
+`documents/2.0/heuristic_overrides.yml` in the ncs_mdes source.
 
 # Heuristics not used
 
