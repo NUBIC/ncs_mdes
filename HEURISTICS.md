@@ -1,6 +1,6 @@
-# Why ncs_mdes tells you the things it tells you
+# Why `ncs_mdes` tells you the things it tells you
 
-The ncs_mdes gem derives its view of the NCS Master Data Element
+`ncs_mdes` derives its view of the NCS Master Data Element
 Specification primarily from the the XML Schema defining the Vanguard
 Data Repository submission format. However, that file does not contain
 the full semantics that the gem exposes. This document discusses how
@@ -8,7 +8,7 @@ the remaining attributes are derived.
 
 # Gem overview
 
-ncs_mdes exposes data in three major categories:
+`ncs_mdes` exposes data in three major categories:
 
 * Tables
 * Types
