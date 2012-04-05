@@ -32,6 +32,12 @@ module NcsNavigator::Mdes
       end
 
       shared_examples 'tables fully resolved' do
+        let!(:tables) { Specification.new(version, :log => logger).transmission_tables }
+
+        it 'has the right number of tables' do
+          tables.size.should == expected_table_count
+        end
+
         it 'emits no warnings' do
           logger[:warn].should == []
         end
@@ -50,20 +56,25 @@ module NcsNavigator::Mdes
       end
 
       context 'in version 1.2' do
-        let!(:tables) { Specification.new('1.2', :log => logger).transmission_tables }
-
-        it 'has 124 tables' do
-          tables.size.should == 124
-        end
+        let(:version) { '1.2' }
+        let(:expected_table_count) { 124 }
 
         include_examples 'tables fully resolved'
       end
 
       context 'in version 2.0' do
-        let!(:tables) { Specification.new('2.0', :log => logger).transmission_tables }
+        let(:version) { '2.0' }
+        let(:expected_table_count) { 264 }
 
-        it 'has 264 tables' do
-          tables.size.should == 264
+        include_examples 'tables fully resolved'
+      end
+
+      context 'in version 2.1' do
+        let(:version) { '2.1' }
+        let(:expected_table_count) { 264 }
+
+        before do
+          pending 'TODO'
         end
 
         include_examples 'tables fully resolved'
@@ -110,7 +121,10 @@ module NcsNavigator::Mdes
           code.interim_code.should   == "010"
           code.final_code.should     == "510"
         end
+      end
 
+      context 'in version 2.1' do
+        it 'has X codes'
       end
     end
 
@@ -140,11 +154,11 @@ module NcsNavigator::Mdes
           should be_a VariableType
       end
 
-      context 'in version 1.2' do
-        let!(:types) { Specification.new('1.2', :log => logger).types }
+      shared_examples 'types fully resolved' do
+        let!(:types) { Specification.new(version, :log => logger).types }
 
-        it 'has 281 types' do
-          types.size.should == 281
+        it 'has the expected number of types' do
+          types.size.should == expected_type_count
         end
 
         it 'emits no warnings' do
@@ -152,16 +166,22 @@ module NcsNavigator::Mdes
         end
       end
 
+      context 'in version 1.2' do
+        let(:version) { '1.2' }
+        let(:expected_type_count) { 281 }
+
+        include_examples 'types fully resolved'
+      end
+
       context 'in version 2.0' do
-        let!(:types) { Specification.new('2.0', :log => logger).types }
+        let(:version) { '2.0' }
+        let(:expected_type_count) { 423 }
 
-        it 'has 423 types' do
-          types.size.should == 423
-        end
+        include_examples 'types fully resolved'
+      end
 
-        it 'emits no warnings' do
-          logger[:warn].size.should == 0
-        end
+      context 'version 2.1' do
+        it 'has X types'
       end
     end
   end
