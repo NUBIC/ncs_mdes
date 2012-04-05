@@ -120,6 +120,30 @@ module NcsNavigator::Mdes
         end
       end
 
+      describe '2.1' do
+        subject { SourceDocuments.get('2.1') }
+
+        it 'has the correct path for the schema' do
+          subject.schema.should =~ %r{2.1/NCS_Transmission_Schema_2.1.00.00.xsd$}
+        end
+
+        it 'has the correct path for the overrides' do
+          subject.heuristic_overrides.should =~ %r{2.1/heuristic_overrides.yml$}
+        end
+
+        it 'has the correct path for the disposition codes' do
+          subject.disposition_codes.should =~ %r{2.1/disposition_codes.yml$}
+        end
+
+        it 'is of the specified version' do
+          subject.version.should == '2.1'
+        end
+
+        it 'has a different specification_version' do
+          subject.specification_version.should == '2.1.00.00'
+        end
+      end
+
       it 'fails for an unsupported version' do
         lambda { SourceDocuments.get('1.0') }.
           should raise_error('MDES 1.0 is not supported by this version of ncs_mdes')

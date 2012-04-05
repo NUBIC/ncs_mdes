@@ -71,11 +71,7 @@ module NcsNavigator::Mdes
 
       context 'in version 2.1' do
         let(:version) { '2.1' }
-        let(:expected_table_count) { 264 }
-
-        before do
-          pending 'TODO'
-        end
+        let(:expected_table_count) { 270 }
 
         include_examples 'tables fully resolved'
       end
@@ -124,7 +120,11 @@ module NcsNavigator::Mdes
       end
 
       context 'in version 2.1' do
-        it 'has X codes'
+        let(:disposition_codes) { Specification.new('2.0', :log => logger).disposition_codes }
+
+        it 'has 251 codes' do
+          disposition_codes.size.should == 251
+        end
       end
     end
 
@@ -181,7 +181,10 @@ module NcsNavigator::Mdes
       end
 
       context 'version 2.1' do
-        it 'has X types'
+        let(:version) { '2.1' }
+        let(:expected_type_count) { 433 }
+
+        include_examples 'types fully resolved'
       end
     end
   end
