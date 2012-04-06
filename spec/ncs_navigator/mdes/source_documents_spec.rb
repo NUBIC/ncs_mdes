@@ -72,23 +72,29 @@ module NcsNavigator::Mdes
     end
 
     describe '.get' do
-      describe '1.2' do
-        subject { SourceDocuments.get('1.2') }
-
-        it 'has the correct path for the schema' do
-          subject.schema.should =~ %r{1.2/Data_Transmission_Schema_V1.2.xsd$}
-        end
+      shared_examples 'version docs' do
+        subject { SourceDocuments.get(version) }
 
         it 'has the correct path for the overrides' do
-          subject.heuristic_overrides.should =~ %r{1.2/heuristic_overrides.yml$}
+          subject.heuristic_overrides.should =~ %r{#{version}/heuristic_overrides.yml$}
         end
 
         it 'has the correct path for the disposition codes' do
-          subject.disposition_codes.should =~ %r{1.2/disposition_codes.yml$}
+          subject.disposition_codes.should =~ %r{#{version}/disposition_codes.yml$}
         end
 
         it 'is of the specified version' do
-          subject.version.should == '1.2'
+          subject.version.should == version
+        end
+      end
+
+      describe '1.2' do
+        let(:version) { '1.2' }
+
+        include_context 'version docs'
+
+        it 'has the correct path for the schema' do
+          subject.schema.should =~ %r{1.2/Data_Transmission_Schema_V1.2.xsd$}
         end
 
         it 'has no more specific specification_version' do
@@ -97,22 +103,12 @@ module NcsNavigator::Mdes
       end
 
       describe '2.0' do
-        subject { SourceDocuments.get('2.0') }
+        let(:version) { '2.0' }
+
+        include_context 'version docs'
 
         it 'has the correct path for the schema' do
           subject.schema.should =~ %r{2.0/NCS_Transmission_Schema_2.0.01.02.xml$}
-        end
-
-        it 'has the correct path for the overrides' do
-          subject.heuristic_overrides.should =~ %r{2.0/heuristic_overrides.yml$}
-        end
-
-        it 'has the correct path for the disposition codes' do
-          subject.disposition_codes.should =~ %r{2.0/disposition_codes.yml$}
-        end
-
-        it 'is of the specified version' do
-          subject.version.should == '2.0'
         end
 
         it 'has a different specification_version' do
@@ -121,22 +117,12 @@ module NcsNavigator::Mdes
       end
 
       describe '2.1' do
-        subject { SourceDocuments.get('2.1') }
+        let(:version) { '2.1' }
+
+        include_context 'version docs'
 
         it 'has the correct path for the schema' do
           subject.schema.should =~ %r{2.1/NCS_Transmission_Schema_2.1.00.00.xsd$}
-        end
-
-        it 'has the correct path for the overrides' do
-          subject.heuristic_overrides.should =~ %r{2.1/heuristic_overrides.yml$}
-        end
-
-        it 'has the correct path for the disposition codes' do
-          subject.disposition_codes.should =~ %r{2.1/disposition_codes.yml$}
-        end
-
-        it 'is of the specified version' do
-          subject.version.should == '2.1'
         end
 
         it 'has a different specification_version' do
