@@ -5,6 +5,7 @@ NCS Navigator MDES Module history
 -----
 
 - Add built-in support for MDES 2.1 (#8).
+- Add built-in support for MDES 2.2 (#9).
 
 0.5.0
 -----

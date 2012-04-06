@@ -91,7 +91,7 @@ module NcsNavigator::Mdes
         tables.each { |t|
           fk_overrides = heuristic_overrides['foreign_keys'][t.name] || { }
           t.variables.each { |v|
-            v.resolve_foreign_key!(tables, fk_overrides[v.name], :log => @log)
+            v.resolve_foreign_key!(tables, fk_overrides[v.name], :log => @log, :in_table => t)
           }
         }
       }
