@@ -345,7 +345,8 @@ XSD
       let(:tables) { all_tables }
 
       before do
-        variable.resolve_foreign_key!(tables, override, :log => logger)
+        variable.resolve_foreign_key!(tables, override,
+          :log => logger, :in_table => TransmissionTable.new('kite'))
       end
 
       shared_examples 'a foreign key' do
@@ -361,7 +362,7 @@ XSD
 
             it 'warns' do
               logger[:warn].first.
-                should == 'Foreign key not resolvable: no tables have a primary key named "helicopter_id".'
+                should == 'Foreign key in kite not resolvable: no tables have a primary key named "helicopter_id".'
             end
           end
 
@@ -405,7 +406,7 @@ XSD
 
             it 'warns' do
               logger[:warn].first.
-                should == '3 possible parent tables found for foreign key "helicopter_id": "helicopters", "helicopters_2", "choppers". None used due to ambiguity.'
+                should == '3 possible parent tables found for foreign key "helicopter_id" in kite: "helicopters", "helicopters_2", "choppers". None used due to ambiguity.'
             end
           end
 
@@ -436,7 +437,7 @@ XSD
 
             it 'warns' do
               logger[:warn].first.
-                should == 'Foreign key "helicopter_id" explicitly mapped to unknown table "aircraft".'
+                should == 'Foreign key "helicopter_id" in kite explicitly mapped to unknown table "aircraft".'
             end
           end
 

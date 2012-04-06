@@ -175,12 +175,13 @@ module NcsNavigator::Mdes
     # @return [void]
     def resolve_foreign_key!(tables, override_name=nil, options={})
       log = options[:log] || NcsNavigator::Mdes.default_logger
+      source_table = options[:in_table] ? options[:in_table].name : '[unspecified table]'
 
       case override_name
       when String
         self.table_reference = tables.detect { |t| t.name == override_name }
         unless table_reference
-          log.warn("Foreign key #{name.inspect} explicitly mapped " <<
+          log.warn("Foreign key #{name.inspect} in #{source_table} explicitly mapped " <<
             "to unknown table #{override_name.inspect}.")
         end
       when nil
@@ -192,14 +193,15 @@ module NcsNavigator::Mdes
 
         case candidates.size
         when 0
-          log.warn("Foreign key not resolvable: " <<
+          log.warn("Foreign key in #{source_table} not resolvable: " <<
             "no tables have a primary key named #{name.inspect}.")
         when 1
           self.table_reference = candidates.first
         else
           log.warn(
-            "#{candidates.size} possible parent tables found for foreign key #{name.inspect}: " <<
-            "#{candidates.collect { |c| c.name.inspect }.join(', ')}. None used due to ambiguity.")
+            "#{candidates.size} possible parent tables found for foreign key #{name.inspect} " <<
+            "in #{source_table}: #{candidates.collect { |c| c.name.inspect }.join(', ')}. " <<
+            "None used due to ambiguity.")
         end
       end
     end
