@@ -13,7 +13,7 @@ NCS Navigator MDES Module history
   flag tables as one or the other.
 - Fix reference definition for `spec_blood.equip_id`. According to the
   corresponding instrument, it is not a reference to `spec_equipment`,
-  but rather a manually-filled field.
+  but rather a manually-filled field (#7).
 
 0.4.2
 -----
