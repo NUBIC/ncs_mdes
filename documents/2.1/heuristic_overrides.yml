@@ -201,7 +201,7 @@ foreign_keys:
     pv1_id: preg_visit_1
 
   preg_visit_1_heat2_2:
-    pv1_id: preg_visit_2
+    pv1_id: preg_visit_1_2
 
   preg_visit_1_local_trav:
     pv1_id: preg_visit_1
