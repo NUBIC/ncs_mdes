@@ -7,6 +7,8 @@ NCS Navigator MDES Module history
 - Correct foreign key override for `preg_visit_1_heat2_2.pv1_id` in
   MDES 2.1 and 2.2. (#13)
 
+- Add an MDES 2.2 spec to `mdes-console`. (#9)
+
 0.6.0
 -----
 
