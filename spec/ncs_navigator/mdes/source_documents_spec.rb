@@ -144,6 +144,20 @@ module NcsNavigator::Mdes
         end
       end
 
+      describe '3.0' do
+        let(:version) { '3.0' }
+
+        include_context 'version docs'
+
+        it 'has the correct path for the schema' do
+          subject.schema.should =~ %r{3.0/NCS_Transmission_Schema_3.0.00.00.xsd$}
+        end
+
+        it 'has a different specification_version' do
+          subject.specification_version.should == '3.0.00.00'
+        end
+      end
+
       it 'fails for an unsupported version' do
         lambda { SourceDocuments.get('1.0') }.
           should raise_error('MDES 1.0 is not supported by this version of ncs_mdes')

@@ -82,6 +82,13 @@ module NcsNavigator::Mdes
 
         include_examples 'tables fully resolved'
       end
+
+      context 'in version 3.0' do
+        let(:version) { '3.0' }
+        let(:expected_table_count) { 397 }
+
+        include_examples 'tables fully resolved'
+      end
     end
 
     describe '#specification_version' do
@@ -139,6 +146,14 @@ module NcsNavigator::Mdes
 
         it 'has 251 codes' do
           disposition_codes.size.should == 251
+        end
+      end
+
+      context 'in version 3.0' do
+        let(:disposition_codes) { Specification.new('3.0', :log => logger).disposition_codes }
+
+        it 'has 332 codes' do
+          disposition_codes.size.should == 332
         end
       end
     end
@@ -205,6 +220,13 @@ module NcsNavigator::Mdes
       context 'version 2.2' do
         let(:version) { '2.2' }
         let(:expected_type_count) { 454 }
+
+        include_examples 'types fully resolved'
+      end
+
+      context 'version 3.0' do
+        let(:version) { '3.0' }
+        let(:expected_type_count) { 514 }
 
         include_examples 'types fully resolved'
       end

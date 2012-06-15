@@ -1,5 +1,5 @@
 module NcsNavigator
   module Mdes
-    VERSION = '0.6.2.pre'
+    VERSION = '0.7.0.pre'
   end
 end
