@@ -1,6 +1,6 @@
 #!/bin/bash -xe
 
-BUNDLER_VERSION=1.1.rc
+BUNDLER_VERSION=1.1.5
 GEMSET=ncs_mdes
 
 if [ -z $CI_RUBY ]; then
