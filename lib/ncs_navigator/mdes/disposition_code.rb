@@ -24,6 +24,15 @@ module NcsNavigator::Mdes
     end
 
     ##
+    # If the code's final category signifies successful completion, returns
+    # true; otherwise, returns false.
+    #
+    # @return [Boolean]
+    def success?
+      final_category.to_s.start_with?('Complete')
+    end
+
+    ##
     # Provides a briefer inspection for cleaner IRB use.
     #
     # @return [String]
