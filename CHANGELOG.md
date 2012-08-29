@@ -4,6 +4,10 @@ NCS Navigator MDES Module history
 0.7.1
 -----
 
+- Add DispositionCode#success? to partition activities into
+  successfully and unsuccesfully completed (e.g. canceled) sets.
+  (#16)
+
 0.7.0
 -----
 
