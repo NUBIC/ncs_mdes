@@ -1,1507 +1,1785 @@
---- 
+---
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Not attempted
-  interim_code: "010"
-  final_code: "510"
+  interim_code: '010'
+  final_code: '510'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Missed Dwelling Unit - Address Entered Manually
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Unable to locate address/Incomplete Address
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Unable to reach/No Answer
-  interim_code: "013"
-  final_code: "513"
+  interim_code: '013'
+  final_code: '513'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Maximum attempts
-  interim_code: "014"
-  final_code: "514"
+  interim_code: '014'
+  final_code: '514'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Unknown if dwelling unit - Other
-  interim_code: "015"
-  final_code: "515"
+  interim_code: '015'
+  final_code: '515'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Duplicate DU in original address list
-  interim_code: "020"
-  final_code: "520"
+  interim_code: '020'
+  final_code: '520'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Invalid Address
-  interim_code: "021"
-  final_code: "521"
+  interim_code: '021'
+  final_code: '521'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Out of sample/segment/subsample
-  interim_code: "022"
-  final_code: "522"
+  interim_code: '022'
+  final_code: '522'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Vacant housing unit
-  interim_code: "023"
-  final_code: "523"
+  interim_code: '023'
+  final_code: '523'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Seasonal/temporary residence
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Under Construction
-  interim_code: "025"
-  final_code: "525"
+  interim_code: '025'
+  final_code: '525'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Business or other organization
-  interim_code: "026"
-  final_code: "526"
+  interim_code: '026'
+  final_code: '526'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: On-Campus Student Housing
-  interim_code: "027"
-  final_code: "527"
+  interim_code: '027'
+  final_code: '527'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Senior Housing
   interim_code: 028
-  final_code: "528"
+  final_code: '528'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Religious Quarters
   interim_code: 029
-  final_code: "529"
+  final_code: '529'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Correctional Facilities
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Military Barracks
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Ineligible Group Quarters -other
-  interim_code: "032"
-  final_code: "532"
+  interim_code: '032'
+  final_code: '532'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Demolished/Condemned
-  interim_code: "033"
-  final_code: "533"
+  interim_code: '033'
+  final_code: '533'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Unable to Access/Enter
-  interim_code: "034"
-  final_code: "534"
+  interim_code: '034'
+  final_code: '534'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Not Eligible
   sub_category: Ineligible - Not Dwelling Unit
   disposition: Not a dwelling unit-other
-  interim_code: "035"
-  final_code: "535"
+  interim_code: '035'
+  final_code: '535'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Complete - English
   disposition: Completed interview in English
-  interim_code: "040"
-  final_code: "540"
+  interim_code: '040'
+  final_code: '540'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Partial - English
   disposition: Partial with sufficient information in English
-  interim_code: "041"
-  final_code: "541"
+  interim_code: '041'
+  final_code: '541'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed interview in Spanish
-  interim_code: "042"
-  final_code: "542"
+  interim_code: '042'
+  final_code: '542'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Partial - Spanish
   disposition: Partial with sufficient information in Spanish
-  interim_code: "043"
-  final_code: "543"
+  interim_code: '043'
+  final_code: '543'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed interview in Other Language
-  interim_code: "044"
-  final_code: "544"
+  interim_code: '044'
+  final_code: '544'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Complete Interview
   sub_category: Partial - Other Language
   disposition: Partial with sufficient information in Other Language
-  interim_code: "045"
-  final_code: "545"
+  interim_code: '045'
+  final_code: '545'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-level refusal- soft
-  interim_code: "050"
-  final_code: "550"
+  interim_code: '050'
+  final_code: '550'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-level refusal- hard
-  interim_code: "051"
-  final_code: "551"
+  interim_code: '051'
+  final_code: '551'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: In Progress/Partial with insufficient information
-  interim_code: "052"
-  final_code: "552"
+  interim_code: '052'
+  final_code: '552'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unable to enter building/reach dwelling unit
-  interim_code: "053"
-  final_code: "553"
+  interim_code: '053'
+  final_code: '553'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No one at home/No Answer
-  interim_code: "054"
-  final_code: "554"
+  interim_code: '054'
+  final_code: '554'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Occupied but Refused to Answer Door
-  interim_code: "055"
-  final_code: "555"
+  interim_code: '055'
+  final_code: '555'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Call Back/Household Informant away/unavailable (no appointment)
-  interim_code: "056"
-  final_code: "556"
+  interim_code: '056'
+  final_code: '556'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment Made - Hard Appointment
-  interim_code: "057"
-  final_code: "557"
+  interim_code: '057'
+  final_code: '557'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment Made - Soft Appointment
   interim_code: 058
-  final_code: "558"
+  final_code: '558'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Broken Appointment/No Show
   interim_code: 059
-  final_code: "559"
+  final_code: '559'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Maximum Attempts
-  interim_code: "060"
-  final_code: "560"
+  interim_code: '060'
+  final_code: '560'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Language Barrier- Household Level
-  interim_code: "061"
-  final_code: "561"
+  interim_code: '061'
+  final_code: '561'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Other
-  disposition: Respondent temporarily incapacitated/under the influence of controlled substances
-  interim_code: "062"
-  final_code: "562"
+  disposition: Respondent temporarily incapacitated/under the influence of controlled
+    substances
+  interim_code: '062'
+  final_code: '562'
+  category_code: 1
 - event: Household Enumeration Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Long Term Illness
-  interim_code: "063"
-  final_code: "563"
+  interim_code: '063'
+  final_code: '563'
+  category_code: 1
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant cognitively unable to Complete
-  interim_code: "010"
-  final_code: "510"
+  interim_code: '010'
+  final_code: '510'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant Deceased
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Not a Household Member
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant ineligible due to age
-  interim_code: "013"
-  final_code: "513"
+  interim_code: '013'
+  final_code: '513'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant incarcerated
-  interim_code: "014"
-  final_code: "514"
+  interim_code: '014'
+  final_code: '514'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant otherwise institutionalized
-  interim_code: "015"
-  final_code: "515"
+  interim_code: '015'
+  final_code: '515'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Other- participant ineligibility
-  interim_code: "016"
-  final_code: "516"
+  interim_code: '016'
+  final_code: '516'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Duplicate participant
-  interim_code: "017"
-  final_code: "517"
+  interim_code: '017'
+  final_code: '517'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
-  disposition: "Participant moved to known address: within PSU to non-sampled DU"
-  interim_code: "020"
-  final_code: "520"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
+  disposition: ! 'Participant moved to known address: within PSU to non-sampled DU'
+  interim_code: '020'
+  final_code: '520'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
-  disposition: "Participant moved to known address: within PSU to a sampled DU"
-  interim_code: "021"
-  final_code: "521"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
+  disposition: ! 'Participant moved to known address: within PSU to a sampled DU'
+  interim_code: '021'
+  final_code: '521'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
-  disposition: "Participant moved to known address: outside of PSU to a non-NCS area"
-  interim_code: "022"
-  final_code: "522"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
+  disposition: ! 'Participant moved to known address: outside of PSU to a non-NCS
+    area'
+  interim_code: '022'
+  final_code: '522'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
-  disposition: "Participant moved to known address: outside PSU to different NCS PSU"
-  interim_code: "023"
-  final_code: "523"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
+  disposition: ! 'Participant moved to known address: outside PSU to different NCS
+    PSU'
+  interim_code: '023'
+  final_code: '523'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
   disposition: Participant moved to unknown address
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete pregnancy screener
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    pregnancy screener
   disposition: Other- unknown participant eligibility to complete pregnancy screener
-  interim_code: "025"
-  final_code: "525"
+  interim_code: '025'
+  final_code: '525'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- soft
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- hard
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: In Progress/Partial with insufficient information
-  interim_code: "032"
-  final_code: "532"
+  interim_code: '032'
+  final_code: '532'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Not Worked
-  interim_code: "033"
-  final_code: "533"
+  interim_code: '033'
+  final_code: '533'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unable to reach participant/temporarily unavailable
-  interim_code: "034"
-  final_code: "534"
+  interim_code: '034'
+  final_code: '534'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Participant Unavailable during Field period/Out of Window
-  interim_code: "035"
-  final_code: "535"
+  interim_code: '035'
+  final_code: '535'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Gatekeeper Refusal- Soft
-  interim_code: "036"
-  final_code: "536"
+  interim_code: '036'
+  final_code: '536'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Gatekeeper Refusal - Hard
-  interim_code: "037"
-  final_code: "537"
+  interim_code: '037'
+  final_code: '537'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unable to Enter DU
   interim_code: 038
-  final_code: "538"
+  final_code: '538'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No one at Home/Ring No Answer
   interim_code: 039
-  final_code: "539"
+  final_code: '539'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Telephone Answering Device (eligibility confirmed by message)
-  interim_code: "040"
-  final_code: "540"
+  interim_code: '040'
+  final_code: '540'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Call Monitoring/Blocking Device (eligibility confirmed by message)
-  interim_code: "041"
-  final_code: "541"
+  interim_code: '041'
+  final_code: '541'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Message left
-  interim_code: "042"
-  final_code: "542"
+  interim_code: '042'
+  final_code: '542'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No message left
-  interim_code: "043"
-  final_code: "543"
+  interim_code: '043'
+  final_code: '543'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made-Hard Appointment
-  interim_code: "044"
-  final_code: "544"
+  interim_code: '044'
+  final_code: '544'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made-Soft Appointment
-  interim_code: "045"
-  final_code: "545"
+  interim_code: '045'
+  final_code: '545'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Broken appointment
-  interim_code: "046"
-  final_code: "546"
+  interim_code: '046'
+  final_code: '546'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Asked to call back, no appointment
-  interim_code: "047"
-  final_code: "547"
+  interim_code: '047'
+  final_code: '547'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
-  disposition: Respondent temporarily incapacitated/under the influence of controlled substances
+  disposition: Respondent temporarily incapacitated/under the influence of controlled
+    substances
   interim_code: 048
-  final_code: "548"
+  final_code: '548'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Maximum attempts
   interim_code: 049
-  final_code: "549"
+  final_code: '549'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Language Barrier
-  interim_code: "050"
-  final_code: "550"
+  interim_code: '050'
+  final_code: '550'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Long Term Illness
-  interim_code: "051"
-  final_code: "551"
+  interim_code: '051'
+  final_code: '551'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Eligible Nonresponse- Other
-  interim_code: "052"
-  final_code: "552"
+  interim_code: '052'
+  final_code: '552'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Complete - English
   disposition: Completed interview in English
-  interim_code: "060"
-  final_code: "560"
+  interim_code: '060'
+  final_code: '560'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Partial - English
   disposition: Partial with sufficient information in English
-  interim_code: "061"
-  final_code: "561"
+  interim_code: '061'
+  final_code: '561'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed interview in Spanish
-  interim_code: "062"
-  final_code: "562"
+  interim_code: '062'
+  final_code: '562'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Partial - Spanish
   disposition: Partial with sufficient information in Spanish
-  interim_code: "063"
-  final_code: "563"
+  interim_code: '063'
+  final_code: '563'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed interview in Other Language
-  interim_code: "064"
-  final_code: "564"
+  interim_code: '064'
+  final_code: '564'
+  category_code: 2
 - event: Pregnancy Screener Event
   final_category: Complete Interview
   sub_category: Partial - Other Language
   disposition: Partial with sufficient information in Other Language
-  interim_code: "065"
-  final_code: "565"
+  interim_code: '065'
+  final_code: '565'
+  category_code: 2
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
-  disposition: Participant cognitively unable to provide informed consent/complete interview
-  interim_code: "010"
-  final_code: "510"
+  disposition: Participant cognitively unable to provide informed consent/complete
+    interview
+  interim_code: '010'
+  final_code: '510'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant deceased
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant ineligible due to pregnancy loss
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant not pregnant (not to be used with "high-trier" group)
-  interim_code: "013"
-  final_code: "513"
+  interim_code: '013'
+  final_code: '513'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant ineligible due to age
-  interim_code: "014"
-  final_code: "514"
+  interim_code: '014'
+  final_code: '514'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant not a household member
-  interim_code: "015"
-  final_code: "515"
+  interim_code: '015'
+  final_code: '515'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant incarcerated
-  interim_code: "016"
-  final_code: "516"
+  interim_code: '016'
+  final_code: '516'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant otherwise institutionalized
-  interim_code: "017"
-  final_code: "517"
+  interim_code: '017'
+  final_code: '517'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Other- participant ineligibility
   interim_code: 018
-  final_code: "518"
+  final_code: '518'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Duplicate participant
   interim_code: 019
-  final_code: "519"
+  final_code: '519'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: within PSU to non-sampled DU"
-  interim_code: "020"
-  final_code: "520"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
+  disposition: ! 'Participant moved to known address: within PSU to non-sampled DU'
+  interim_code: '020'
+  final_code: '520'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: within PSU to a sampled DU"
-  interim_code: "021"
-  final_code: "521"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
+  disposition: ! 'Participant moved to known address: within PSU to a sampled DU'
+  interim_code: '021'
+  final_code: '521'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: outside of PSU to a non-NCS area"
-  interim_code: "022"
-  final_code: "522"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
+  disposition: ! 'Participant moved to known address: outside of PSU to a non-NCS
+    area'
+  interim_code: '022'
+  final_code: '522'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: outside PSU to different NCS PSU"
-  interim_code: "023"
-  final_code: "523"
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
+  disposition: ! 'Participant moved to known address: outside PSU to different NCS
+    PSU'
+  interim_code: '023'
+  final_code: '523'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
   disposition: Participant moved to unknown address
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Unknown Eligibility
-  sub_category: Known dwelling unit- known participant, unknown eligibility to complete consent/interview
+  sub_category: Known dwelling unit- known participant, unknown eligibility to complete
+    consent/interview
   disposition: Other- eligibility unknown
-  interim_code: "025"
-  final_code: "525"
+  interim_code: '025'
+  final_code: '525'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Refused to Provide  Consent
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- soft
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- hard
-  interim_code: "032"
-  final_code: "532"
+  interim_code: '032'
+  final_code: '532'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: In Progress/Partial with insufficient information
-  interim_code: "033"
-  final_code: "533"
+  interim_code: '033'
+  final_code: '533'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Not Worked
-  interim_code: "034"
-  final_code: "534"
+  interim_code: '034'
+  final_code: '534'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unable to reach participant/temporarily unavailable
-  interim_code: "035"
-  final_code: "535"
+  interim_code: '035'
+  final_code: '535'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unable to Access DU
-  interim_code: "036"
-  final_code: "536"
+  interim_code: '036'
+  final_code: '536'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No one at home/Ring no answer
-  interim_code: "037"
-  final_code: "537"
+  interim_code: '037'
+  final_code: '537'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Telephone Answering Device (eligibility confirmed by message)
   interim_code: 038
-  final_code: "538"
+  final_code: '538'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Call Monitoring/Blocking Device (eligibility confirmed by message)
   interim_code: 039
-  final_code: "539"
+  final_code: '539'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Message left
-  interim_code: "040"
-  final_code: "540"
+  interim_code: '040'
+  final_code: '540'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No message left
-  interim_code: "041"
-  final_code: "541"
+  interim_code: '041'
+  final_code: '541'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made - Hard Appointment
-  interim_code: "042"
-  final_code: "542"
+  interim_code: '042'
+  final_code: '542'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made - Soft  Appointment
-  interim_code: "043"
-  final_code: "543"
+  interim_code: '043'
+  final_code: '543'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Broken appointment
-  interim_code: "044"
-  final_code: "544"
+  interim_code: '044'
+  final_code: '544'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Asked to call back, no appointment
-  interim_code: "045"
-  final_code: "545"
+  interim_code: '045'
+  final_code: '545'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Gatekeeper Refusal- Soft
-  interim_code: "046"
-  final_code: "546"
+  interim_code: '046'
+  final_code: '546'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Gatekeeper Refusal - Hard
-  interim_code: "047"
-  final_code: "547"
+  interim_code: '047'
+  final_code: '547'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Participant Unavailable during Field period/Out of Window
   interim_code: 048
-  final_code: "548"
+  final_code: '548'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
-  disposition: Respondent temporarily incapacitated/under the influence of controlled substances
+  disposition: Respondent temporarily incapacitated/under the influence of controlled
+    substances
   interim_code: 049
-  final_code: "549"
+  final_code: '549'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Maximum attempts
-  interim_code: "050"
-  final_code: "550"
+  interim_code: '050'
+  final_code: '550'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Inadequate audio quality
-  interim_code: "051"
-  final_code: "551"
+  interim_code: '051'
+  final_code: '551'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Location/Activity prevents interview
-  interim_code: "052"
-  final_code: "552"
+  interim_code: '052'
+  final_code: '552'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Language Barrier
-  interim_code: "053"
-  final_code: "553"
+  interim_code: '053'
+  final_code: '553'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Long Term Illness
-  interim_code: "054"
-  final_code: "554"
+  interim_code: '054'
+  final_code: '554'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Eligible Non-response- Other
-  interim_code: "055"
-  final_code: "555"
+  interim_code: '055'
+  final_code: '555'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Complete Interview
   sub_category: Complete - English
   disposition: Completed Consent/Interview in English
-  interim_code: "060"
-  final_code: "560"
+  interim_code: '060'
+  final_code: '560'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed Consent/Interview in Spanish
-  interim_code: "061"
-  final_code: "561"
+  interim_code: '061'
+  final_code: '561'
+  category_code: 3
 - event: General Study Visit Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed Consent/Interview in Other Language
-  interim_code: "062"
-  final_code: "562"
+  interim_code: '062'
+  final_code: '562'
+  category_code: 3
 - event: Mailed Back SAQ Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Participant Screened Out
-  interim_code: "010"
-  final_code: "510"
+  interim_code: '010'
+  final_code: '510'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: No Eligible Participant
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Duplicate Listing
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Participant deceased
-  interim_code: "013"
-  final_code: "513"
+  interim_code: '013'
+  final_code: '513'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Cognitively  unable to Complete
-  interim_code: "014"
-  final_code: "514"
+  interim_code: '014'
+  final_code: '514'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: No address or participant information available
-  interim_code: "020"
-  final_code: "520"
+  interim_code: '020'
+  final_code: '520'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Never mailed
-  interim_code: "021"
-  final_code: "521"
+  interim_code: '021'
+  final_code: '521'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Questionnaire never returned/No response
-  interim_code: "022"
-  final_code: "522"
+  interim_code: '022'
+  final_code: '522'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit
   disposition: Undeliverable
-  interim_code: "023"
-  final_code: "523"
+  interim_code: '023'
+  final_code: '523'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Unknown Eligibility
   sub_category: Unknown- Other
   disposition: Returned with Forwarding Information
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- soft
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- hard
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-Level refusal- soft
-  interim_code: "032"
-  final_code: "532"
+  interim_code: '032'
+  final_code: '532'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-Level refusal- hard
-  interim_code: "033"
-  final_code: "533"
+  interim_code: '033'
+  final_code: '533'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Blank questionnaire returned
-  interim_code: "034"
-  final_code: "534"
+  interim_code: '034'
+  final_code: '534'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Partial with insufficient information
-  interim_code: "035"
-  final_code: "535"
+  interim_code: '035'
+  final_code: '535'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Participant Unavailable during Field Period/Out of Window
-  interim_code: "036"
-  final_code: "536"
+  interim_code: '036'
+  final_code: '536'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Completed questionnaire, but not returned during field period
-  interim_code: "037"
-  final_code: "537"
+  interim_code: '037'
+  final_code: '537'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Language Barrier
   interim_code: 038
-  final_code: "538"
+  final_code: '538'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Literacy Issues
   interim_code: 039
-  final_code: "539"
+  final_code: '539'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Other
-  interim_code: "040"
-  final_code: "540"
+  interim_code: '040'
+  final_code: '540'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Complete
   disposition: Completed Questionnaire in English
-  interim_code: "050"
-  final_code: "550"
+  interim_code: '050'
+  final_code: '550'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Partial
   disposition: Partial with sufficient information in English
-  interim_code: "051"
-  final_code: "551"
+  interim_code: '051'
+  final_code: '551'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed interview in Spanish
-  interim_code: "052"
-  final_code: "552"
+  interim_code: '052'
+  final_code: '552'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Partial - Spanish
   disposition: Partial with sufficient information in Spanish
-  interim_code: "053"
-  final_code: "553"
+  interim_code: '053'
+  final_code: '553'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed interview in Other Language
-  interim_code: "054"
-  final_code: "554"
+  interim_code: '054'
+  final_code: '554'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete Interview
   sub_category: Partial - Other Language
   disposition: Partial with sufficient information in Other Language
-  interim_code: "055"
-  final_code: "555"
+  interim_code: '055'
+  final_code: '555'
+  category_code: 4
 - event: Mailed Back SAQ Event
   final_category: Complete
   sub_category: Appointment Scheduled
-  disposition: Appointment successfully scheduled (when mail contact was used to schedule upcoming visit)
-  interim_code: "056"
-  final_code: "556"
+  disposition: Appointment successfully scheduled (when mail contact was used to schedule
+    upcoming visit)
+  interim_code: '056'
+  final_code: '556'
+  category_code: 4
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Out of sample
-  interim_code: "010"
-  final_code: "510"
+  interim_code: '010'
+  final_code: '510'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Fax/Data line
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Disconnected number
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Non-working number
-  interim_code: "013"
-  final_code: "513"
+  interim_code: '013'
+  final_code: '513'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Temporarily out of service (for entire duration of field period)
-  interim_code: "014"
-  final_code: "514"
+  interim_code: '014'
+  final_code: '514'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Special technological circumstances
-  interim_code: "015"
-  final_code: "515"
+  interim_code: '015'
+  final_code: '515'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Number changed/no new number
-  interim_code: "016"
-  final_code: "516"
+  interim_code: '016'
+  final_code: '516'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Non-residence
-  interim_code: "017"
-  final_code: "517"
+  interim_code: '017'
+  final_code: '517'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Business/Organization
   interim_code: 018
-  final_code: "518"
+  final_code: '518'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Institution
   interim_code: 019
-  final_code: "519"
+  final_code: '519'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- dwelling unit level
   disposition: Ineligible Group quarters
-  interim_code: "020"
-  final_code: "520"
+  interim_code: '020'
+  final_code: '520'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: Participant not household resident
-  interim_code: "021"
-  final_code: "521"
+  interim_code: '021'
+  final_code: '521'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant ineligible due to pregnancy loss
-  interim_code: "022"
-  final_code: "522"
+  interim_code: '022'
+  final_code: '522'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant not pregnant (not to be used with "high-trier" group)
-  interim_code: "023"
-  final_code: "523"
+  interim_code: '023'
+  final_code: '523'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant ineligible due to age
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: No eligible participant
-  interim_code: "025"
-  final_code: "525"
+  interim_code: '025'
+  final_code: '525'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: Participant deceased
-  interim_code: "026"
-  final_code: "526"
+  interim_code: '026'
+  final_code: '526'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: Cognitively  unable to Complete
-  interim_code: "027"
-  final_code: "527"
+  interim_code: '027'
+  final_code: '527'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant incarcerated
   interim_code: 028
-  final_code: "528"
+  final_code: '528'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible - participant level
   disposition: Participant otherwise institutionalized
   interim_code: 029
-  final_code: "529"
+  final_code: '529'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: No known telephone number
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Not Eligible
   sub_category: Ineligible- participant level
   disposition: Other- participant ineligibility
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: within PSU to non-sampled DU"
-  interim_code: "040"
-  final_code: "540"
+  disposition: ! 'Participant moved to known address: within PSU to non-sampled DU'
+  interim_code: '040'
+  final_code: '540'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: within PSU to a sampled DU"
-  interim_code: "041"
-  final_code: "541"
+  disposition: ! 'Participant moved to known address: within PSU to a sampled DU'
+  interim_code: '041'
+  final_code: '541'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: outside of PSU to a non-NCS area"
-  interim_code: "042"
-  final_code: "542"
+  disposition: ! 'Participant moved to known address: outside of PSU to a non-NCS
+    area'
+  interim_code: '042'
+  final_code: '542'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
-  disposition: "Participant moved to known address: outside PSU to different NCS PSU"
-  interim_code: "043"
-  final_code: "543"
+  disposition: ! 'Participant moved to known address: outside PSU to different NCS
+    PSU'
+  interim_code: '043'
+  final_code: '543'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
   disposition: Participant moved to unknown address
-  interim_code: "044"
-  final_code: "544"
+  interim_code: '044'
+  final_code: '544'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Known participant, unknown eligibility to complete consent/interview
   disposition: Other- eligibility unknown
-  interim_code: "045"
-  final_code: "545"
+  interim_code: '045'
+  final_code: '545'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Not attempted
-  interim_code: "046"
-  final_code: "546"
+  interim_code: '046'
+  final_code: '546'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Telephone always busy
-  interim_code: "047"
-  final_code: "547"
+  interim_code: '047'
+  final_code: '547'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Ring/No Answer
   interim_code: 048
-  final_code: "548"
+  final_code: '548'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Telephone Answering Device (eligibility unknown)
   interim_code: 049
-  final_code: "549"
+  final_code: '549'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Call Monitoring/Blocking Device (eligibility unknown)
-  interim_code: "050"
-  final_code: "550"
+  interim_code: '050'
+  final_code: '550'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Technical telephone problems
-  interim_code: "051"
-  final_code: "551"
+  interim_code: '051'
+  final_code: '551'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Ambiguous operator message
-  interim_code: "052"
-  final_code: "552"
+  interim_code: '052'
+  final_code: '552'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown if Dwelling Unit/Participant
   disposition: Number changed/New number available
-  interim_code: "053"
-  final_code: "553"
+  interim_code: '053'
+  final_code: '553'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown- Other
   disposition: Known dwelling unit, unknown participant eligibility
-  interim_code: "054"
-  final_code: "554"
+  interim_code: '054'
+  final_code: '554'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown- Other
   disposition: Unknown if participant is a household resident
-  interim_code: "055"
-  final_code: "555"
+  interim_code: '055'
+  final_code: '555'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Unknown Eligibility
   sub_category: Unknown- Other
   disposition: Other
-  interim_code: "056"
-  final_code: "556"
+  interim_code: '056'
+  final_code: '556'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-level refusal- soft
-  interim_code: "060"
-  final_code: "560"
+  interim_code: '060'
+  final_code: '560'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Household-level refusal- hard
-  interim_code: "061"
-  final_code: "561"
+  interim_code: '061'
+  final_code: '561'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- soft
-  interim_code: "062"
-  final_code: "562"
+  interim_code: '062'
+  final_code: '562'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Known participant refusal- hard
-  interim_code: "063"
-  final_code: "563"
+  interim_code: '063'
+  final_code: '563'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Refusal & Break-Off
   disposition: Partial with insufficient information
-  interim_code: "064"
-  final_code: "564"
+  interim_code: '064'
+  final_code: '564'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made - Hard Appointment
-  interim_code: "065"
-  final_code: "565"
+  interim_code: '065'
+  final_code: '565'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Appointment made - Soft  Appointment
-  interim_code: "066"
-  final_code: "566"
+  interim_code: '066'
+  final_code: '566'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Broken appointment
-  interim_code: "067"
-  final_code: "567"
+  interim_code: '067'
+  final_code: '567'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Asked to call back, no appointment
   interim_code: 068
-  final_code: "568"
+  final_code: '568'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Participant never available
   interim_code: 069
-  final_code: "569"
+  final_code: '569'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
-  disposition: Telephone Answering Device (eligibility confirmed by message when known respondent's name is stated)
-  interim_code: "070"
-  final_code: "570"
+  disposition: Telephone Answering Device (eligibility confirmed by message when known
+    respondent's name is stated)
+  interim_code: '070'
+  final_code: '570'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
-  disposition: Call Monitoring/Blocking Device (eligibility confirmed by message when known respondent's name is stated)
-  interim_code: "071"
-  final_code: "571"
+  disposition: Call Monitoring/Blocking Device (eligibility confirmed by message when
+    known respondent's name is stated)
+  interim_code: '071'
+  final_code: '571'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Message left
-  interim_code: "072"
-  final_code: "572"
+  interim_code: '072'
+  final_code: '572'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: No message left
-  interim_code: "073"
-  final_code: "573"
+  interim_code: '073'
+  final_code: '573'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Participant Unavailable during Field Period/Out of Window
-  interim_code: "074"
-  final_code: "574"
+  interim_code: '074'
+  final_code: '574'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
-  disposition: Respondent temporarily incapacitated/under the influence of controlled substances
-  interim_code: "075"
-  final_code: "575"
+  disposition: Respondent temporarily incapacitated/under the influence of controlled
+    substances
+  interim_code: '075'
+  final_code: '575'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Household language barrier
-  interim_code: "076"
-  final_code: "576"
+  interim_code: '076'
+  final_code: '576'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Participant language barrier
-  interim_code: "077"
-  final_code: "577"
+  interim_code: '077'
+  final_code: '577'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Long Term Illness
   interim_code: 078
-  final_code: "578"
+  final_code: '578'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Inadequate audio quality
   interim_code: 079
-  final_code: "579"
+  final_code: '579'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Location/Activity prevents interview
   interim_code: 080
-  final_code: "580"
+  final_code: '580'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Other
   interim_code: 081
-  final_code: "581"
+  final_code: '581'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Complete - English
   disposition: Completed interview in English
   interim_code: 090
-  final_code: "590"
+  final_code: '590'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Partial - English
   disposition: Partial with sufficient information in English
   interim_code: 091
-  final_code: "591"
+  final_code: '591'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed interview in Spanish
   interim_code: 092
-  final_code: "592"
+  final_code: '592'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Partial - Spanish
   disposition: Partial with sufficient information in Spanish
   interim_code: 093
-  final_code: "593"
+  final_code: '593'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed interview in Other Language
   interim_code: 094
-  final_code: "594"
+  final_code: '594'
+  category_code: 5
 - event: Telephone Interview Event
   final_category: Complete Interview
   sub_category: Partial - Other Language
   disposition: Partial with sufficient information in Other Language
   interim_code: 095
-  final_code: "595"
+  final_code: '595'
+  category_code: 5
 - event: Internet Survey Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Completed but ineligible
-  interim_code: "010"
-  final_code: "510"
+  interim_code: '010'
+  final_code: '510'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Incomplete but ineligible
-  interim_code: "011"
-  final_code: "511"
+  interim_code: '011'
+  final_code: '511'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Not Eligible
   sub_category: Ineligible
   disposition: Duplicate listing
-  interim_code: "012"
-  final_code: "512"
+  interim_code: '012'
+  final_code: '512'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: No known email address
-  interim_code: "020"
-  final_code: "520"
+  interim_code: '020'
+  final_code: '520'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: No invitation sent
-  interim_code: "021"
-  final_code: "521"
+  interim_code: '021'
+  final_code: '521'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: Nothing returned
-  interim_code: "022"
-  final_code: "522"
+  interim_code: '022'
+  final_code: '522'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: Undeliverable
-  interim_code: "023"
-  final_code: "523"
+  interim_code: '023'
+  final_code: '523'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: Undeliverable with forwarding information
-  interim_code: "024"
-  final_code: "524"
+  interim_code: '024'
+  final_code: '524'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: Email address not in sample
-  interim_code: "025"
-  final_code: "525"
+  interim_code: '025'
+  final_code: '525'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Unknown Eligibility
   sub_category: Unknown
   disposition: Other
-  interim_code: "026"
-  final_code: "526"
+  interim_code: '026'
+  final_code: '526'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Partial
   disposition: Partial with insufficient information
-  interim_code: "030"
-  final_code: "530"
+  interim_code: '030'
+  final_code: '530'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Refusal
   disposition: Hard Refusal
-  interim_code: "031"
-  final_code: "531"
+  interim_code: '031'
+  final_code: '531'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Refusal
   disposition: Soft Refusal
-  interim_code: "032"
-  final_code: "532"
+  interim_code: '032'
+  final_code: '532'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Refusal
   disposition: Logged in but did not complete any items
-  interim_code: "033"
-  final_code: "533"
+  interim_code: '033'
+  final_code: '533'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Non-Contact
-  interim_code: "034"
-  final_code: "534"
+  interim_code: '034'
+  final_code: '534'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Non-Contact
   disposition: Unavailable during field period/out of window
-  interim_code: "035"
-  final_code: "535"
+  interim_code: '035'
+  final_code: '535'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Completed questionnaire, but not returned during field period
-  interim_code: "036"
-  final_code: "536"
+  interim_code: '036'
+  final_code: '536'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Language Barrier
-  interim_code: "037"
-  final_code: "537"
+  interim_code: '037'
+  final_code: '537'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Eligible Non-Interview
   sub_category: Other
   disposition: Other Non-response
   interim_code: 038
-  final_code: "538"
+  final_code: '538'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Complete
   disposition: Completed interview in English
-  interim_code: "040"
-  final_code: "540"
+  interim_code: '040'
+  final_code: '540'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Partial
   disposition: Partial with sufficient information in English
-  interim_code: "041"
-  final_code: "541"
+  interim_code: '041'
+  final_code: '541'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Complete - Spanish
   disposition: Completed interview in Spanish
-  interim_code: "042"
-  final_code: "542"
+  interim_code: '042'
+  final_code: '542'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Partial - Spanish
   disposition: Partial with sufficient information in Spanish
-  interim_code: "043"
-  final_code: "543"
+  interim_code: '043'
+  final_code: '543'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Complete - Other Language
   disposition: Completed interview in Other Language
-  interim_code: "044"
-  final_code: "544"
+  interim_code: '044'
+  final_code: '544'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete Interview
   sub_category: Partial - Other Language
   disposition: Partial with sufficient information in Other Language
-  interim_code: "045"
-  final_code: "545"
+  interim_code: '045'
+  final_code: '545'
+  category_code: 6
 - event: Internet Survey Event
   final_category: Complete
   sub_category: Appointment Scheduled
-  disposition: Appointment successfully scheduled (when web contact was used to schedule upcoming visit)
-  interim_code: "046"
-  final_code: "546"
+  disposition: Appointment successfully scheduled (when web contact was used to schedule
+    upcoming visit)
+  interim_code: '046'
+  final_code: '546'
+  category_code: 6

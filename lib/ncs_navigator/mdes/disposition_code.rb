@@ -9,6 +9,7 @@ module NcsNavigator::Mdes
     attr_accessor :final_category
     attr_accessor :sub_category
     attr_accessor :disposition
+    attr_accessor :category_code
     attr_accessor :interim_code
     attr_accessor :final_code
 
@@ -18,8 +19,8 @@ module NcsNavigator::Mdes
     # 
     # @return [DispositionCode] the created instance.
     def initialize(attrs)
-      [:event, :final_category, :sub_category, :disposition, :interim_code, :final_code].each do |a|
-        self.send("#{a}=", attrs[a.to_s])
+      %w(event final_category sub_category disposition category_code interim_code final_code).each do |a|
+        self.send("#{a}=", attrs[a])
       end
     end
 
