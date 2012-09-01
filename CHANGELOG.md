@@ -4,6 +4,8 @@ NCS Navigator MDES Module history
 0.7.1
 -----
 
+- Synthesize category codes for MDES 2.0 disposition codes.  (#12)
+- Add DispositionCode#category_code for reading category codes.  (#12)
 - Add DispositionCode#success? to partition activities into
   successfully and unsuccesfully completed (e.g. canceled) sets.
   (#16)
