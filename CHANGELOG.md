@@ -1,7 +1,7 @@
 NCS Navigator MDES Module history
 =================================
 
-0.7.1
+0.8.0
 -----
 
 - Synthesize category codes for MDES 2.0 disposition codes.  (#12)
