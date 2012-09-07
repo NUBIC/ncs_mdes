@@ -74,7 +74,7 @@ module NcsNavigator::Mdes
             when 'minLength'
               vt.min_length = elt['value'].to_i
             when 'enumeration'
-              (vt.code_list ||= CodeList.new) << CodeListEntry.from_xsd_enumeration(elt)
+              (vt.code_list ||= CodeList.new) << CodeListEntry.from_xsd_enumeration(elt, options)
               if elt['desc'] =~ /\S/
                 if vt.code_list.description.nil?
                   vt.code_list.description = elt['desc']

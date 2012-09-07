@@ -4,6 +4,9 @@ NCS Navigator MDES Module history
 0.8.1
 ------
 
+- Ensure that options are passed through all constructor methods to the leaves.
+  (#17)
+
 0.8.0
 -----
 
