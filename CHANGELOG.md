@@ -6,6 +6,7 @@ NCS Navigator MDES Module history
 
 - Ensure that options are passed through all constructor methods to the leaves.
   (#17)
+- Accept options on the `NcsNavigator::Mdes(version)` shortcut method. (#18)
 
 0.8.0
 -----

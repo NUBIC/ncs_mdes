@@ -22,8 +22,8 @@ module NcsNavigator
 
   ##
   # @return [Mdes::Specification] a new {Mdes::Specification} for the given
-  #   version.
-  def self.Mdes(version)
-    Mdes::Specification.new(version)
+  #   version. See {Specification#initialize} for accepted options.
+  def self.Mdes(version, options={})
+    Mdes::Specification.new(version, options)
   end
 end
