@@ -172,6 +172,18 @@ module NcsNavigator::Mdes
           code_list_entry('<xs:enumeration ncsdoc:label="Foo"/>')
           logger[:warn].first.should == 'Missing value for code list entry on line 2'
         end
+
+        describe 'with external whitespace on the value' do
+          let(:missing) {
+            code_list_entry(<<-XSD)
+              <xs:enumeration value="  -4 " ncsdoc:label="Missing in Error" ncsdoc:desc="" ncsdoc:global_value="99-4" ncsdoc:master_cl="missing_data"/>
+            XSD
+          }
+
+          it 'removes the whitespace' do
+            missing.value.should == '-4'
+          end
+        end
       end
 
       describe "#label" do

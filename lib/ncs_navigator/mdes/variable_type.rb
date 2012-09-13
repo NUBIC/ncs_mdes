@@ -178,7 +178,7 @@ module NcsNavigator::Mdes
 
           log.warn("Missing value for code list entry on line #{enum.line}") unless enum['value']
 
-          new(enum['value']).tap do |cle|
+          new(enum['value'] && enum['value'].strip).tap do |cle|
             cle.label = enum['label']
             cle.global_value = enum['global_value']
             cle.master_cl = enum['master_cl']

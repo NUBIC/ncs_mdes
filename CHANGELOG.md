@@ -4,6 +4,8 @@ NCS Navigator MDES Module history
 0.8.2
 -----
 
+- Strip external whitespace from code list values. (#20)
+
 0.8.1
 ------
 
