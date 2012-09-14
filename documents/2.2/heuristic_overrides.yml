@@ -48,6 +48,9 @@ foreign_keys:
   eighteen_mth_mother_cond:
     eighteen_mth_habits_id: eighteen_mth_mother_habits
 
+  eighteen_mth_mother_lice_2:
+    eighteen_mth_mother_id: eighteen_mth_mother_2
+
   eighteen_mth_mother_saq:
     asq18_address_id: address
     r_p_id: participant
