@@ -85,7 +85,7 @@ module NcsNavigator::Mdes
 
       context 'in version 3.0' do
         let(:version) { '3.0' }
-        let(:expected_table_count) { 397 }
+        let(:expected_table_count) { 407 }
 
         include_examples 'tables fully resolved'
       end
@@ -226,7 +226,7 @@ module NcsNavigator::Mdes
 
       context 'version 3.0' do
         let(:version) { '3.0' }
-        let(:expected_type_count) { 514 }
+        let(:expected_type_count) { 517 }
 
         include_examples 'types fully resolved'
       end

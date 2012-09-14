@@ -1,10 +1,11 @@
 NCS Navigator MDES Module history
 =================================
 
-0.8.2
+0.9.0
 -----
 
 - Strip external whitespace from code list values. (#20)
+- Update MDES 3.0 to 3.0.00.09. (#19)
 
 0.8.1
 ------
