@@ -54,7 +54,7 @@ module NcsNavigator::Mdes
         when '2.1'
           create('2.1', '2.1/NCS_Transmission_Schema_2.1.00.00.xsd', '2.1.00.00')
         when '2.2'
-          create('2.2', '2.2/NCS_Transmission_Schema_2.2.01.00.xsd', '2.2.01.00')
+          create('2.2', '2.2/NCS_Transmission_Schema_2.2.01.01.xsd', '2.2.01.01')
         when '3.0'
           create('3.0', '3.0/NCS_Transmission_Schema_3.0.00.09.xsd', '3.0.00.09')
         else
