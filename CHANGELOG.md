@@ -1,8 +1,11 @@
 NCS Navigator MDES Module history
 =================================
 
-0.9.1
------
+0.10.0
+------
+
+- Introduce MDES 3.1 support using specification version
+  3.1.00.00. (#22)
 
 0.9.0
 -----

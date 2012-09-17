@@ -22,6 +22,7 @@ $mdes20 = NcsNavigator::Mdes::Specification.new('2.0')
 $mdes21 = NcsNavigator::Mdes::Specification.new('2.1')
 $mdes22 = NcsNavigator::Mdes::Specification.new('2.2')
 $mdes30 = NcsNavigator::Mdes::Specification.new('3.0')
+$mdes31 = NcsNavigator::Mdes::Specification.new('3.1')
 
 expected_loc = ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ?
   ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR].inspect :
@@ -29,6 +30,6 @@ expected_loc = ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ?
 
 puts "Documents are expected to be in #{expected_loc}."
 puts "$mdesNM is a Specification for N.M."
-puts "Available specifications are $mdes12, $mdes20, $mdes21, $mdes22, and $mdes30."
+puts "Available specifications are $mdes12, $mdes20, $mdes21, $mdes22, $mdes30 and $mdes31."
 
 IRB.start(__FILE__)
