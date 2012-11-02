@@ -164,11 +164,11 @@ module NcsNavigator::Mdes
         include_context 'version docs'
 
         it 'has the correct path for the schema' do
-          subject.schema.should =~ %r{3.1/NCS_Transmission_Schema_3.1.00.00.xsd$}
+          subject.schema.should =~ %r{3.1/NCS_Transmission_Schema_3.1.01.00.xsd$}
         end
 
         it 'has a different specification_version' do
-          subject.specification_version.should == '3.1.00.00'
+          subject.specification_version.should == '3.1.01.00'
         end
       end
 
