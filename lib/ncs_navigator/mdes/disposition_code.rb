@@ -4,14 +4,13 @@ module NcsNavigator::Mdes
   ##
   # One dispostion code in the MDES.
   class DispositionCode
+    ATTRIBUTES = %w(
+      category_code disposition event final_category final_code interim_code sub_category
+    )
 
-    attr_accessor :event
-    attr_accessor :final_category
-    attr_accessor :sub_category
-    attr_accessor :disposition
-    attr_accessor :category_code
-    attr_accessor :interim_code
-    attr_accessor :final_code
+    ATTRIBUTES.each do |attr|
+      attr_accessor attr
+    end
 
     ##
     # Given attributes (presumably loaded from a YAML file) create
@@ -19,9 +18,7 @@ module NcsNavigator::Mdes
     # 
     # @return [DispositionCode] the created instance.
     def initialize(attrs)
-      %w(event final_category sub_category disposition category_code interim_code final_code).each do |a|
-        self.send("#{a}=", attrs[a])
-      end
+      ATTRIBUTES.each { |a| send("#{a}=", attrs[a]) }
     end
 
     ##
