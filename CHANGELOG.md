@@ -1,15 +1,11 @@
 NCS Navigator MDES Module history
 =================================
 
-0.10.1.pre
-----------
-
-- Expose DispositionCode attribute list.
-
 0.10.1
 ------
 
 - Update MDES 3.1 to specification version 3.1.01.00. (#23)
+- Expose DispositionCode attribute list.
 
 0.10.0
 ------
