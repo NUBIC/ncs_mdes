@@ -1,9 +1,10 @@
 NCS Navigator MDES Module history
 =================================
 
-0.10.1
+0.11.0
 ------
 
+- Introduce MDES 3.2 support using specification version 3.2.00.00. (#24)
 - Update MDES 3.1 to specification version 3.1.01.00. (#23)
 - Expose DispositionCode attribute list.
 
