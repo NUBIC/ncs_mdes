@@ -75,10 +75,10 @@ module NcsNavigator::Mdes
               vt.min_length = elt['value'].to_i
             when 'enumeration'
               (vt.code_list ||= CodeList.new) << CodeListEntry.from_xsd_enumeration(elt, options)
-              if elt['desc'] =~ /\S/
+              if elt['ncsdoc:desc'] =~ /\S/
                 if vt.code_list.description.nil?
-                  vt.code_list.description = elt['desc']
-                elsif vt.code_list.description != elt['desc']
+                  vt.code_list.description = elt['ncsdoc:desc']
+                elsif vt.code_list.description != elt['ncsdoc:desc']
                   log.warn("Code list entry on line #{elt.line} unexpectedly has a different desc from the first entry")
                 end
               end
@@ -179,9 +179,9 @@ module NcsNavigator::Mdes
           log.warn("Missing value for code list entry on line #{enum.line}") unless enum['value']
 
           new(enum['value'] && enum['value'].strip).tap do |cle|
-            cle.label = enum['label']
-            cle.global_value = enum['global_value']
-            cle.master_cl = enum['master_cl']
+            cle.label = enum['ncsdoc:label']
+            cle.global_value = enum['ncsdoc:global_value']
+            cle.master_cl = enum['ncsdoc:master_cl']
           end
         end
       end

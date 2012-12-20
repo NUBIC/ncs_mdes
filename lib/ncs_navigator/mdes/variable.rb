@@ -75,20 +75,20 @@ module NcsNavigator::Mdes
           var.nillable = element['nillable'] == 'true'
           var.omittable = element['minOccurs'] == '0'
           var.pii =
-            case element['pii']
+            case element['ncsdoc:pii']
             when 'Y'; true;
             when 'P'; :possible;
             when nil; :unknown;
             when '';  false;
-            else element['pii'];
+            else element['ncsdoc:pii'];
             end
           var.status =
-            case element['status']
+            case element['ncsdoc:status']
             when '1'; :active;
             when '2'; :new;
             when '3'; :modified;
             when '4'; :retired;
-            else element['status'];
+            else element['ncsdoc:status'];
             end
           var.type =
             if element['type']
