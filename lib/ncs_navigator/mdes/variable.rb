@@ -111,10 +111,6 @@ module NcsNavigator::Mdes
       @name = name
     end
 
-    def constraints
-      @constraints ||= []
-    end
-
     ##
     # Is a value for the variable mandatory for a valid submission?
     #
