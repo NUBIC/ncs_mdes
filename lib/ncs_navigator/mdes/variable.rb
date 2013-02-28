@@ -201,5 +201,30 @@ module NcsNavigator::Mdes
         end
       end
     end
+
+    # @private
+    DIFF_CRITERIA = {
+      :name       => Differences::ValueCriterion.new,
+      :pii        => Differences::ValueCriterion.new,
+      :omittable? => Differences::ValueCriterion.new(:comparator => :predicate),
+      :nillable?  => Differences::ValueCriterion.new(:comparator => :predicate),
+
+      :status     => Differences::ValueCriterion.new(
+        :comparator => lambda { |left, right|
+          (left == :new && right == :active) || (left == right)
+        }
+      ),
+      :table_reference => Differences::ValueCriterion.new(
+        :value_extractor => lambda { |o| o ? o.name : nil }
+      )
+    }
+
+    ##
+    # Computes the differences between this variable and the other.
+    #
+    # @return [Differences::Entry,nil]
+    def diff(other_variable)
+      Differences::Entry.compute(self, other_variable, DIFF_CRITERIA)
+    end
   end
 end

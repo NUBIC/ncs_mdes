@@ -230,6 +230,133 @@ XSD
       end
     end
 
+    describe '#diff' do
+      let(:a)      { Variable.new('A') }
+      let(:aprime) { Variable.new('A') }
+
+      let(:differences) { a.diff(aprime) }
+
+      describe 'name' do
+        it 'reports a difference when they are different' do
+          a.diff(Variable.new('B'))[:name].should be_a_value_diff('A', 'B')
+        end
+
+        it 'reports nothing when they are the same' do
+          differences.should be_nil
+        end
+      end
+
+      describe 'pii' do
+        it 'reports a difference when they are different' do
+          a.pii = true
+          aprime.pii = :possible
+
+          differences[:pii].should be_a_value_diff(true, :possible)
+        end
+
+        it 'reports nothing when they are the same' do
+          a.pii = :unknown
+          aprime.pii = :unknown
+
+          differences.should be_nil
+        end
+      end
+
+      describe 'status' do
+        let(:status_diff) { differences[:status].try(:to_a) }
+
+        it 'reports nothing when they are the same' do
+          a.status = :active
+          aprime.status = :active
+
+          differences.should be_nil
+        end
+
+        it 'reports nothing when it changes from new to active' do
+          a.status = :new
+          aprime.status = :active
+
+          differences.should be_nil
+        end
+
+        it 'reports a difference when it changes from active to new (since that would be odd)' do
+          a.status = :active
+          aprime.status = :new
+
+          differences[:status].should be_a_value_diff(:active, :new)
+        end
+
+        it 'reports a difference when they are different otherwise' do
+          a.status = :modified
+          aprime.status = :retired
+
+          differences[:status].should be_a_value_diff(:modified, :retired)
+        end
+      end
+
+      describe 'type' do
+        it 'includes type differences if there are any'
+      end
+
+      describe 'omittable' do
+        it 'reports nothing when they are the same' do
+          a.omittable = false
+          aprime.omittable = nil
+
+          differences.should be_nil
+        end
+
+        it 'reports a difference when they are different' do
+          a.omittable = false
+          aprime.omittable = true
+
+          differences[:omittable?].should be_a_value_diff(false, true)
+        end
+      end
+
+      describe 'nillable' do
+        it 'reports nothing when they are the same' do
+          a.nillable = nil
+          aprime.nillable = false
+
+          differences.should be_nil
+        end
+
+        it 'reports a difference when they are different' do
+          a.nillable = true
+          aprime.nillable = false
+
+          differences[:nillable?].should be_a_value_diff(true, false)
+        end
+      end
+
+      describe 'table_reference' do
+        it 'reports nothing when they are the same' do
+          a.table_reference = TransmissionTable.new('Tb')
+          aprime.table_reference = TransmissionTable.new('Tb')
+
+          differences.should be_nil
+        end
+
+        it 'reports nothing when they are both nil' do
+          differences.should be_nil
+        end
+
+        it 'reports a change when one has a ref and the other does not' do
+          aprime.table_reference = TransmissionTable.new('Tc')
+
+          differences[:table_reference].should be_a_value_diff(nil, 'Tc')
+        end
+
+        it 'reports a change when the referenced table is different' do
+          a.table_reference = TransmissionTable.new('Ty')
+          aprime.table_reference = TransmissionTable.new('Tx')
+
+          differences[:table_reference].should be_a_value_diff('Ty', 'Tx')
+        end
+      end
+    end
+
     describe '#resolve_type!' do
       let(:reference_type) { VariableType.reference('ncs:color_cl3') }
       let(:actual_type)    { VariableType.new('color_cl3') }

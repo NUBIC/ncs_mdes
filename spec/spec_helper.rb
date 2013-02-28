@@ -4,7 +4,13 @@ require 'nokogiri'
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'ncs_navigator/mdes'
 
+module NcsNavigator::Mdes::Spec; end
+
+require 'differences_matchers'
+
 RSpec.configure do |config|
+  config.include(NcsNavigator::Mdes::Spec::Matchers)
+
   def logger
     @logger ||= NcsNavigator::Mdes::Spec::AccumulatingLogger.new
   end

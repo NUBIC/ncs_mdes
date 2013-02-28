@@ -12,6 +12,8 @@ module NcsNavigator
 
     autoload :DispositionCode,   'ncs_navigator/mdes/disposition_code'
 
+    autoload :Differences,       'ncs_navigator/mdes/differences'
+
     ##
     # @return the default logger for this module when no other one is
     #   specified. It logs to standard error.
