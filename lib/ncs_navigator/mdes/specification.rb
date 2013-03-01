@@ -163,5 +163,16 @@ module NcsNavigator::Mdes
     def inspect
       "#<#{self.class} version=#{version.inspect}>"
     end
+
+    # @private
+    DIFF_CRITERIA = {
+      :specification_version => Differences::ValueCriterion.new,
+      :transmission_tables   => Differences::CollectionCriterion.new(:name),
+      :types                 => Differences::CollectionCriterion.new(:name)
+    }
+
+    def diff(other)
+      Differences::Entry.compute(self, other, DIFF_CRITERIA)
+    end
   end
 end

@@ -275,5 +275,23 @@ module NcsNavigator::Mdes
         include_examples 'types fully resolved'
       end
     end
+
+    describe '#diff' do
+      let(:diff) {
+        Specification.new('2.0').diff(Specification.new('2.1'))
+      }
+
+      it 'finds different spec versions' do
+        diff[:specification_version].should be_a_value_diff('2.0.01.02', '2.1.00.00')
+      end
+
+      it 'finds different tables' do
+        diff[:transmission_tables].right_only.should include('preg_visit_1_saq_3')
+      end
+
+      it 'finds different types' do
+        diff[:types].right_only.should include('person_partcpnt_reltnshp_cl5')
+      end
+    end
   end
 end
