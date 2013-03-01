@@ -4,6 +4,8 @@ module NcsNavigator
   module Mdes
     autoload :VERSION, 'ncs_navigator/mdes/version'
 
+    autoload :CodeList,          'ncs_navigator/mdes/code_list'
+    autoload :CodeListEntry,     'ncs_navigator/mdes/code_list'
     autoload :SourceDocuments,   'ncs_navigator/mdes/source_documents'
     autoload :Specification,     'ncs_navigator/mdes/specification'
     autoload :TransmissionTable, 'ncs_navigator/mdes/transmission_table'

@@ -1,8 +1,14 @@
 NCS Navigator MDES Module history
 =================================
 
-0.11.1
+0.12.0
 ------
+
+- Rename `NcsNavigator::Mdes::VariableType::CodeList` to
+  `NcsNavigator::Mdes::CodeList` and
+  `NcsNavigator::Mdes::VariableType::CodeListEntry` to
+  `NcsNavigator::Mdes::CodeListEntry`. In the unlikely event that you had code
+  referring directly to either of these classes, you'll need to adjust it.
 
 0.11.0
 ------
