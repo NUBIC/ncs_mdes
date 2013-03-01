@@ -203,7 +203,99 @@ module NcsNavigator::Mdes
       end
 
       describe 'code_list' do
-        it 'reports code list differences'
+        let(:cl) { CodeList.new }
+        let(:clprime) { CodeList.new }
+
+        def cle(value, label)
+          CodeListEntry.new(value).tap { |e| e.label = label }
+        end
+
+        let(:e_one)         { cle( '1', 'Hand grenades')}
+        let(:e_five)        { cle( '5', 'Horseshoes') }
+        let(:e_other)       { cle('-5', 'Other') }
+        let(:e_other_prime) { cle( '5', 'Other') }
+
+        describe 'when only the left has a code list' do
+          before do
+            a.code_list = cl
+            cl << e_one << e_other
+          end
+
+          it 'reports all entries as left only by value' do
+            differences[:code_list_by_value].left_only.should == %w(1 -5)
+          end
+
+          it 'reports all entries as left only by label' do
+            differences[:code_list_by_label].left_only.should == ['Hand grenades', 'Other']
+          end
+        end
+
+        describe 'when only the right has a code list' do
+          before do
+            aprime.code_list = clprime
+            clprime << e_five << e_other
+          end
+
+          it 'reports all entries as right only by value' do
+            differences[:code_list_by_value].right_only.should == %w(5 -5)
+          end
+
+          it 'reports all entries as right only by label' do
+            differences[:code_list_by_label].right_only.should == ['Horseshoes', 'Other']
+          end
+        end
+
+        describe 'when both have code lists' do
+          before do
+            a.code_list = cl
+            aprime.code_list = clprime
+          end
+
+          describe 'and they are the same' do
+            before do
+              cl << e_one << e_five
+              clprime << e_one << e_five
+            end
+
+            it 'reports no differences' do
+              differences.should be_nil
+            end
+          end
+
+          describe 'and they differ by labels only' do
+            before do
+              cl << e_one << e_five
+              clprime << e_one << e_other_prime
+            end
+
+            it 'reports the entry difference in the by-value attribute' do
+              differences[:code_list_by_value]['5'][:label].
+                should be_a_value_diff('Horseshoes', 'Other')
+            end
+
+            it 'reports extra entries in the by-label attribute' do
+              differences[:code_list_by_label].left_only.should == ['Horseshoes']
+              differences[:code_list_by_label].right_only.should == ['Other']
+            end
+          end
+
+          describe 'and they differ by values only' do
+            before do
+              cl << e_other << e_one
+              clprime << e_one << e_other_prime
+            end
+
+            it 'reports the entry difference in the by-label attribute' do
+              differences[:code_list_by_label]['Other'][:value].
+                should be_a_value_diff('-5', '5')
+            end
+
+            it 'reports extra entries in the by-value attribute' do
+              differences[:code_list_by_value].left_only.should == ['-5']
+              differences[:code_list_by_value].right_only.should == ['5']
+            end
+          end
+        end
       end
     end
   end

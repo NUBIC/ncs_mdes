@@ -62,5 +62,51 @@ module NcsNavigator::Mdes
         CodeListEntry.new('14').to_s.should == '14'
       end
     end
+
+    describe '#diff' do
+      let(:a) { CodeListEntry.new('A') }
+      let(:aprime) { CodeListEntry.new('A') }
+
+      let(:diff) { a.diff(aprime) }
+
+      it 'reports nothing for no differences' do
+        diff.should be_nil
+      end
+
+      describe 'value' do
+        let(:b) { CodeListEntry.new('B') }
+
+        it 'reports a difference' do
+          b.diff(a)[:value].should be_a_value_diff('B', 'A')
+        end
+      end
+
+      describe 'label' do
+        it 'reports a difference' do
+          a.label = 'Aleph'
+          aprime.label = 'Alpha'
+
+          diff[:label].should be_a_value_diff('Aleph', 'Alpha')
+        end
+      end
+
+      describe 'global_value' do
+        it 'reports a difference' do
+          a.global_value = '0'
+          aprime.global_value = '-0'
+
+          diff[:global_value].should be_a_value_diff('0', '-0')
+        end
+      end
+
+      describe 'master_cl' do
+        it 'reports a difference' do
+          a.master_cl = 'C'
+          aprime.master_cl = 'Cprime'
+
+          diff[:master_cl].should be_a_value_diff('C', 'Cprime')
+        end
+      end
+    end
   end
 end

@@ -4,8 +4,13 @@ module NcsNavigator::Mdes::Differences
   ##
   # @private implementation detail
   class CollectionCriterion
-    def initialize(alignment_attribute)
+    ##
+    # @return [Symbol] the attribute in the object to which this criterion applies
+    attr_reader :attribute
+
+    def initialize(alignment_attribute, options={})
       @alignment_attribute = alignment_attribute
+      @attribute = options.delete(:collection)
     end
 
     def apply(c1, c2)
@@ -29,6 +34,7 @@ module NcsNavigator::Mdes::Differences
     end
 
     def map_for_alignment(c)
+      return {} unless c
       c.each_with_object({}) do |element, map|
         map[element.send(@alignment_attribute)] = element
       end

@@ -65,5 +65,21 @@ module NcsNavigator::Mdes
     end
 
     alias :to_s :value
+
+    # @private
+    DIFF_CRITERIA = {
+      :value        => Differences::ValueCriterion.new,
+      :label        => Differences::ValueCriterion.new,
+      :global_value => Differences::ValueCriterion.new,
+      :master_cl    => Differences::ValueCriterion.new
+    }
+
+    ##
+    # Computes the differences between this code list entry and the other.
+    #
+    # @return [Differences::Entry,nil]
+    def diff(other)
+      Differences::Entry.compute(self, other, DIFF_CRITERIA)
+    end
   end
 end

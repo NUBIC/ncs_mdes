@@ -1,9 +1,14 @@
 require 'ncs_navigator/mdes'
+require 'forwardable'
 
 module NcsNavigator::Mdes::Differences
   ##
   # Captures the differences between two collections.
   class Collection
+    extend Forwardable
+
+    def_delegators :entry_differences, :[]
+
     def initialize(left_only, right_only, entry_differences)
       @left_only = left_only
       @right_only = right_only

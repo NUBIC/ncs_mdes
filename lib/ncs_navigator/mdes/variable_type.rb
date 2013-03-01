@@ -134,6 +134,8 @@ module NcsNavigator::Mdes
       :pattern    => Differences::ValueCriterion.new,
       :max_length => Differences::ValueCriterion.new,
       :min_length => Differences::ValueCriterion.new,
+      :code_list_by_value => Differences::CollectionCriterion.new(:value, :collection => :code_list),
+      :code_list_by_label => Differences::CollectionCriterion.new(:label, :collection => :code_list)
     }
 
     def diff(other_type)
