@@ -127,6 +127,19 @@ module NcsNavigator::Mdes
       "#<#{self.class} #{attrs.join(' ')}>"
     end
 
+    # @private
+    DIFF_CRITERIA = {
+      :name       => Differences::ValueCriterion.new,
+      :base_type  => Differences::ValueCriterion.new,
+      :pattern    => Differences::ValueCriterion.new,
+      :max_length => Differences::ValueCriterion.new,
+      :min_length => Differences::ValueCriterion.new,
+    }
+
+    def diff(other_type)
+      Differences::Entry.compute(self, other_type, DIFF_CRITERIA)
+    end
+
     ##
     # A specialization of `Array` for code lists.
     #

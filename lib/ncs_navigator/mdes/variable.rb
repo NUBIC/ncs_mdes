@@ -203,6 +203,23 @@ module NcsNavigator::Mdes
     end
 
     # @private
+    class EmbeddedVariableTypeCriterion
+      def apply(vt1, vt2)
+        cvt1 = vt1 || VariableType.new
+        cvt2 = vt2 || VariableType.new
+
+
+        if cvt1.name && cvt2.name && cvt1.name == cvt2.name
+          # If they are named and have the same name, the differences will
+          # be reported once under the specification's entry for the named type.
+          nil
+        else
+          cvt1.diff(cvt2)
+        end
+      end
+    end
+
+    # @private
     DIFF_CRITERIA = {
       :name       => Differences::ValueCriterion.new,
       :pii        => Differences::ValueCriterion.new,
@@ -216,7 +233,9 @@ module NcsNavigator::Mdes
       ),
       :table_reference => Differences::ValueCriterion.new(
         :value_extractor => lambda { |o| o ? o.name : nil }
-      )
+      ),
+
+      :type => EmbeddedVariableTypeCriterion.new
     }
 
     ##

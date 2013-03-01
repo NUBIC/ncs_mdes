@@ -295,7 +295,83 @@ XSD
       end
 
       describe 'type' do
-        it 'includes type differences if there are any'
+        let(:type) { VariableType.new }
+        let(:typeprime) { VariableType.new }
+
+        before do
+          a.type = type
+          aprime.type = typeprime
+        end
+
+        describe 'when both have an anonymous type' do
+          it 'reports the differences when they are different' do
+            type.base_type = :int
+            typeprime.base_type = :string
+
+            differences[:type][:base_type].should be_a_value_diff(:int, :string)
+          end
+
+          it 'reports nothing for when they are the same' do
+            type.max_length = typeprime.max_length = 15
+
+            differences.should be_nil
+          end
+        end
+
+        describe 'when both have a named type' do
+          describe 'and the names differ' do
+            let(:type) { VariableType.new('f_oo').tap { |vt| vt.min_length = 10 } }
+            let(:typeprime) { VariableType.new('b_az') }
+
+            it 'reports the name difference' do
+              differences[:type][:name].should be_a_value_diff('f_oo', 'b_az')
+            end
+
+            it 'reports other differences' do
+              differences[:type][:min_length].should be_a_value_diff(10, nil)
+            end
+          end
+
+          # Motivation: a named type is resolved from the specification types
+          # collection. What's important at the point of this variable is that
+          # the type has changed; the details will be covered in the diff of
+          # the types. No need to repeat them for every variable that used that
+          # type
+          describe 'and the names are the same' do
+            let(:type) { VariableType.new('b_az').tap { |vt| vt.min_length = 10 } }
+            let(:typeprime) { VariableType.new('b_az') }
+
+            it 'does not report other differences' do
+              differences.should be_nil
+            end
+          end
+        end
+
+        describe 'when the left is named and the right is not' do
+          let(:type) { VariableType.new('b_ar').tap { |vt| vt.min_length = 5 } }
+          let(:typeprime) { VariableType.new.tap { |vt| vt.min_length = 6 } }
+
+          it 'reports the name difference' do
+            differences[:type][:name].should be_a_value_diff('b_ar', nil)
+          end
+
+          it 'reports the other differences' do
+            differences[:type][:min_length].should be_a_value_diff(5, 6)
+          end
+        end
+
+        describe 'when the right is named and the left is not' do
+          let(:type) { VariableType.new.tap { |vt| vt.min_length = 6 } }
+          let(:typeprime) { VariableType.new('b_ar').tap { |vt| vt.min_length = 5 } }
+
+          it 'reports the name difference' do
+            differences[:type][:name].should be_a_value_diff(nil, 'b_ar')
+          end
+
+          it 'reports the other differences' do
+            differences[:type][:min_length].should be_a_value_diff(6, 5)
+          end
+        end
       end
 
       describe 'omittable' do

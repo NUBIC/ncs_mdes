@@ -149,6 +149,63 @@ module NcsNavigator::Mdes
         subject.should_not be_reference
       end
     end
+
+    describe '#diff' do
+      let(:a)      { VariableType.new('A') }
+      let(:aprime) { VariableType.new('A') }
+
+      let(:differences) { a.diff(aprime) }
+
+      it 'reports nothing when they are the same' do
+        differences.should be_nil
+      end
+
+      describe 'name' do
+        it 'reports a difference' do
+          a.diff(VariableType.new('B'))[:name].should be_a_value_diff('A', 'B')
+        end
+      end
+
+      describe 'base_type' do
+        it 'reports a difference' do
+          a.base_type = :int
+          aprime.base_type = :decimal
+
+          differences[:base_type].should be_a_value_diff(:int, :decimal)
+        end
+      end
+
+      describe 'pattern' do
+        it 'reports a difference' do
+          a.pattern = /^(0-9){4}$/
+          aprime.pattern = /^(0-9){5}$/
+
+          differences[:pattern].should be_a_value_diff(/^(0-9){4}$/, /^(0-9){5}$/)
+        end
+      end
+
+      describe 'max_length' do
+        it 'reports a difference' do
+          a.max_length = nil
+          aprime.max_length = 18
+
+          differences[:max_length].should be_a_value_diff(nil, 18)
+        end
+      end
+
+      describe 'min_length' do
+        it 'reports a difference' do
+          a.min_length = 1
+          aprime.min_length = nil
+
+          differences[:min_length].should be_a_value_diff(1, nil)
+        end
+      end
+
+      describe 'code_list' do
+        it 'reports code list differences'
+      end
+    end
   end
 
   describe VariableType::CodeListEntry do
