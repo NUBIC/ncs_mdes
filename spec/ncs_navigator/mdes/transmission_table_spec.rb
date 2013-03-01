@@ -179,5 +179,63 @@ XSD
         end
       end
     end
+
+    describe '#diff' do
+      let(:a) { TransmissionTable.new('A') }
+      let(:aprime) { TransmissionTable.new('A') }
+
+      describe 'name' do
+        let(:b) { TransmissionTable.new('B') }
+
+        it 'reports a difference when they are different' do
+          a.diff(b)[:name].should be_a_value_diff('A', 'B')
+        end
+
+        it 'reports nothing when they are the same' do
+          a.diff(aprime).should be_nil
+        end
+      end
+
+      describe 'variables' do
+        let(:v1) { Variable.new('V1') }
+        let(:v1prime) { Variable.new('V1') }
+        let(:v2) { Variable.new('V2') }
+        let(:v3) { Variable.new('V3') }
+
+        let(:diff) { a.diff(aprime) }
+
+        before do
+          a.variables << v1
+          aprime.variables << v1prime
+        end
+
+        it 'lists variables which are in the lefthand side only' do
+          a.variables << v2 << v3
+          aprime.variables << v3
+
+          diff[:variables].left_only.should == ['V2']
+        end
+
+        it 'lists variables which are in the righthand side only' do
+          aprime.variables << v3
+
+          diff[:variables].right_only.should == ['V3']
+        end
+
+        it 'provides detailed differences for variables which are different' do
+          v1.pii = :possible
+          a.variables << v1
+
+          v1prime.pii = true
+          aprime.variables << v1prime
+
+          diff[:variables].entry_differences['V1'][:pii].should be_a_value_diff(:possible, true)
+        end
+
+        it 'does not list variables which are the same' do
+          diff.should be_nil
+        end
+      end
+    end
   end
 end

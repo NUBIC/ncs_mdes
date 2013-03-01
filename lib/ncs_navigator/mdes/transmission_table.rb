@@ -33,6 +33,10 @@ module NcsNavigator::Mdes
       @name = name
     end
 
+    def variables
+      @variables ||= []
+    end
+
     ##
     # Search for a variable by name.
     #
@@ -109,6 +113,20 @@ module NcsNavigator::Mdes
     # @return [true,false]
     def operational_table?
       !instrument_table?
+    end
+
+    # @private
+    DIFF_CRITERIA = {
+      :name => Differences::ValueCriterion.new,
+      :variables => Differences::CollectionCriterion.new(:name)
+    }
+
+    ##
+    # Computes the differences between this table and the other.
+    #
+    # @return [Differences::Entry,nil]
+    def diff(other_table)
+      Differences::Entry.compute(self, other_table, DIFF_CRITERIA)
     end
   end
 end
