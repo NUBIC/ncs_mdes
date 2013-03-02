@@ -155,7 +155,7 @@ module NcsNavigator::Mdes
       let(:aprime) { VariableType.new('A') }
 
       let(:diff)        { a.diff(aprime) }
-      let(:strict_diff) { a.diff(aprime, strict: true) }
+      let(:strict_diff) { a.diff(aprime, :strict => true) }
 
       it 'reports nothing when they are the same' do
         diff.should be_nil

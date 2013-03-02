@@ -264,7 +264,7 @@ XSD
 
       describe 'status' do
         let(:diff) { a.diff(aprime) }
-        let(:strict_diff) { a.diff(aprime, strict: true) }
+        let(:strict_diff) { a.diff(aprime, :strict => true) }
 
         it 'reports nothing when they are the same' do
           a.status = :active
