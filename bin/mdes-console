@@ -16,6 +16,7 @@ end
 
 require 'irb'
 require 'ncs_navigator/mdes'
+require 'pp'
 
 $mdes12 = NcsNavigator::Mdes::Specification.new('1.2')
 $mdes20 = NcsNavigator::Mdes::Specification.new('2.0')
