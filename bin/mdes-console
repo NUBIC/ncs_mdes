@@ -32,6 +32,6 @@ expected_loc = ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ?
 
 puts "Documents are expected to be in #{expected_loc}."
 puts "$mdesNM is a Specification for N.M."
-puts "Available specifications are $mdes12, $mdes20, $mdes21, $mdes22, $mdes30 and $mdes31."
+puts "Available specifications are $mdes12, $mdes20, $mdes21, $mdes22, $mdes30, $mdes31 and $mdes32."
 
 IRB.start(__FILE__)
