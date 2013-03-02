@@ -4,6 +4,8 @@ NCS Navigator MDES Module history
 0.12.0
 ------
 
+- Add `#diff` methods to all levels in the specification tree. They produce
+  a computable difference between two instances. (#10)
 - Rename `NcsNavigator::Mdes::VariableType::CodeList` to
   `NcsNavigator::Mdes::CodeList` and
   `NcsNavigator::Mdes::VariableType::CodeListEntry` to
