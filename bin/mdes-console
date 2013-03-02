@@ -23,6 +23,7 @@ $mdes21 = NcsNavigator::Mdes::Specification.new('2.1')
 $mdes22 = NcsNavigator::Mdes::Specification.new('2.2')
 $mdes30 = NcsNavigator::Mdes::Specification.new('3.0')
 $mdes31 = NcsNavigator::Mdes::Specification.new('3.1')
+$mdes32 = NcsNavigator::Mdes::Specification.new('3.2')
 
 expected_loc = ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR] ?
   ENV[NcsNavigator::Mdes::SourceDocuments::BASE_ENV_VAR].inspect :
