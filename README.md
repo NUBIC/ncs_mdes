@@ -24,6 +24,8 @@ document in the API documentation, try looking at [rubydoc.info][].)
 
 [rubydoc.info]: http://rubydoc.info/github/NUBIC/ncs_mdes/master/frames
 
+As of ncs_mdes 0.12.0, only Ruby 1.9.3+ is supported.
+
 ### Examine
 
 This gem includes a console for interactively analyzing and randomly

@@ -6,6 +6,7 @@ NCS Navigator MDES Module history
 
 - Add `#diff` methods to all levels in the specification tree. They produce
   a computable difference between two instances. (#10)
+- Drop support for Ruby 1.8.7.
 - Rename `NcsNavigator::Mdes::VariableType::CodeList` to
   `NcsNavigator::Mdes::CodeList` and
   `NcsNavigator::Mdes::VariableType::CodeListEntry` to
