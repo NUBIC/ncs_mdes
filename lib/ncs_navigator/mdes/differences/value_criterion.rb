@@ -9,16 +9,20 @@ module NcsNavigator::Mdes::Differences
       :predicate => lambda { |a, b| !(a ^ b) }
     }
 
-    IDENTITY_VALUE_EXTRACTOR = lambda { |o| o }
+    VALUE_EXTRACTORS = {
+      :identity => lambda { |o| o },
+      :word_chars_downcase =>
+        lambda { |o| o ? o.downcase.gsub(/[^ \w]+/, ' ').gsub(/\s+/, ' ').strip : o }
+    }
 
     attr_reader :comparator, :value_extractor
 
     def initialize(options={})
       @comparator = select_comparator(options.delete(:comparator))
-      @value_extractor = options.delete(:value_extractor) || IDENTITY_VALUE_EXTRACTOR
+      @value_extractor = select_value_extractor(options.delete(:value_extractor))
     end
 
-    def apply(v1, v2)
+    def apply(v1, v2, diff_options)
       cv1 = value_extractor.call(v1)
       cv2 = value_extractor.call(v2)
 
@@ -38,5 +42,17 @@ module NcsNavigator::Mdes::Differences
       end
     end
     private :select_comparator
+
+    def select_value_extractor(param)
+      case param
+      when nil
+        VALUE_EXTRACTORS[:identity]
+      when Symbol
+        VALUE_EXTRACTORS[param] or fail "Unknown extractor #{param.inspect}"
+      else
+        param
+      end
+    end
+    private :select_value_extractor
   end
 end

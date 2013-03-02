@@ -154,10 +154,11 @@ module NcsNavigator::Mdes
       let(:a)      { VariableType.new('A') }
       let(:aprime) { VariableType.new('A') }
 
-      let(:differences) { a.diff(aprime) }
+      let(:diff)        { a.diff(aprime) }
+      let(:strict_diff) { a.diff(aprime, strict: true) }
 
       it 'reports nothing when they are the same' do
-        differences.should be_nil
+        diff.should be_nil
       end
 
       describe 'name' do
@@ -171,7 +172,7 @@ module NcsNavigator::Mdes
           a.base_type = :int
           aprime.base_type = :decimal
 
-          differences[:base_type].should be_a_value_diff(:int, :decimal)
+          diff[:base_type].should be_a_value_diff(:int, :decimal)
         end
       end
 
@@ -180,7 +181,7 @@ module NcsNavigator::Mdes
           a.pattern = /^(0-9){4}$/
           aprime.pattern = /^(0-9){5}$/
 
-          differences[:pattern].should be_a_value_diff(/^(0-9){4}$/, /^(0-9){5}$/)
+          diff[:pattern].should be_a_value_diff(/^(0-9){4}$/, /^(0-9){5}$/)
         end
       end
 
@@ -189,7 +190,7 @@ module NcsNavigator::Mdes
           a.max_length = nil
           aprime.max_length = 18
 
-          differences[:max_length].should be_a_value_diff(nil, 18)
+          diff[:max_length].should be_a_value_diff(nil, 18)
         end
       end
 
@@ -198,7 +199,7 @@ module NcsNavigator::Mdes
           a.min_length = 1
           aprime.min_length = nil
 
-          differences[:min_length].should be_a_value_diff(1, nil)
+          diff[:min_length].should be_a_value_diff(1, nil)
         end
       end
 
@@ -222,11 +223,11 @@ module NcsNavigator::Mdes
           end
 
           it 'reports all entries as left only by value' do
-            differences[:code_list_by_value].left_only.should == %w(1 -5)
+            strict_diff[:code_list_by_value].left_only.should == %w(1 -5)
           end
 
           it 'reports all entries as left only by label' do
-            differences[:code_list_by_label].left_only.should == ['Hand grenades', 'Other']
+            strict_diff[:code_list_by_label].left_only.should == ['Hand grenades', 'Other']
           end
         end
 
@@ -237,11 +238,11 @@ module NcsNavigator::Mdes
           end
 
           it 'reports all entries as right only by value' do
-            differences[:code_list_by_value].right_only.should == %w(5 -5)
+            strict_diff[:code_list_by_value].right_only.should == %w(5 -5)
           end
 
           it 'reports all entries as right only by label' do
-            differences[:code_list_by_label].right_only.should == ['Horseshoes', 'Other']
+            strict_diff[:code_list_by_label].right_only.should == ['Horseshoes', 'Other']
           end
         end
 
@@ -258,24 +259,7 @@ module NcsNavigator::Mdes
             end
 
             it 'reports no differences' do
-              differences.should be_nil
-            end
-          end
-
-          describe 'and they differ by labels only' do
-            before do
-              cl << e_one << e_five
-              clprime << e_one << e_other_prime
-            end
-
-            it 'reports the entry difference in the by-value attribute' do
-              differences[:code_list_by_value]['5'][:label].
-                should be_a_value_diff('Horseshoes', 'Other')
-            end
-
-            it 'reports extra entries in the by-label attribute' do
-              differences[:code_list_by_label].left_only.should == ['Horseshoes']
-              differences[:code_list_by_label].right_only.should == ['Other']
+              strict_diff.should be_nil
             end
           end
 
@@ -286,13 +270,62 @@ module NcsNavigator::Mdes
             end
 
             it 'reports the entry difference in the by-label attribute' do
-              differences[:code_list_by_label]['Other'][:value].
+              strict_diff[:code_list_by_label]['Other'][:value].
                 should be_a_value_diff('-5', '5')
             end
 
             it 'reports extra entries in the by-value attribute' do
-              differences[:code_list_by_value].left_only.should == ['-5']
-              differences[:code_list_by_value].right_only.should == ['5']
+              strict_diff[:code_list_by_value].left_only.should == ['-5']
+              strict_diff[:code_list_by_value].right_only.should == ['5']
+            end
+          end
+
+          describe 'and they differ by labels only' do
+            before do
+              cl << e_one << e_five
+              clprime << e_one << e_other_prime
+            end
+
+            it 'reports the entry difference in the by-value attribute' do
+              strict_diff[:code_list_by_value]['5'][:label].
+                should be_a_value_diff('Horseshoes', 'Other')
+            end
+
+            it 'reports extra entries in the by-label attribute' do
+              strict_diff[:code_list_by_label].left_only.should == ['Horseshoes']
+              strict_diff[:code_list_by_label].right_only.should == ['Other']
+            end
+          end
+
+          describe 'and the differ by whitespace, punctuation and case in the labels only' do
+            let(:weird_left)  { '  foUR! ' }
+            let(:weird_right) { 'FOUR#' }
+
+            before do
+              cl << e_one << cle('4', weird_left)
+              clprime << e_one << cle('4', weird_right)
+            end
+
+            describe 'with a strict diff' do
+              it 'reports the entry difference in the by-value attribute' do
+                strict_diff[:code_list_by_value]['4'][:label].
+                  should be_a_value_diff(weird_left, weird_right)
+              end
+
+              it 'reports extra entries in the by-label attribute' do
+                strict_diff[:code_list_by_label].left_only.should == [weird_left]
+                strict_diff[:code_list_by_label].right_only.should == [weird_right]
+              end
+            end
+
+            describe 'with a loose diff' do
+              it 'reports no by-value differences' do
+                diff.should be_nil
+              end
+
+              it 'reports no by-label differences' do
+                diff.should be_nil
+              end
             end
           end
         end

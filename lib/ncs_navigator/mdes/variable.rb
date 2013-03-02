@@ -204,7 +204,7 @@ module NcsNavigator::Mdes
 
     # @private
     class EmbeddedVariableTypeCriterion
-      def apply(vt1, vt2)
+      def apply(vt1, vt2, diff_options)
         cvt1 = vt1 || VariableType.new
         cvt2 = vt2 || VariableType.new
 
@@ -214,36 +214,50 @@ module NcsNavigator::Mdes
           # be reported once under the specification's entry for the named type.
           nil
         else
-          cvt1.diff(cvt2)
+          cvt1.diff(cvt2, diff_options)
         end
       end
     end
 
-    # @private
-    DIFF_CRITERIA = {
-      :name       => Differences::ValueCriterion.new,
-      :pii        => Differences::ValueCriterion.new,
-      :omittable? => Differences::ValueCriterion.new(:comparator => :predicate),
-      :nillable?  => Differences::ValueCriterion.new(:comparator => :predicate),
+    def diff_criteria(diff_options={})
+      base = {
+        :name       => Differences::ValueCriterion.new,
+        :type       => EmbeddedVariableTypeCriterion.new,
+        :pii        => Differences::ValueCriterion.new,
+        :omittable? => Differences::ValueCriterion.new(:comparator => :predicate),
+        :nillable?  => Differences::ValueCriterion.new(:comparator => :predicate),
+        :table_reference => Differences::ValueCriterion.new(
+          :value_extractor => lambda { |o| o ? o.name : nil }
+        )
+      }
 
-      :status     => Differences::ValueCriterion.new(
-        :comparator => lambda { |left, right|
-          (left == :new && right == :active) || (left == right)
-        }
-      ),
-      :table_reference => Differences::ValueCriterion.new(
-        :value_extractor => lambda { |o| o ? o.name : nil }
-      ),
+      if diff_options[:strict]
+        base[:status] = Differences::ValueCriterion.new
+      else
+        base[:status] = Differences::ValueCriterion.new(
+          :comparator => lambda { |left, right|
+            no_change_changes = [
+              [:new, :active],
+              [:new, :modified],
+              [:active, :modified],
+              [:modified, :active]
+            ]
 
-      :type => EmbeddedVariableTypeCriterion.new
-    }
+            no_change_changes.include?([left, right]) || (left == right)
+          }
+        )
+      end
+
+      base
+    end
+    protected :diff_criteria
 
     ##
     # Computes the differences between this variable and the other.
     #
     # @return [Differences::Entry,nil]
-    def diff(other_variable)
-      Differences::Entry.compute(self, other_variable, DIFF_CRITERIA)
+    def diff(other_variable, options={})
+      Differences::Entry.compute(self, other_variable, diff_criteria(options), options)
     end
   end
 end

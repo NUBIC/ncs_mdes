@@ -263,7 +263,8 @@ XSD
       end
 
       describe 'status' do
-        let(:status_diff) { differences[:status].try(:to_a) }
+        let(:diff) { a.diff(aprime) }
+        let(:strict_diff) { a.diff(aprime, strict: true) }
 
         it 'reports nothing when they are the same' do
           a.status = :active
@@ -272,25 +273,65 @@ XSD
           differences.should be_nil
         end
 
-        it 'reports nothing when it changes from new to active' do
-          a.status = :new
-          aprime.status = :active
+        loose_same =[
+          [     :new, :active],
+          [     :new, :modified],
+          [  :active, :modified],
+          [:modified, :active]
+        ]
 
-          differences.should be_nil
+        loose_or_strict_different = [
+          [     :new, :retired],
+          [  :active, :retired],
+          [:modified, :retired],
+          ['a thing', :retired],
+
+          [     :new, 'some string'],
+          [  :active, 'some string'],
+          [:modified, 'some string'],
+          [ :retired, 'some string'],
+
+          [  :active, :new],
+          [:modified, :new],
+          [ :retired, :new],
+          ['a thing', :new],
+
+          [ :retired, :active],
+          ['a thing', :active],
+
+          [ :retired, :modified],
+          ['a thing', :modified],
+        ]
+
+        describe 'for a non-strict diff' do
+          loose_same.each do |left, right|
+            it "reports nothing for #{left.inspect} -> #{right.inspect}" do
+              a.status = left
+              aprime.status = right
+
+              diff.should be_nil
+            end
+          end
+
+          loose_or_strict_different.each do |left, right|
+            it "reports a difference for #{left.inspect} -> #{right.inspect}" do
+              a.status = left
+              aprime.status = right
+
+              diff[:status].should be_a_value_diff(left, right)
+            end
+          end
         end
 
-        it 'reports a difference when it changes from active to new (since that would be odd)' do
-          a.status = :active
-          aprime.status = :new
+        describe 'for a strict diff' do
+          (loose_same + loose_or_strict_different).each do |left, right|
+            it "reports a difference for #{left.inspect} -> #{right.inspect}" do
+              a.status = left
+              aprime.status = right
 
-          differences[:status].should be_a_value_diff(:active, :new)
-        end
-
-        it 'reports a difference when they are different otherwise' do
-          a.status = :modified
-          aprime.status = :retired
-
-          differences[:status].should be_a_value_diff(:modified, :retired)
+              strict_diff[:status].should be_a_value_diff(left, right)
+            end
+          end
         end
       end
 

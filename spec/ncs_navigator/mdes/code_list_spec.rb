@@ -67,7 +67,8 @@ module NcsNavigator::Mdes
       let(:a) { CodeListEntry.new('A') }
       let(:aprime) { CodeListEntry.new('A') }
 
-      let(:diff) { a.diff(aprime) }
+      let(:diff)        { a.diff(aprime) }
+      let(:strict_diff) { a.diff(aprime, :strict => true) }
 
       it 'reports nothing for no differences' do
         diff.should be_nil
@@ -82,29 +83,94 @@ module NcsNavigator::Mdes
       end
 
       describe 'label' do
-        it 'reports a difference' do
-          a.label = 'Aleph'
-          aprime.label = 'Alpha'
+        describe 'with a text difference' do
+          before do
+            a.label = 'Aleph'
+            aprime.label = 'Alpha'
+          end
 
-          diff[:label].should be_a_value_diff('Aleph', 'Alpha')
+          it 'when not strict, it reports the normalized difference' do
+            diff[:label].should be_a_value_diff('aleph', 'alpha')
+          end
+
+          it 'when strict, it reports the literal difference' do
+            strict_diff[:label].should be_a_value_diff('Aleph', 'Alpha')
+          end
+        end
+
+        describe 'with a whitespace-only difference' do
+          before do
+            a.label = " a\t\tb   "
+            aprime.label = 'a   b'
+          end
+
+          it 'reports a difference in strict mode' do
+            strict_diff[:label].should be_a_value_diff(a.label, aprime.label)
+          end
+
+          it 'does not report a difference when not strict' do
+            diff.should be_nil
+          end
+        end
+
+        describe 'with a case-only difference' do
+          before do
+            a.label = 'AbcdEf'
+            aprime.label = 'aBCDeF'
+          end
+
+          it 'reports a difference in strict mode' do
+            strict_diff[:label].should be_a_value_diff(a.label, aprime.label)
+          end
+
+          it 'does not report a difference when not strict' do
+            diff.should be_nil
+          end
+        end
+
+        describe 'with a punctuation-only difference' do
+          before do
+            a.label = 'a,b,|c[at+]-'
+            aprime.label = 'a!b*&c$#at'
+          end
+
+          it 'reports a difference in strict mode' do
+            strict_diff[:label].should be_a_value_diff(a.label, aprime.label)
+          end
+
+          it 'does not report a difference when not strict' do
+            diff.should be_nil
+          end
         end
       end
 
       describe 'global_value' do
-        it 'reports a difference' do
+        before do
           a.global_value = '0'
           aprime.global_value = '-0'
+        end
 
-          diff[:global_value].should be_a_value_diff('0', '-0')
+        it 'reports a difference in strict mode' do
+          strict_diff[:global_value].should be_a_value_diff('0', '-0')
+        end
+
+        it 'does not report a difference otherwise' do
+          diff.should be_nil
         end
       end
 
       describe 'master_cl' do
-        it 'reports a difference' do
+        before do
           a.master_cl = 'C'
           aprime.master_cl = 'Cprime'
+        end
 
-          diff[:master_cl].should be_a_value_diff('C', 'Cprime')
+        it 'reports a difference in strict mode' do
+          strict_diff[:master_cl].should be_a_value_diff('C', 'Cprime')
+        end
+
+        it 'does not report a difference otherwise' do
+          diff.should be_nil
         end
       end
     end

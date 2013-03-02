@@ -11,12 +11,13 @@ module NcsNavigator::Mdes::Differences
     # @param [Object] o1 the left object
     # @param [Object] o2 the right object
     # @param [Hash<Symbol, #apply>] attribute_criteria a list of objects which produce difference objects
+    # @param [Hash] diff_options options to pass to nested calls to #diff
     # @return [Entry, nil] the differences between o1 and o2 according to the
     #   criteria, or nil if there are no differences.
-    def self.compute(o1, o2, attribute_criteria)
+    def self.compute(o1, o2, attribute_criteria, diff_options)
       differences = attribute_criteria.each_with_object({}) do |(diff_attribute, criterion), diffs|
         o_attribute = (criterion.respond_to?(:attribute) && criterion.attribute) || diff_attribute
-        d = criterion.apply(o1.send(o_attribute), o2.send(o_attribute))
+        d = criterion.apply(o1.send(o_attribute), o2.send(o_attribute), diff_options)
         diffs[diff_attribute] = d if d
       end
 

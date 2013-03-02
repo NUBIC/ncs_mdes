@@ -171,8 +171,8 @@ module NcsNavigator::Mdes
       :types                 => Differences::CollectionCriterion.new(:name)
     }
 
-    def diff(other)
-      Differences::Entry.compute(self, other, DIFF_CRITERIA)
+    def diff(other, options={})
+      Differences::Entry.compute(self, other, DIFF_CRITERIA, options)
     end
   end
 end

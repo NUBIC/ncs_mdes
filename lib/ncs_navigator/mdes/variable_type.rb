@@ -127,19 +127,35 @@ module NcsNavigator::Mdes
       "#<#{self.class} #{attrs.join(' ')}>"
     end
 
-    # @private
-    DIFF_CRITERIA = {
-      :name       => Differences::ValueCriterion.new,
-      :base_type  => Differences::ValueCriterion.new,
-      :pattern    => Differences::ValueCriterion.new,
-      :max_length => Differences::ValueCriterion.new,
-      :min_length => Differences::ValueCriterion.new,
-      :code_list_by_value => Differences::CollectionCriterion.new(:value, :collection => :code_list),
-      :code_list_by_label => Differences::CollectionCriterion.new(:label, :collection => :code_list)
-    }
+    def diff_criteria(diff_options={})
+      base = {
+        :name       => Differences::ValueCriterion.new,
+        :base_type  => Differences::ValueCriterion.new,
+        :pattern    => Differences::ValueCriterion.new,
+        :max_length => Differences::ValueCriterion.new,
+        :min_length => Differences::ValueCriterion.new,
+      }
 
-    def diff(other_type)
-      Differences::Entry.compute(self, other_type, DIFF_CRITERIA)
+      if diff_options[:strict]
+        base.merge(
+          :code_list_by_value => Differences::CollectionCriterion.new(
+            :value, :collection => :code_list),
+          :code_list_by_label => Differences::CollectionCriterion.new(
+            :label, :collection => :code_list)
+        )
+      else
+        base.merge(
+          :code_list_by_value => Differences::CollectionCriterion.new(
+            :value, :collection => :code_list),
+          :code_list_by_label => Differences::CollectionCriterion.new(
+            :label, :collection => :code_list, :value_extractor => :word_chars_downcase)
+        )
+      end
+    end
+    protected :diff_criteria
+
+    def diff(other_type, options={})
+      Differences::Entry.compute(self, other_type, diff_criteria(options), options)
     end
   end
 end

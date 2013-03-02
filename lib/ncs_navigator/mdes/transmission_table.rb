@@ -125,8 +125,8 @@ module NcsNavigator::Mdes
     # Computes the differences between this table and the other.
     #
     # @return [Differences::Entry,nil]
-    def diff(other_table)
-      Differences::Entry.compute(self, other_table, DIFF_CRITERIA)
+    def diff(other_table, options={})
+      Differences::Entry.compute(self, other_table, DIFF_CRITERIA, options)
     end
   end
 end
