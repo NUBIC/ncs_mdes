@@ -56,7 +56,7 @@ Or the number of code lists that include "Yes" as an option:
     :004 > $mdes20.types.select { |t| t.code_list && t.code_list.collect(&:label).include?('Yes') }.size
      => 23
 
-Or which variables in a table are different table between two versions:
+Or which variables in a table are different between two versions:
 
     :005 > pp $mdes20['staff'].diff($mdes32['staff'])[:variables]; nil
     #<NcsNavigator::Mdes::Differences::Collection:0x007fdd8bb4dff0
