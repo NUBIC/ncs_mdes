@@ -6,6 +6,10 @@ NCS Navigator MDES Module history
 
 - Add `#diff` methods to all levels in the specification tree. They produce
   a computable difference between two instances. (#10)
+- Add `TransmissionTable#child_instrument_table?` and
+  `TransmissionTable#parent_instrument_table?`. The values they return are
+  manually extracted from several sources and stored in files in each version's
+  documents directory. (#28)
 - Drop support for Ruby 1.8.7.
 - Rename `NcsNavigator::Mdes::VariableType::CodeList` to
   `NcsNavigator::Mdes::CodeList` and
