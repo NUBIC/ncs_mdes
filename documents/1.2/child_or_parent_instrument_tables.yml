@@ -1,0 +1,28 @@
+child_instrument_tables:
+- nine_mth_mother_detail
+- six_mth_mother_detail
+- six_mth_saq
+- three_mth_mother_child_detail
+- three_mth_mother_child_habits
+- twelve_mth_mother_detail
+parent_instrument_tables:
+- birth_visit
+- household_enumeration
+- household_enumeration_age_elig
+- household_enumeration_pregnant
+- nine_mth_mother
+- ppg_cati
+- ppg_saq
+- pre_preg
+- preg_screen_eh
+- preg_screen_hi
+- preg_screen_pb
+- preg_visit_1
+- preg_visit_1_saq
+- preg_visit_2
+- preg_visit_2_saq
+- preg_visit_li
+- six_mth_mother
+- three_mth_mother
+- twelve_mth_mother
+- twelve_mth_saq

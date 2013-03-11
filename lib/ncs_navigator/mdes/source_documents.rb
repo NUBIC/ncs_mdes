@@ -72,6 +72,7 @@ module NcsNavigator::Mdes
           sd.schema = schema
           sd.heuristic_overrides = "#{version}/heuristic_overrides.yml"
           sd.disposition_codes = "#{version}/disposition_codes.yml"
+          sd.child_or_parent_instrument_tables = "#{version}/child_or_parent_instrument_tables.yml"
           sd.specification_version = specification_version
         end
       end
@@ -169,6 +170,32 @@ module NcsNavigator::Mdes
     # @return [String] the provided path
     def disposition_codes=(path)
       @disposition_codes = path
+    end
+
+    ##
+    # The absolute path to a YAML-formatted document defining a hash with two
+    # keys: `child_instrument_tables` and `parent_instrument_tables`. The value
+    # for each should be a list of MDES table names (lower case) which are in
+    # that category.
+    #
+    # This is path is optional; if one is not provided
+    # {TransmissionTable#child_instrument_table?} and
+    # {TransmissionTable#parent_instrument_table?} will be nil for all tables.
+    #
+    # @return [String]
+    def child_or_parent_instrument_tables
+      absolutize(@child_or_parent_instrument_tables)
+    end
+
+    ##
+    # Set the path to the child-or-parent instrument tables document.
+    # If the path is relative (i.e., it does not begin with `/`), it
+    # will be interpreted relative to {#base}.
+    #
+    # @param [String] path
+    # @return [String] the provided path
+    def child_or_parent_instrument_tables=(path)
+      @child_or_parent_instrument_tables = path
     end
 
     private

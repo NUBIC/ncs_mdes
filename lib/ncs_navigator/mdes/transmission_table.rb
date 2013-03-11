@@ -29,6 +29,11 @@ module NcsNavigator::Mdes
     #  table.)
     attr_accessor :variables
 
+    ##
+    # @see #child_instrument_table?
+    # @return [void]
+    attr_writer :child_instrument_table
+
     def initialize(name)
       @name = name
     end
@@ -113,6 +118,44 @@ module NcsNavigator::Mdes
     # @return [true,false]
     def operational_table?
       !instrument_table?
+    end
+
+    ##
+    # Is this a child instrument data table? (As opposed to a parent instrument
+    # data table or neither.)
+    #
+    # This reports the type of participant whose p_id should go in this table's
+    # p_id variable.
+    #
+    # Return values:
+    #
+    # * `true`: The p_id should be a child's p_id.
+    # * `false`: The p_id should be a parent's p_id.
+    # * `nil`: The table isn't an instrument data table, or it doesn't have a p_id
+    #   variable, or the childness of the p_id isn't known.
+    #
+    # @return [true,false,nil]
+    def child_instrument_table?
+      @child_instrument_table
+    end
+
+    ##
+    # Is this a parent instrument data table? (As opposed to a child instrument
+    # data table or neither.)
+    #
+    # This reports the type of participant whose p_id should go in this table's
+    # p_id variable.
+    #
+    # Return values:
+    #
+    # * `true`: The p_id should be a parent's p_id.
+    # * `false`: The p_id should be a child's p_id.
+    # * `nil`: The table isn't an instrument data table, or it doesn't have a p_id
+    #   variable, or the childness of the p_id isn't known.
+    #
+    # @return [true,false,nil]
+    def parent_instrument_table?
+      child_instrument_table?.nil? ? nil : !child_instrument_table?
     end
 
     # @private

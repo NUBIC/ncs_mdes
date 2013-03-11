@@ -53,6 +53,18 @@ module NcsNavigator::Mdes
             lambda { table.instrument_table? }.should_not raise_error
           end
         end
+
+        it 'knows the mother-childness of all p_id-bearing instrument tables' do
+          p_id_instrument_tables = tables.select { |t| t.instrument_table? && t.variables.collect(&:name).include?('p_id') }
+          p_id_instrument_tables.
+            reject { |t| [true, false].include?(t.child_instrument_table?) }.
+            collect { |t| t.name }.should == []
+        end
+
+        it 'has some child and some parent instrument data tables' do
+          index = tables.each_with_object(Hash.new(0)) { |t, acc| acc[t.child_instrument_table?] += 1 }
+          index.keys.sort_by { |k| k.inspect }.should == [false, nil, true]
+        end
       end
 
       context 'in version 1.2' do

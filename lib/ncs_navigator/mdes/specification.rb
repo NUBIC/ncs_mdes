@@ -94,9 +94,43 @@ module NcsNavigator::Mdes
             v.resolve_foreign_key!(tables, fk_overrides[v.name], :log => @log, :in_table => t)
           }
         }
+        tables.each { |t| t.child_instrument_table = lookup_child_or_parent_table_status(t.name) }
       }
     end
     private :read_transmission_tables
+
+    def lookup_child_or_parent_table_status(name)
+      if child_or_parent_instrument_tables['child_instrument_tables'].include?(name)
+        true
+      elsif child_or_parent_instrument_tables['parent_instrument_tables'].include?(name)
+        false
+      else
+        nil
+      end
+    end
+    private :lookup_child_or_parent_table_status
+
+    def child_or_parent_instrument_tables
+      @child_or_parent_instrument_tables ||=
+        if source_documents.child_or_parent_instrument_tables
+          YAML.load(File.read(source_documents.child_or_parent_instrument_tables)).tap do |result|
+            check_child_or_parent_lists(result)
+          end
+        else
+          Hash.new([])
+        end
+    end
+    private :child_or_parent_instrument_tables
+
+    def check_child_or_parent_lists(lists)
+      parent_list = lists['parent_instrument_tables']
+      child_list = lists['child_instrument_tables']
+      overlap = parent_list & child_list
+      unless overlap.empty?
+        @log.warn("These tables appear in both the child instrument and parent instrument lists: #{overlap.inspect}")
+      end
+    end
+    private :check_child_or_parent_lists
 
     ##
     # A shortcut for accessing particular {#transmission_tables}.
