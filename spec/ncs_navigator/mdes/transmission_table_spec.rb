@@ -180,6 +180,25 @@ XSD
       end
     end
 
+    describe 'parent or child instrument table accessors' do
+      let(:t) { TransmissionTable.new('T') }
+
+      it 'is not a parent table when it is a child table' do
+        t.child_instrument_table = true
+        t.should_not be_a_parent_instrument_table
+      end
+
+      it 'is a parent table when it is definitely not a child table' do
+        t.child_instrument_table = false
+        t.should be_a_parent_instrument_table
+      end
+
+      it 'is not known whether it is a parent instrument table when it is not known whether it is a child instrument table' do
+        t.child_instrument_table = nil
+        t.parent_instrument_table?.should be_nil
+      end
+    end
+
     describe '#diff' do
       let(:a) { TransmissionTable.new('A') }
       let(:aprime) { TransmissionTable.new('A') }

@@ -71,6 +71,16 @@ module NcsNavigator::Mdes
       end
     end
 
+    describe '#child_or_parent_instrument_tables' do
+      let(:property) { :child_or_parent_instrument_tables }
+
+      it_behaves_like 'an absolutizing path accessor'
+
+      it 'is optional' do
+        SourceDocuments.new.child_or_parent_instrument_tables.should be_nil
+      end
+    end
+
     describe '.get' do
       shared_examples 'version docs' do
         subject { SourceDocuments.get(version) }
@@ -81,6 +91,10 @@ module NcsNavigator::Mdes
 
         it 'has the correct path for the disposition codes' do
           subject.disposition_codes.should =~ %r{#{version}/disposition_codes.yml$}
+        end
+
+        it 'has the correct path for the parent-child instrument tables list' do
+          subject.child_or_parent_instrument_tables.should =~ %r{#{version}/child_or_parent_instrument_tables.yml$}
         end
 
         it 'is of the specified version' do
