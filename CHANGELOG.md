@@ -4,6 +4,8 @@ NCS Navigator MDES Module history
 0.12.1
 ------
 
+- Restore JRuby compatibility. (#5)
+
 0.12.0
 ------
 

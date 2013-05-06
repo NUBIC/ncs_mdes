@@ -24,7 +24,8 @@ document in the API documentation, try looking at [rubydoc.info][].)
 
 [rubydoc.info]: http://rubydoc.info/github/NUBIC/ncs_mdes/master/frames
 
-As of ncs_mdes 0.12.0, only Ruby 1.9.3+ is supported.
+As of ncs_mdes 0.12.1, Ruby 1.9.3+ and JRuby 1.7+ are supported. (Ruby 1.8.x is
+not supported as of 0.12.0. Use 0.11.0 or earlier for Ruby 1.8.7.)
 
 ### Examine
 
