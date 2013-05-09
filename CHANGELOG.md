@@ -1,8 +1,10 @@
 NCS Navigator MDES Module history
 =================================
 
-0.12.1
+0.13.0
 ------
+
+- Introduce MDES 3.3 support using specification version 3.3.00.00. (#29)
 
 - Restore JRuby compatibility. (#5)
 
