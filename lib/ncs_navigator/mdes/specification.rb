@@ -83,7 +83,7 @@ module NcsNavigator::Mdes
         '//xs:element[@name="transmission_tables"]/xs:complexType/xs:sequence/xs:element',
         source_documents.xmlns
       ).collect { |table_elt|
-        TransmissionTable.from_element(table_elt, :log => @log)
+        TransmissionTable.from_element(table_elt, :log => @log, :heuristic_overrides => heuristic_overrides)
       }.tap { |tables|
         tables.each { |t| t.variables.each { |v| v.resolve_type!(types, :log => @log) } }
         # All types must be resolved before doing FK resolution or
@@ -165,7 +165,7 @@ module NcsNavigator::Mdes
 
     def read_types
       xsd.xpath('//xs:simpleType[@name]', source_documents.xmlns).collect do |type_elt|
-        VariableType.from_xsd_simple_type(type_elt, :log => @log)
+        VariableType.from_xsd_simple_type(type_elt, :log => @log, :heuristic_overrides => heuristic_overrides)
       end
     end
     private :read_types

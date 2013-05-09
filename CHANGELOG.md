@@ -6,6 +6,9 @@ NCS Navigator MDES Module history
 
 - Restore JRuby compatibility. (#5)
 
+- Allow variable types to be overridden using heuristic_overrides during
+  VDR schema parsing. (Done with #29)
+
 0.12.0
 ------
 

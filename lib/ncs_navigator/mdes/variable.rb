@@ -90,21 +90,40 @@ module NcsNavigator::Mdes
             when '4'; :retired;
             else element['ncsdoc:status'];
             end
-          var.type =
-            if element['type']
-              if element['type'] =~ /^xs:/
-                VariableType.xml_schema_type(element['type'].sub(/^xs:/, ''))
-              else
-                VariableType.reference(element['type'])
-              end
-            elsif element.elements.collect { |e| e.name } == %w(simpleType)
-              VariableType.from_xsd_simple_type(element.elements.first, options)
-            else
-              log.warn("Could not determine a type for variable #{var.name.inspect} on line #{element.line}")
-              nil
-            end
+          var.type = type_for(element, var.name, log, options)
         end
       end
+
+      def type_for(element, name, log, options)
+        variable_type_override = deep_key_or_nil(
+          options, :heuristic_overrides, 'variable_type_references', options[:current_table_name], name)
+
+        named_type = variable_type_override || element['type']
+
+        if named_type
+          if named_type =~ /^xs:/
+            VariableType.xml_schema_type(named_type.sub(/^xs:/, ''))
+          else
+            VariableType.reference(named_type)
+          end
+        elsif element.elements.collect { |e| e.name } == %w(simpleType)
+          VariableType.from_xsd_simple_type(element.elements.first, options)
+        else
+          log.warn("Could not determine a type for variable #{name.inspect} on line #{element.line}")
+          nil
+        end
+      end
+      private :type_for
+
+      def deep_key_or_nil(h, *keys)
+        value = h[keys.shift]
+        if value.respond_to?(:[]) && !keys.empty?
+          deep_key_or_nil(value, *keys)
+        else
+          value
+        end
+      end
+      private :deep_key_or_nil
     end
 
     def initialize(name)

@@ -31,6 +31,17 @@ module NcsNavigator::Mdes
           should be_a TransmissionTable
       end
 
+      it 'passes down heuristic overrides' do
+        spec = Specification.new('2.0', :log => logger)
+
+        TransmissionTable.should_receive(:from_element).
+          with(anything, include(:heuristic_overrides => spec.heuristic_overrides)).
+          at_least(:once).
+          and_return(TransmissionTable.new('mocked'))
+
+        spec.transmission_tables # force parsing
+      end
+
       shared_examples 'tables fully resolved' do
         let!(:tables) { Specification.new(version, :log => logger).transmission_tables }
 
@@ -224,6 +235,17 @@ module NcsNavigator::Mdes
       it 'is composed of VariableType instances' do
         Specification.new('2.0', :log => logger).types.first.
           should be_a VariableType
+      end
+
+      it 'passes down heuristic overrides when parsing' do
+        spec = Specification.new('2.0', :log => logger)
+
+        VariableType.should_receive(:from_xsd_simple_type).
+          with(anything, include(:heuristic_overrides => spec.heuristic_overrides)).
+          at_least(:once).
+          and_return(VariableType.new('mocked'))
+
+        spec.types # force parsing
       end
 
       shared_examples 'types fully resolved' do

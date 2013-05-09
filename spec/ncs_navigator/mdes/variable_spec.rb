@@ -5,8 +5,8 @@ require 'nokogiri'
 module NcsNavigator::Mdes
   describe Variable do
     describe '.from_element' do
-      def variable(s)
-        Variable.from_element(schema_element(s), :log => logger)
+      def variable(s, options={})
+        Variable.from_element(schema_element(s), { :log => logger }.merge(options))
       end
 
       let(:comments) {
@@ -72,6 +72,61 @@ XSD
 
             it 'is a reference' do
               sc_id.type.should be_reference
+            end
+          end
+
+          context 'with an override' do
+            let(:options) {
+              {
+                :heuristic_overrides => {
+                  'variable_type_references' => {
+                    overridden_table_name => {
+                      'not_a_pk' => override_type
+                    }
+                  }
+                },
+                :current_table_name => overridden_table_name
+              }
+            }
+
+            let(:overridden_table_name) { 'link_whatever' }
+            let(:type_in_xsd) { 'ncs:primaryKeyType' }
+            let(:override_type) { 'ncs:foreignKeyTypeRequired' }
+
+            let(:subject) {
+              variable("<xs:element name='not_a_pk' type='#{type_in_xsd}'/>", options)
+            }
+
+            it 'uses an override which matches' do
+              subject.type.name.should == 'ncs:foreignKeyTypeRequired'
+            end
+
+            it 'does not use an override which does not match by table name' do
+              options[:current_table_name] = 'another_table'
+
+              subject.type.name.should == type_in_xsd
+            end
+
+            it 'does not use an override which does not match by variable name' do
+              options[:heuristic_overrides]['variable_type_references']['link_whatever'] = {
+                'another_overridden_variable' => 'xs:integer'
+              }
+
+              subject.type.name.should == type_in_xsd
+            end
+
+            context 'when the override is an schema type' do
+              let(:override_type) { 'xs:integer' }
+
+              it 'treats extracts the XSD type' do
+                subject.type.base_type.should == :integer
+              end
+            end
+
+            context 'when the override is an internal reference' do
+              it 'is a reference' do
+                subject.type.should be_reference
+              end
             end
           end
         end

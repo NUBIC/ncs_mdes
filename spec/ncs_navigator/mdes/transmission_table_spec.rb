@@ -46,7 +46,8 @@ module NcsNavigator::Mdes
 XSD
       }
 
-      subject { TransmissionTable.from_element(element) }
+      subject { TransmissionTable.from_element(element, options) }
+      let(:options) { { } }
 
       it 'has the right name' do
         subject.name.should == 'study_center'
@@ -55,6 +56,29 @@ XSD
       it 'has the right variables' do
         subject.variables.collect(&:name).
           should == %w(sc_id sc_name comments transaction_type)
+      end
+
+      it 'sends the current table name when constructing variables' do
+        Variable.should_receive(:from_element).
+          with(anything, include(:current_table_name => 'study_center')).
+          at_least(:once)
+
+        subject # to force parsing
+      end
+
+      it 'does not leak the current table name to the outer options hash' do
+        subject # to force parsing
+        options.should_not have_key(:current_table_name)
+      end
+
+      it 'passes down provided options when constructing variables' do
+        options[:foo] = 'bar'
+
+        Variable.should_receive(:from_element).
+          with(anything, include(:foo => 'bar')).
+          at_least(:once)
+
+        subject # to force parsing
       end
     end
 

@@ -12,9 +12,13 @@ module NcsNavigator::Mdes
       log = options[:log] || NcsNavigator::Mdes.default_logger
 
       new(element['name']).tap do |table|
+        opts = options.merge({
+          :log => log,
+          :current_table_name => table.name
+        })
         table.variables = element.
           xpath('xs:complexType/xs:sequence/xs:element', SourceDocuments.xmlns).
-          collect { |col_elt| Variable.from_element(col_elt, options) }
+          collect { |col_elt| Variable.from_element(col_elt, opts) }
       end
     end
 
