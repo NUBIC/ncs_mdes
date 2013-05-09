@@ -9,6 +9,8 @@ NCS Navigator MDES Module history
 - Allow variable types to be overridden using heuristic_overrides during
   VDR schema parsing. (Done with #29)
 
+- Add `TransmissionTable#primary_key_variables`. (Done with #29)
+
 0.12.0
 ------
 

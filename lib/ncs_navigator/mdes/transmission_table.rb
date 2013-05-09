@@ -175,5 +175,24 @@ module NcsNavigator::Mdes
     def diff(other_table, options={})
       Differences::Entry.compute(self, other_table, DIFF_CRITERIA, options)
     end
+
+    ##
+    # This method allows for a table to have a multiple column PK. At this
+    # writing there are not any, so this is out of an abundance of caution.
+    #
+    # @return [Array<Variable>] the variables comprising the PK for this table,
+    #   or an empty array if they can't be determined.
+    def primary_key_variables
+      pks = variables.select { |v| v.type.name == 'primaryKeyType' }
+      if !pks.empty?
+        pks
+      elsif name == 'study_center'
+        variables.select { |v| v.name == 'sc_id' }
+      elsif name == 'psu'
+        variables.select { |v| v.name == 'psu_id' }
+      else
+        []
+      end
+    end
   end
 end

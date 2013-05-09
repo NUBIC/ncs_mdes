@@ -76,6 +76,18 @@ module NcsNavigator::Mdes
           index = tables.each_with_object(Hash.new(0)) { |t, acc| acc[t.child_instrument_table?] += 1 }
           index.keys.sort_by { |k| k.inspect }.should == [false, nil, true]
         end
+
+        it 'has a primary key for every table' do
+          no_pk_tables = tables.select { |table| table.primary_key_variables.empty? }
+
+          no_pk_tables.should == []
+        end
+
+        it 'has no multi-column primary keys' do
+          multi_column_key_tables = tables.select { |table| table.primary_key_variables.size > 1 }
+
+          multi_column_key_tables.should == []
+        end
       end
 
       context 'in version 1.2' do

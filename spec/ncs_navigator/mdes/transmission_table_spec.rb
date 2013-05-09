@@ -280,5 +280,58 @@ XSD
         end
       end
     end
+
+    describe '#primary_key_variables' do
+      def table_with_typed_variables(table_name, variables_and_types)
+          TransmissionTable.new(table_name).tap do |t|
+            t.variables = variables_and_types.collect do |vn, type|
+              Variable.new(vn).tap do |v|
+                v.type = VariableType.new(type)
+              end
+            end
+          end
+      end
+
+      describe 'for a regular table' do
+        let(:table) {
+          table_with_typed_variables('example',
+            'foo' => 'primaryKeyType',
+            'bar' => 'primaryKeyType',
+            'baz' => 'foreignKeyTypeRequired',
+          )
+        }
+
+        it 'finds all the variables with the PK type' do
+          table.primary_key_variables.collect(&:name).should == %w(foo bar)
+        end
+      end
+
+      describe 'for psu' do
+        let(:psu_table) {
+          table_with_typed_variables('psu',
+            'sc_id' => 'study_center_cl1',
+            'psu_id' => 'psu_cl1',
+            'psu_name' => nil,
+          )
+        }
+
+        it 'finds the PK' do
+          psu_table.primary_key_variables.collect(&:name).should == ['psu_id']
+        end
+      end
+
+      describe 'for study_center' do
+        let(:sc_table) {
+          table_with_typed_variables('study_center',
+            'sc_id' => 'study_center_cl1',
+            'sc_name' => nil,
+          )
+        }
+
+        it 'finds the PK' do
+          sc_table.primary_key_variables.collect(&:name).should == ['sc_id']
+        end
+      end
+    end
   end
 end
