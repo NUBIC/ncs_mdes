@@ -5,8 +5,8 @@ require "ncs_navigator/mdes/version"
 Gem::Specification.new do |s|
   s.name        = "ncs_mdes"
   s.version     = NcsNavigator::Mdes::VERSION
-  s.authors     = ["Rhett Sutphin"]
-  s.email       = ["r-sutphin@northwestern.edu"]
+  s.authors     = ["Rhett Sutphin", "Paul Friedman"]
+  s.email       = ["r-sutphin@northwestern.edu", "psfriedman@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{A ruby API for various versions of the NCS MDES.}
   s.description = %q{
