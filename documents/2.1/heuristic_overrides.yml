@@ -370,7 +370,7 @@ foreign_keys:
     staff_weekly_expense_id: staff_weekly_expense
 
   trh_meter_calibration:
-    equip_id: spec_equipment
+    equip_id: env_equipment
 
   twelve_mth_mother:
     c_addr1_id: address
